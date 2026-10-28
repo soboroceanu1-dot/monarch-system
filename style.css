@@ -4,3 +4,5 @@
 
 /* Hybrid Academy */
 .lesson-text{line-height:1.65;background:#0d172d;border:1px solid #334a72;padding:16px;border-radius:12px;color:#e1eaf9}.choice{display:block;width:100%;text-align:left;margin:9px 0;background:#223351;border:1px solid #4b6386;line-height:1.4}.choice.correct,.success{background:#17493d;color:#a4f3d4}.success{padding:12px;border-radius:10px}.tabs button{font-size:11px;padding:12px 1px}
+
+#bossacademyform input[type=checkbox]{width:auto;display:inline-block;margin-right:8px}#bossacademyform label{line-height:1.5}.card p{line-height:1.55}

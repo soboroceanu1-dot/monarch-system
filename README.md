@@ -1,16 +1,18 @@
-# MONARCH SYSTEM 1.2 — HYBRID ACADEMY
+# MONARCH SYSTEM 1.3 — Adaptive Learning (pilot)
 
-Aplicație web statică pentru GitHub Pages și Telegram Mini App.
+Actualizare peste 1.2, fără modificarea cheii localStorage `monarch-life-v1`.
 
-## Noutăți
-- Tab **Academie** cu 5 lecții interactive despre AI și marketing.
-- Test cu răspunsuri, feedback și XP acordat o singură dată per lecție.
-- BOSS educațional după toate lecțiile.
-- Progresul vechi rămâne salvat în aceeași cheie localStorage `monarch-life-v1`.
-- Backup JSON în Setări, înainte de actualizare.
+## Nou
+- Modul aprofundat Prompt Engineering, 5 etape: diagnostic, lecție, practică ghidată, aplicare, BOSS.
+- Feedback la întrebări, sprijin suplimentar la încercări greșite, progres salvat.
+- Răspunsuri libere salvate local, +80 XP o singură dată la proiectul final.
+- Lecțiile 1.2 rămân disponibile.
 
-## Publicare
-Înlocuiește `index.html`, `style.css`, `app.js` și `README.md` din rădăcina repository-ului GitHub Pages. Nu încărca tokenuri sau informații private.
+## Limitări
+- Pilot cu un singur capitol aprofundat.
+- Evaluarea textului liber nu este realizată de AI; verificarea automată este numai de completare/lungime și autoevaluare.
+- Progresul se salvează numai local în aplicația Telegram/browser, fără sincronizare între ele.
+- Exportă backup din Setări înainte de actualizare.
 
-## Limite
-Este un prototip fără server. Nu verifică identitatea Telegram, nu sincronizează date între dispozitive și nu include AI generativ. Lecțiile sunt conținut predefinit.
+## Instalare
+Încarcă `index.html`, `style.css`, `app.js`, `README.md` în rădăcina aceluiași repository GitHub Pages. Nu schimba adresa Mini App.

@@ -1,18 +1,14 @@
-# MONARCH SYSTEM 1.3 — Adaptive Learning (pilot)
+# MONARCH SYSTEM 2.0 — The Awakening (ALPHA)
 
-Actualizare peste 1.2, fără modificarea cheii localStorage `monarch-life-v1`.
+Test de 20 întrebări, alegerea a 3 direcții, 3 evaluări practice cu verificare deterministă, plan inițial de 30 zile, păstrarea aplicației 1.3 și a cheii sale localStorage `monarch-life-v1`.
 
-## Nou
-- Modul aprofundat Prompt Engineering, 5 etape: diagnostic, lecție, practică ghidată, aplicare, BOSS.
-- Feedback la întrebări, sprijin suplimentar la încercări greșite, progres salvat.
-- Răspunsuri libere salvate local, +80 XP o singură dată la proiectul final.
-- Lecțiile 1.2 rămân disponibile.
+## Instalare GitHub Pages
+Extrage arhiva și încarcă **toate cele 5 fișiere** în rădăcina repo-ului GitHub, înlocuind fișierele existente. Nu încărca ZIP-ul ca fișier unic. Așteaptă publicarea GitHub Pages și redeschide Mini App Telegram.
 
-## Limitări
-- Pilot cu un singur capitol aprofundat.
-- Evaluarea textului liber nu este realizată de AI; verificarea automată este numai de completare/lungime și autoevaluare.
-- Progresul se salvează numai local în aplicația Telegram/browser, fără sincronizare între ele.
-- Exportă backup din Setări înainte de actualizare.
-
-## Instalare
-Încarcă `index.html`, `style.css`, `app.js`, `README.md` în rădăcina aceluiași repository GitHub Pages. Nu schimba adresa Mini App.
+## Limite importante
+- Versiune alpha: planul este un șablon adaptat pe câteva răspunsuri, nu un plan AI complet.
+- Evaluările sunt întrebări introductive cu variante, nu evaluări aprofundate ale competențelor.
+- Profilul Awakening este salvat separat în localStorage sub `monarch-awakening-v2`. Progresul 1.3 rămâne în `monarch-life-v1`.
+- Exportul JSON al vechii aplicații nu include automat profilul Awakening: acesta are propriul buton Exportă profilul JSON.
+- Datele sunt locale în browserul Telegram, fără autentificare securizată, sincronizare sau criptare end-to-end. Nu introduce date sensibile reale.
+- Nu există încă generare AI de lecții, personaje 3D sau sistem financiar securizat.

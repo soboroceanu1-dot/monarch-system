@@ -1,8 +1,12 @@
-MONARCH 3.0 UNIFIED ASCENSION — PREVIEW
+MONARCH SYSTEM 3.0 — UNIFIED (TEST BUILD)
 
-Instalează toate cele 8 fișiere în rădăcina repo-ului GitHub Pages.
-Fă backup înainte. Nu șterge localStorage.
+Aceasta este o reconstrucție de navigare, nu un simplu panou suplimentar.
 
-Aceasta este prima etapă de consolidare: un centru unic de navigare pentru misiuni, plan, Hunter, lecții și progres. Sistemele vechi și XP-ul lor rămân momentan separate. NU pretinde deduplicare completă.
+- Meniul principal are 5 secțiuni: Acasă, Aventură, Plan, Hunter, Evoluție.
+- Misiunile ghidate din Life Evolution sunt afișate în Acasă și Aventură; ambele deschid aceeași activitate și același registru XP.
+- Planul editează obiectivele, fără propria listă de misiuni.
+- Academia rămâne accesibilă din Aventură.
+- Inventarul și XP-ul anterior rămân în localStorage.
+- Vechea campanie completată nu mai ocupă ecranul; evaluarea inițială încă apare pentru utilizatorii noi.
 
-Test: Acasă -> UNIFIED ASCENSION 3.0 -> Centrul de misiuni -> Campania, Planul, Academia.
+LIMITĂRI: lecțiile din Academia inițială și cele din Awakening păstrează încă propriile registre. Migrarea completă la un singur motor de misiuni nu este realizată. Testează pe o copie a proiectului și exportă datele înainte de instalare.

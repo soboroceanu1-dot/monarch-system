@@ -1,1 +1,7 @@
-MONARCH SYSTEM 2.0 — ACTIVE QUESTS (test)\n\nÎnlocuiește cele 5 fișiere în GitHub Pages. Fă înainte backup în aplicație.\n\nDeschide Campania mea → Începe misiunea. Pentru finanțe există un exercițiu verificabil; pentru organizare și sport aplicația ghidează și utilizatorul confirmă realizarea. XP se adaugă în progresul principal, o singură dată pe zi pentru fiecare misiune.\n\nDatele rămân local pe dispozitiv. Nu introduce date sensibile.\n
+MONARCH 2.0 — ACTIVE QUESTS FIX
+
+Încarcă TOATE cele cinci fișiere în rădăcina repo-ului GitHub, înlocuind fișierele existente. Nu încărca ZIP-ul ca fișier unic.
+
+Modificări: misiunea deschisă apare imediat deasupra listei; validarea se face doar în etapa 1; XP-ul se acordă la finalizarea etapei 2; parametri noi pentru a evita cache-ul vechi; indicator vizibil ACTIVE QUESTS FIX.
+
+Progresul din localStorage nu este șters. Exportă o copie înainte de instalare.

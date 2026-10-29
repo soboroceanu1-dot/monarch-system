@@ -62,25 +62,25 @@ const missions=pathsChosen.map((p,i)=>({id:'path-'+i,title:['⚔️','🧠','�
 missions.push({id:'reflect',title:'📜 Jurnalul aventurii',detail:'Notează un lucru nou învățat sau un pas concret făcut astăzi.',xp:10});
 const completed=missions.filter(m=>data.questDone[today+':'+m.id]).length;
 let html=`<div class="aw-float"><button id="aw-open">🧬 Campania mea</button></div>`;
-if(data.dashboard){html+=`<div class="aw-back"><section class="aw-card"><div class="aw-top">👑 LIFE CAMPAIGN <small>HUNTER · ${e(today)}</small></div><h2>🗺️ Prima ascensiune</h2><p class="aw-muted">Obiectiv: ${e(goal)}</p><div class="aw-progress"><i style="width:${completed/missions.length*100}%"></i></div><p>${completed}/${missions.length} misiuni înregistrate azi</p><h3>⚔️ MISIUNILE ZILEI</h3>${missions.map(m=>`<div class="aw-mission"><strong>${e(m.title)}</strong><p>${e(m.detail)}</p><button data-quest="${m.id}" ${data.questDone[today+':'+m.id]?'disabled':''}>${data.questDone[today+':'+m.id]?'✓ Realizat':'⚔️ Începe misiunea'}</button></div>`).join('')}<h3>🐉 BOSS: ${e(goal)}</h3><p>În această campanie, BOSS-ul este obiectivul tău real. Avansează cu pași mici, nu prin apăsări repetate.</p>${data.activeQuest?activeQuestHtml(activeQuestData(data.activeQuest,today)):""}<h3>📅 PLANUL DE 30 DE ZILE</h3><div class="aw-plan">${plan().map((p,i)=>`<div><b>Săptămâna ${i+1}</b><p>${e(p)}</p></div>`).join('')}</div><p class="aw-muted">Misiunile sunt recomandări. Nu există penalizări pentru odihnă sau zile fără activitate. XP pentru acestea nu este încă conectat la sistemul principal.</p><button class="aw-secondary" id="aw-close">← Înapoi în joc</button><button class="aw-secondary" id="aw-restart">↻ Refă evaluarea inițială</button></section></div>`}
+if(data.dashboard){html+=`<div class="aw-back"><section class="aw-card"><div class="aw-top">👑 LIFE CAMPAIGN <small>HUNTER · ${e(today)}</small></div><h2>🗺️ Prima ascensiune</h2><p class="aw-muted">Obiectiv: ${e(goal)}</p><div class="aw-progress"><i style="width:${completed/missions.length*100}%"></i></div><p>${completed}/${missions.length} misiuni înregistrate azi</p>${data.activeQuest?activeQuestHtml(activeQuestData(data.activeQuest,today)):''}<h3>⚔️ MISIUNILE ZILEI · ACTIVE QUESTS FIX</h3>${missions.map(m=>`<div class="aw-mission"><strong>${e(m.title)}</strong><p>${e(m.detail)}</p><button data-quest="${m.id}" ${data.questDone[today+':'+m.id]?'disabled':''}>${data.questDone[today+':'+m.id]?'✓ Realizat':'⚔️ Începe misiunea'}</button></div>`).join('')}<h3>🐉 BOSS: ${e(goal)}</h3><p>În această campanie, BOSS-ul este obiectivul tău real. Avansează cu pași mici, nu prin apăsări repetate.</p>${data.activeQuest?activeQuestHtml(activeQuestData(data.activeQuest,today)):""}<h3>📅 PLANUL DE 30 DE ZILE</h3><div class="aw-plan">${plan().map((p,i)=>`<div><b>Săptămâna ${i+1}</b><p>${e(p)}</p></div>`).join('')}</div><p class="aw-muted">Misiuni ghidate · XP se adaugă la nivelul principal după finalizare. Fără penalizări pentru odihnă.</p><button class="aw-secondary" id="aw-close">← Înapoi în joc</button><button class="aw-secondary" id="aw-restart">↻ Refă evaluarea inițială</button></section></div>`}
 el.innerHTML=html;
 const open=document.getElementById('aw-open');if(open)open.onclick=()=>{data.dashboard=true;save();render()};
 const close=document.getElementById('aw-close');if(close)close.onclick=()=>{data.dashboard=false;save();render()};const restart=document.getElementById('aw-restart');if(restart)restart.onclick=()=>{if(!confirm('Refaci testul de 20 de întrebări? Progresul principal din joc rămâne neschimbat.'))return;localStorage.setItem('monarch-awakening-previous-backup',JSON.stringify(data));data={step:0,answers:{},paths:[],assessment:{},finished:false,questDone:{}};save();render()};
-el.querySelectorAll('[data-quest]').forEach(b=>b.onclick=()=>{data.activeQuest=b.dataset.quest;data.activeStep=0;save();render()});
+el.querySelectorAll('[data-quest]').forEach(b=>b.onclick=()=>{data.activeQuest=b.dataset.quest;data.activeStep=0;save();render();document.querySelector('.aw-back')?.scrollTo(0,0);window.scrollTo(0,0)});
 const nextQuest=document.getElementById('active-next');if(nextQuest)nextQuest.onclick=()=>{
 const q=activeQuestData(data.activeQuest,today);if(!q)return;
-if(q.type==='finance'){
+if(data.activeStep===0&&q.type==='finance'){
 const v=Number(document.getElementById('budget-answer')?.value);
 if(!document.getElementById('budget-answer')?.value.trim()||v!==q.answer){document.getElementById('active-feedback').textContent='Încearcă din nou: adună cheltuielile necesare, apoi scade-le din buget.';return}
 }
-if(q.type==='organize'){
+if(data.activeStep===0&&q.type==='organize'){
 const task=document.getElementById('task-name')?.value.trim(),step=document.getElementById('task-step')?.value.trim();
 if(!task||step.length<12){document.getElementById('active-feedback').textContent='Scrie activitatea și un prim pas concret (cel puțin 12 caractere).';return}
 }
-if(q.type==='journal'){
+if(data.activeStep===0&&q.type==='journal'){
 const v=document.getElementById('journal-answer')?.value.trim();if(!v||v.length<12){document.getElementById('active-feedback').textContent='Descrie un lucru concret, în cel puțin 12 caractere.';return}
 }
-if(q.type==='movement'&&!document.getElementById('movement-choice')?.value){document.getElementById('active-feedback').textContent='Alege mai întâi o activitate.';return}
+if(data.activeStep===0&&q.type==='movement'&&!document.getElementById('movement-choice')?.value){document.getElementById('active-feedback').textContent='Alege mai întâi o activitate.';return}
 if(data.activeStep<1){data.activeStep=1;save();render();return}
 const k=today+':'+data.activeQuest;
 if(data.questDone[k])return;

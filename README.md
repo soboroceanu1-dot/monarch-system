@@ -1,7 +1,8 @@
-MONARCH SYSTEM 2.5 — LIFE EVOLUTION
+MONARCH 3.0 UNIFIED ASCENSION — PREVIEW
 
-7 fișiere. Faceți backup al progresului înainte de actualizare. Încărcați toate fișierele în rădăcina repo-ului GitHub.
+Instalează toate cele 8 fișiere în rădăcina repo-ului GitHub Pages.
+Fă backup înainte. Nu șterge localStorage.
 
-Noutăți: planificator an/lună/săptămână/zi; misiuni ghidate în trei etape; rotire misiuni pe competențe; +20 Hunter XP după trei răspunsuri concrete; prevenire recompensă dublă pentru același identificator.
+Aceasta este prima etapă de consolidare: un centru unic de navigare pentru misiuni, plan, Hunter, lecții și progres. Sistemele vechi și XP-ul lor rămân momentan separate. NU pretinde deduplicare completă.
 
-Limitări: evaluare bazată pe confirmarea utilizatorului, fără verificare automată a activităților din viața reală; stocare locală.
+Test: Acasă -> UNIFIED ASCENSION 3.0 -> Centrul de misiuni -> Campania, Planul, Academia.

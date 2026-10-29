@@ -1,7 +1,7 @@
-MONARCH SYSTEM 2.3 — HUNTER EVOLUTION
+MONARCH SYSTEM 2.4 — EQUIPMENT SYSTEM
 
-Include 2.2, cu personaj pe pagina Acasă și inventar vizibil.
-Încarcă toate cele ȘASE fișiere din arhivă în rădăcina depozitului GitHub.
-Salvează backup înainte de actualizare. Datele existente localStorage nu sunt șterse.
-Echipamente: sabie după 1 lecție, mantie după 3, aură după 6, emblemă după 9.
-Personalizarea este cosmetică și se salvează local.
+Actualizare peste 2.3. Încărcați toate cele 6 fișiere în rădăcina repo-ului GitHub. Faceți backup al progresului înainte.
+
+Noutăți: 4 sloturi independente (armă, mantie, aură, coroană); echipare/dezechipare; previzualizare combinată pe pagina principală și în inventar; migrare automată a echipamentului 2.3; fără schimbări la XP sau lecții.
+
+Nu ștergeți datele browserului / localStorage.

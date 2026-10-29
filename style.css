@@ -27,3 +27,12 @@
 .hunter23-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 2px;border-bottom:1px solid #ffffff24}
 .hunter23-item small{display:block;color:#a8bfd9;margin-top:4px}.hunter23-item button{border-radius:9px;padding:9px;background:#145d8e;color:white;border:1px solid #3bbee5}.hunter23-item button:disabled{opacity:.4}
 .hunter23-secondary{background:#263c60}.hunter23-note{font-size:12px;color:#a8bfd9}
+
+/* MONARCH 2.4 — equipment layers */
+.hunter24-home{border:1px solid #39b7e4;background:linear-gradient(145deg,#0c1b35,#16234c)}
+.hunter24-avatar{transform:scale(.9);transform-origin:center;overflow:hidden}
+.hunter24-cloak .asc-body{background:linear-gradient(140deg,#7a5dc0,#161e49 75%)}
+.hunter24-guard{box-shadow:0 0 22px var(--aura)}.hunter24-guard .asc-halo{opacity:.85}
+.hunter24-weapon{position:absolute;left:8px;top:78px;font-size:27px;transform:rotate(-22deg);z-index:4}
+.hunter24-crown{position:absolute;top:5px;left:42px;font-size:29px;z-index:4}
+.hunter24-avatar .asc-sigil{z-index:3}

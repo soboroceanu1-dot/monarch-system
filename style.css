@@ -61,3 +61,10 @@ html{scroll-padding-bottom:180px}
 .unified-tabs button{min-height:54px;line-height:1.25}
 .card:last-of-type{scroll-margin-bottom:180px}
 @media(max-width:380px){.unified-tabs button{font-size:10px;padding-inline:1px}}
+
+/* V4: genuine category switch inside Adventure, not additional dashboard cards */
+.adventure-head{padding:16px 2px 4px}.adventure-head h2{font-size:24px;margin:6px 0}.adventure-head p{margin:7px 0 15px}
+.adventure-switch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:#101a31;padding:6px;border:1px solid #334764;border-radius:15px;margin-bottom:14px}
+.adventure-switch button{padding:12px 2px;font-size:clamp(11px,2.8vw,14px);background:transparent;border:1px solid transparent;border-radius:10px;color:#b8c7e2;min-width:0}
+.adventure-switch button.selected{background:linear-gradient(100deg,#254c9a,#087b9d);border-color:#48d4ef;color:white;font-weight:800}
+#app{padding-bottom:calc(210px + env(safe-area-inset-bottom,0px))!important}

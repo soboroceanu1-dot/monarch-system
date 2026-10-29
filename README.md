@@ -1,12 +1,7 @@
-MONARCH SYSTEM 3.0 V3 — CLEAN INTERFACE (test)
+MONARCH SYSTEM 3.0 V4 — ADVENTURE REBUILD (test)
 
-Modificări limitate:
-- Spațiu de derulare suplimentar sub conținut, pentru bara fixă.
-- Un singur punct de acces la lecții: Aventură > Academia Hunter. Din Academia Hunter se deschid și lecțiile traseului personalizat.
-- Eliminarea etichetelor tehnice 1.3/2.4 din ecranele de învățare și echipare.
-- Nu se modifică cheile localStorage, recompensele, XP sau progresul.
-
-LIMITĂRI: Academia și traseul personalizat au în continuare stocări distincte. Acest pachet NU unifică motorul de misiuni și NU elimină toate duplicările din modelul de date.
-
-Instalare: faceți export de backup, apoi încărcați cele 7 fișiere în rădăcina repository-ului GitHub Pages.
-Verificare: meniu fix, conținut accesibil la finalul derulării, Aventură > Academia Hunter > Lecțiile traseului personalizat, XP intact.
+Modificare reală: Aventură are trei categorii interne, cu conținut exclusiv: Misiuni, Academie, Proiecte. Nu mai apar toate cardurile simultan.
+Academia conține în continuare lecțiile existente și accesul la traseul personalizat. Proiectele existente sunt accesibile în Proiecte.
+Nu sunt modificate cheile localStorage, datele salvate, XP sau echipamentele. Sistemele de salvare rămân distincte; nu pretindem unificarea motorului.
+Instalare: exportă backup, apoi încarcă cele 7 fișiere în rădăcina repo-ului.
+Teste: 1) Aventură > fiecare categorie; 2) Academie > lecție > Înapoi; 3) Proiecte > progres existent; 4) XP și inventar intacte.

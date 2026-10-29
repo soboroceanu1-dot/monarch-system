@@ -1,7 +1,7 @@
 (()=>{'use strict';
 const KEY='monarch-awakening-v2';let data={step:0,answers:{},paths:[],assessment:{},finished:false};try{data={...data,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch{};
 const save=()=>localStorage.setItem(KEY,JSON.stringify(data));
-const multi={0:3,8:5,13:5,14:4,15:5};const array=v=>Array.isArray(v)?v:(v?[v]:[]);const dateKey=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};data.questDone??={};
+const multi={0:3,8:5,13:5,14:4,15:5};const array=v=>Array.isArray(v)?v:(v?[v]:[]);const dateKey=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};data.questDone??={};data.skillXP??={};
 const questions=[
 ['Ce ai vrea să îmbunătățești cel mai mult? (alege maximum 3)','Finanțe','Carieră și afaceri','Învățare','Organizare','Bunăstare','Relații','Timp liber','Mișcare și sport','Alimentație și obiceiuri sănătoase'],
 ['Care este obiectivul tău pentru următoarele 12 luni?','__text'],
@@ -58,11 +58,11 @@ const exp=document.getElementById('aw-export');if(exp)exp.onclick=()=>{const blo
 }
 function renderDashboard(){
 const goal=data.answers[19]||data.answers[1]||'Dezvoltare personală';const today=dateKey();const pathsChosen=data.paths.length?data.paths:['Disciplină'];
-const missions=pathsChosen.map((p,i)=>({id:'path-'+i,title:['⚔️','🧠','🌱'][i]+' '+p,detail:mission(p),xp:20}));
+const missions=pathsChosen.map((p,i)=>{const count=Object.keys(data.questDone).filter(k=>k.includes(':path-'+i+'-')).length;const tier=Math.min(2,count);const q=questLesson(p,tier);return {id:'path-'+i+'-'+tier,title:['⚔️','🧠','🌱'][i]+' '+p+' · Lecția '+(tier+1),detail:q.intro,xp:q.xp};});
 missions.push({id:'reflect',title:'📜 Jurnalul aventurii',detail:'Notează un lucru nou învățat sau un pas concret făcut astăzi.',xp:10});
-const completed=missions.filter(m=>data.questDone[today+':'+m.id]).length;
+const completed=missions.filter(m=>data.questDone[m.id==='reflect'?today+':reflect':'lesson:'+m.id]).length;
 let html=`<div class="aw-float"><button id="aw-open">🧬 Campania mea</button></div>`;
-if(data.dashboard){html+=`<div class="aw-back"><section class="aw-card"><div class="aw-top">👑 LIFE CAMPAIGN <small>HUNTER · ${e(today)}</small></div><h2>🗺️ Prima ascensiune</h2><p class="aw-muted">Obiectiv: ${e(goal)}</p><div class="aw-progress"><i style="width:${completed/missions.length*100}%"></i></div><p>${completed}/${missions.length} misiuni înregistrate azi</p>${data.activeQuest?activeQuestHtml(activeQuestData(data.activeQuest,today)):''}<h3>⚔️ MISIUNILE ZILEI · ACTIVE QUESTS FIX</h3>${missions.map(m=>`<div class="aw-mission"><strong>${e(m.title)}</strong><p>${e(m.detail)}</p><button data-quest="${m.id}" ${data.questDone[today+':'+m.id]?'disabled':''}>${data.questDone[today+':'+m.id]?'✓ Realizat':'⚔️ Începe misiunea'}</button></div>`).join('')}<h3>🐉 BOSS: ${e(goal)}</h3><p>În această campanie, BOSS-ul este obiectivul tău real. Avansează cu pași mici, nu prin apăsări repetate.</p>${data.activeQuest?activeQuestHtml(activeQuestData(data.activeQuest,today)):""}<h3>📅 PLANUL DE 30 DE ZILE</h3><div class="aw-plan">${plan().map((p,i)=>`<div><b>Săptămâna ${i+1}</b><p>${e(p)}</p></div>`).join('')}</div><p class="aw-muted">Misiuni ghidate · XP se adaugă la nivelul principal după finalizare. Fără penalizări pentru odihnă.</p><button class="aw-secondary" id="aw-close">← Înapoi în joc</button><button class="aw-secondary" id="aw-restart">↻ Refă evaluarea inițială</button></section></div>`}
+if(data.dashboard){html+=`<div class="aw-back"><section class="aw-card"><div class="aw-top">👑 LIFE CAMPAIGN <small>HUNTER · ${e(today)}</small></div><h2>🗺️ Prima ascensiune</h2><p class="aw-muted">Obiectiv: ${e(goal)}</p><div class="aw-progress"><i style="width:${completed/missions.length*100}%"></i></div><p>${completed}/${missions.length} misiuni înregistrate azi</p>${data.activeQuest?activeQuestHtml(activeQuestData(data.activeQuest,today)):''}<h3>⚔️ QUEST EVOLUTION 2.1 · LECȚII PROGRESIVE</h3><p class="aw-muted">Hunter XP + Skill XP. Lecțiile următoare se deblochează după finalizarea celor precedente.</p><div class="aw-mission"><b>🌳 Arborele competențelor</b>${pathsChosen.map(p=>`<p>${e(p)}: ${Number(data.skillXP[p]||0)} Skill XP · nivel ${1+Math.floor(Number(data.skillXP[p]||0)/60)}</p>`).join('')}</div>${missions.map(m=>`<div class="aw-mission"><strong>${e(m.title)}</strong><p>${e(m.detail)}</p><button data-quest="${m.id}" ${data.questDone[m.id==='reflect'?today+':reflect':'lesson:'+m.id]?'disabled':''}>${data.questDone[m.id==='reflect'?today+':reflect':'lesson:'+m.id]?'✓ Realizat':'⚔️ Începe misiunea'}</button></div>`).join('')}<h3>🐉 BOSS: ${e(goal)}</h3><p>În această campanie, BOSS-ul este obiectivul tău real. Avansează cu pași mici, nu prin apăsări repetate.</p><h3>📅 PLANUL DE 30 DE ZILE</h3><div class="aw-plan">${plan().map((p,i)=>`<div><b>Săptămâna ${i+1}</b><p>${e(p)}</p></div>`).join('')}</div><p class="aw-muted">Misiuni ghidate · XP se adaugă la nivelul principal după finalizare. Fără penalizări pentru odihnă.</p><button class="aw-secondary" id="aw-close">← Înapoi în joc</button><button class="aw-secondary" id="aw-restart">↻ Refă evaluarea inițială</button></section></div>`}
 el.innerHTML=html;
 const open=document.getElementById('aw-open');if(open)open.onclick=()=>{data.dashboard=true;save();render()};
 const close=document.getElementById('aw-close');if(close)close.onclick=()=>{data.dashboard=false;save();render()};const restart=document.getElementById('aw-restart');if(restart)restart.onclick=()=>{if(!confirm('Refaci testul de 20 de întrebări? Progresul principal din joc rămâne neschimbat.'))return;localStorage.setItem('monarch-awakening-previous-backup',JSON.stringify(data));data={step:0,answers:{},paths:[],assessment:{},finished:false,questDone:{}};save();render()};
@@ -71,7 +71,7 @@ const nextQuest=document.getElementById('active-next');if(nextQuest)nextQuest.on
 const q=activeQuestData(data.activeQuest,today);if(!q)return;
 if(data.activeStep===0&&q.type==='finance'){
 const v=Number(document.getElementById('budget-answer')?.value);
-if(!document.getElementById('budget-answer')?.value.trim()||v!==q.answer){document.getElementById('active-feedback').textContent='Încearcă din nou: adună cheltuielile necesare, apoi scade-le din buget.';return}
+if(!document.getElementById('budget-answer')?.value.trim()||v!==q.answer){document.getElementById('active-feedback').textContent=q.hint||'Reverifică operația.';return}
 }
 if(data.activeStep===0&&q.type==='organize'){
 const task=document.getElementById('task-name')?.value.trim(),step=document.getElementById('task-step')?.value.trim();
@@ -82,9 +82,9 @@ const v=document.getElementById('journal-answer')?.value.trim();if(!v||v.length<
 }
 if(data.activeStep===0&&q.type==='movement'&&!document.getElementById('movement-choice')?.value){document.getElementById('active-feedback').textContent='Alege mai întâi o activitate.';return}
 if(data.activeStep<1){data.activeStep=1;save();render();return}
-const k=today+':'+data.activeQuest;
+const k=data.activeQuest==='reflect'?today+':reflect':'lesson:'+data.activeQuest;
 if(data.questDone[k])return;
-data.questDone[k]=true;data.questRewards??={};data.questRewards[k]=q.xp;
+data.questDone[k]=true;if(q.skill){data.skillXP[q.skill]=(Number(data.skillXP[q.skill])||0)+q.xp;}data.questRewards??={};data.questRewards[k]=q.xp;
 try{const mainKey='monarch-life-v1',main=JSON.parse(localStorage.getItem(mainKey)||'null');if(main&&Array.isArray(main.history)){
 main.xp=(Number(main.xp)||0)+q.xp;
 main.history.push({name:'⚔️ Campania: '+q.title,xp:q.xp,category:q.category,date:new Date().toISOString()});localStorage.setItem(mainKey,JSON.stringify(main));
@@ -94,23 +94,36 @@ data.activeQuest=null;data.activeStep=0;save();location.reload();
 const backQuest=document.getElementById('active-back');if(backQuest)backQuest.onclick=()=>{data.activeQuest=null;data.activeStep=0;save();render()};
 
 }
+function questLesson(p,tier){
+const lessons={
+'Finanțe':[
+{title:'Trezoreria I · Bugetul',intro:'Exemplu fictiv: ai 2.000 lei; cheltuieli de 800, 350 și 150 lei. Cât rămâne?',answer:700,hint:'Scade suma celor trei cheltuieli din 2.000.'},
+{title:'Trezoreria II · Rezerva',intro:'Exemplu fictiv: economisești 150 lei lunar, timp de 6 luni. Ce sumă acumulezi fără dobândă?',answer:900,hint:'Înmulțește suma lunară cu numărul lunilor.'},
+{title:'Trezoreria III · Planul',intro:'Exemplu fictiv: un obiectiv costă 1.200 lei și ai deja 300 lei. Cât mai trebuie economisit?',answer:900,hint:'Scade banii disponibili din costul obiectivului.'}],
+'Organizare':[
+{title:'First Order I · Primul pas',intro:'Alege o activitate importantă și descompune-o într-un prim pas concret.'},
+{title:'First Order II · Prioritatea',intro:'Alege activitatea cu impactul cel mai mare și formulează primul pas care poate fi realizat astăzi.'},
+{title:'First Order III · Finalizarea',intro:'Alege o activitate începută, definește ce înseamnă terminată și fă următorul pas.'}],
+'Mișcare și sport':[
+{title:'Vitality I · Mișcare plăcută',intro:'Alege o activitate fizică plăcută, adaptată posibilităților tale. Odihna este o alegere validă.'},
+{title:'Vitality II · Varietate',intro:'Explorează o activitate diferită sau continuă una care îți place. Nu există obiective de greutate sau intensitate impuse.'},
+{title:'Vitality III · Recuperare',intro:'Observă cum te simți după activitate și alege între mișcare lejeră și recuperare.'}]};
+const arr=lessons[p]||lessons['Organizare'];const item=arr[tier]||arr[2];const type=p==='Finanțe'?'finance':p==='Mișcare și sport'?'movement':'organize';return {...item,type,xp:20+10*tier,category:type==='finance'?'wealth':type==='movement'?'vitality':'discipline',skill:p};
+}
 function activeQuestData(id,today){
-if(id==='reflect')return {title:'Jurnalul aventurii',type:'journal',xp:10,category:'mindset',intro:'Reflecția te ajută să identifici ce funcționează. Notează o realizare sau o lecție concretă din ziua de azi.'};
-const idx=Number(String(id).replace('path-',''));const p=data.paths[idx]||'Disciplină';
-if(p==='Finanțe')return {title:'Trezoreria — bugetul de antrenament',type:'finance',xp:30,category:'wealth',answer:700,intro:'Ai un buget FICTIV de 2.000 lei. Cheltuieli necesare: 800 lei pentru locuință, 350 lei pentru alimente și 150 lei pentru transport. Câți lei rămân pentru economii și alte obiective? Calculează fără să introduci date financiare reale.'};
-if(p==='Mișcare și sport'||p==='Bunăstare'||p==='Alimentație și energie')return {title:'Vitality — alege și realizează',type:'movement',xp:20,category:'vitality',intro:'Alege o activitate plăcută și potrivită pentru tine. O poți face în afara aplicației. Odihna este mereu o alegere validă și nu este penalizată.'};
-if(p==='Disciplină'||p==='Organizare')return {title:'First Order — primul pas',type:'organize',xp:25,category:'discipline',intro:'Alege o singură activitate importantă. Transform-o într-un pas clar, mic și realizabil. Apoi execută acel pas.'};
-return {title:p+' — misiune aplicată',type:'journal',xp:25,category:'intelligence',intro:'Alege o idee din '+p+', aplic-o într-un exemplu real sau simulat și explică ce ai obținut. Nu sunt necesare informații personale.'};
+if(id==='reflect')return {title:'Jurnalul aventurii',type:'journal',xp:10,category:'mindset',intro:'Notează o realizare sau o lecție concretă din ziua de azi.'};
+const match=/^path-(\d+)-(\d+)$/.exec(id||'');if(!match)return null;
+const p=data.paths[Number(match[1])]||'Organizare';return questLesson(p,Number(match[2]));
 }
 function activeQuestHtml(q){if(!q)return '';const stage=data.activeStep||0;
 let body='';
 if(stage===0){body='<p>'+e(q.intro)+'</p>';
-if(q.type==='finance')body+='<p><b>Mini-lecție:</b> Buget disponibil = venituri − cheltuieli. Economiile sunt un obiectiv planificat, nu o sumă garantată.</p><label>Sumă rămasă (lei fictivi)<input id="budget-answer" type="number" inputmode="numeric" placeholder="Calculează suma"></label>';
+if(q.type==='finance')body+='<p><b>Mini-lecție:</b> Folosește operațiile de adunare, scădere sau înmulțire pentru a planifica un obiectiv financiar. Datele sunt fictive.</p><label>Răspuns (lei fictivi)<input id="budget-answer" type="number" inputmode="numeric" placeholder="Calculează suma"></label>';
 if(q.type==='organize')body+='<p><b>Mini-lecție:</b> O activitate bună are un rezultat clar și un prim pas suficient de mic încât să poți începe.</p><label>Activitatea importantă<input id="task-name" maxlength="90" placeholder="Ex: pregătesc o prezentare"></label><label>Primul pas concret<textarea id="task-step" maxlength="300" placeholder="Ex: scriu trei idei pentru introducere"></textarea></label>';
 if(q.type==='journal')body+='<p><b>Mini-lecție:</b> O reflecție utilă descrie o acțiune și un rezultat, nu doar o impresie generală.</p><label>Ce ai aplicat sau învățat?<textarea id="journal-answer" maxlength="350" placeholder="Am încercat... și am observat..."></textarea></label>';
 if(q.type==='movement')body+='<label>Activitate aleasă<select id="movement-choice"><option value="">Selectează...</option><option>Plimbare relaxată</option><option>Mișcare de mobilitate ușoară</option><option>Joc sau sport recreativ</option><option>Altă activitate potrivită</option><option>Odihnă / recuperare</option></select></label>';
-}else{body=q.type==='finance'?'<p>✓ Calcul corect! <b>2.000 − (800 + 350 + 150) = 700 lei.</b> Ai separat cheltuielile de suma disponibilă. Acum poți revendica recompensa.</p>':q.type==='movement'?'<p>Realizează activitatea aleasă în ritmul tău, în afara aplicației. Revino când ai terminat; confirmarea este voluntară. Dacă ai ales odihnă, poți încheia sesiunea fără să forțezi mișcarea.</p>':'<p>Acum pune în practică pasul descris, apoi revino și confirmă că l-ai efectuat. Aplicația nu poate verifica automat activitățile din lumea reală.</p>'}
-return `<div class="aw-mission" style="border:1px solid #54d4ff;padding:14px;margin:12px 0"><h3>⚔️ ${e(q.title)}</h3><p class="aw-muted">ETAPA ${stage+1}/2 · RECOMPENSĂ +${q.xp} XP</p>${body}<p id="active-feedback" style="color:#ffcf75"></p><button class="aw-primary" id="active-next">${stage===0?'Continuă misiunea →':'🏆 Finalizează și primește XP'}</button><button class="aw-secondary" id="active-back">← Înapoi la misiuni</button></div>`;
+}else{body=q.type==='finance'?'<p>✓ Calcul corect! Răspuns: <b>'+q.answer+' lei.</b> Ai aplicat corect principiul lecției.</p>':q.type==='movement'?'<p>Realizează activitatea aleasă în ritmul tău, în afara aplicației. Revino când ai terminat; confirmarea este voluntară. Dacă ai ales odihnă, poți încheia sesiunea fără să forțezi mișcarea.</p>':'<p>Acum pune în practică pasul descris, apoi revino și confirmă că l-ai efectuat. Aplicația nu poate verifica automat activitățile din lumea reală.</p>'}
+return `<div class="aw-mission" style="border:1px solid #54d4ff;padding:14px;margin:12px 0"><h3>⚔️ ${e(q.title)}</h3><p class="aw-muted">ETAPA ${stage+1}/2 · RECOMPENSĂ +${q.xp} Hunter XP${q.skill?' + '+q.xp+' Skill XP':''}</p>${body}<p id="active-feedback" style="color:#ffcf75"></p><button class="aw-primary" id="active-next">${stage===0?'Continuă misiunea →':'🏆 Finalizează și primește XP'}</button><button class="aw-secondary" id="active-back">← Înapoi la misiuni</button></div>`;
 }
 function mission(p){const m={'Disciplină':'Alege un pas de 10–15 minute pentru un proiect început și realizează-l.','AI și tehnologie':'Învață o tehnică și folosește-o într-un exemplu propriu.','Finanțe':'Exersează planificarea unui buget fictiv sau revizuiește un obiectiv financiar fără date sensibile.','Leadership':'Rezolvă un scenariu de coordonare sau pregătește un feedback constructiv.','Comunicare':'Exersează o conversație dificilă printr-un scenariu.','Marketing':'Scrie o variantă de mesaj publicitar și explică publicul vizat.','Creativitate':'Creează o idee sau un prototip simplu.','Învățare':'Explică o idee nouă cu propriile cuvinte și aplic-o.','Bunăstare':'Alege o activitate de relaxare care îți face bine.','Viață practică':'Organizează o responsabilitate cu o listă de pași.','Mișcare și sport':'Alege o activitate fizică plăcută și potrivită energiei tale; odihna este la fel de validă.','Alimentație și energie':'Învață un principiu despre mese regulate și variate; fără restricții sau ținte de greutate.'};return m[p]||'Fă un pas concret într-un domeniu ales.'}
 function guess(){let a=[];const first=array(data.answers[0]);const map={'Finanțe':'Finanțe','Carieră și afaceri':'Leadership','Învățare':'Învățare','Organizare':'Disciplină','Bunăstare':'Bunăstare','Relații':'Comunicare','Timp liber':'Creativitate','Mișcare și sport':'Mișcare și sport','Alimentație și obiceiuri sănătoase':'Alimentație și energie'};for(const f of first){if(map[f])a.push(map[f])}const obstacle=data.answers[5]||'';if(/Amân|plan|interes|responsabilit/.test(obstacle)||/pierd|termin puține|încep/.test(data.answers[4]||''))a.push('Disciplină');const skill=data.answers[9];for(const v of array(skill)){if(paths.includes(v))a.push(v)}return [...new Set([...a,'AI și tehnologie','Finanțe'])].slice(0,3)}

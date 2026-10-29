@@ -1,7 +1,7 @@
-MONARCH 2.0 — ACTIVE QUESTS FIX
+MONARCH SYSTEM 2.1 — QUEST EVOLUTION (prototip)
 
-Încarcă TOATE cele cinci fișiere în rădăcina repo-ului GitHub, înlocuind fișierele existente. Nu încărca ZIP-ul ca fișier unic.
+Încărcați cele cinci fișiere în rădăcina proiectului GitHub Pages. Faceți înainte o copie de siguranță a progresului.
 
-Modificări: misiunea deschisă apare imediat deasupra listei; validarea se face doar în etapa 1; XP-ul se acordă la finalizarea etapei 2; parametri noi pentru a evita cache-ul vechi; indicator vizibil ACTIVE QUESTS FIX.
+Noutăți: trei lecții progresive pentru Finanțe, Organizare și Mișcare și sport, XP pe competență, păstrarea cheii localStorage existente. Lecțiile sunt deblocate succesiv, fără repetiție zilnică; jurnalul este zilnic.
 
-Progresul din localStorage nu este șters. Exportă o copie înainte de instalare.
+Limitări: verificare automată numai pentru calculele financiare; activitățile reale se confirmă de utilizator; fără backend.

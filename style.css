@@ -68,3 +68,6 @@ html{scroll-padding-bottom:180px}
 .adventure-switch button{padding:12px 2px;font-size:clamp(11px,2.8vw,14px);background:transparent;border:1px solid transparent;border-radius:10px;color:#b8c7e2;min-width:0}
 .adventure-switch button.selected{background:linear-gradient(100deg,#254c9a,#087b9d);border-color:#48d4ef;color:white;font-weight:800}
 #app{padding-bottom:calc(210px + env(safe-area-inset-bottom,0px))!important}
+
+/* SMART MISSIONS V5 */
+.life25-choice{display:block;width:100%;text-align:left;margin:12px 0;padding:15px;border:1px solid #456386;border-radius:12px;background:#172840;color:#f1f7ff;white-space:normal;line-height:1.4}.life25-choice:active{background:#245b78}.life25-example{padding:15px;margin:15px 0;border-left:3px solid #48d4e8;background:#142b40;border-radius:8px}.life25-panel select,.life25-panel input[type=number]{width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px;border-radius:9px;border:1px solid #58799c;background:#0b1730;color:white}

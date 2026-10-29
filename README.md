@@ -1,7 +1,7 @@
-MONARCH SYSTEM 2.4 — EQUIPMENT SYSTEM
+MONARCH SYSTEM 2.5 — LIFE EVOLUTION
 
-Actualizare peste 2.3. Încărcați toate cele 6 fișiere în rădăcina repo-ului GitHub. Faceți backup al progresului înainte.
+7 fișiere. Faceți backup al progresului înainte de actualizare. Încărcați toate fișierele în rădăcina repo-ului GitHub.
 
-Noutăți: 4 sloturi independente (armă, mantie, aură, coroană); echipare/dezechipare; previzualizare combinată pe pagina principală și în inventar; migrare automată a echipamentului 2.3; fără schimbări la XP sau lecții.
+Noutăți: planificator an/lună/săptămână/zi; misiuni ghidate în trei etape; rotire misiuni pe competențe; +20 Hunter XP după trei răspunsuri concrete; prevenire recompensă dublă pentru același identificator.
 
-Nu ștergeți datele browserului / localStorage.
+Limitări: evaluare bazată pe confirmarea utilizatorului, fără verificare automată a activităților din viața reală; stocare locală.

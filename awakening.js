@@ -72,11 +72,11 @@ const goal=data.answers[19]||data.answers[1]||'Dezvoltare personală';const toda
 const missions=pathsChosen.map((p,i)=>{const count=Object.keys(data.questDone).filter(k=>k.includes(':path-'+i+'-')).length;const tier=Math.min(2,count);const q=questLesson(p,tier);return {id:'path-'+i+'-'+tier,title:['⚔️','🧠','🌱'][i]+' '+p+' · Lecția '+(tier+1),detail:q.intro,xp:q.xp};});
 missions.push({id:'reflect',title:'📜 Jurnalul aventurii',detail:'Notează un lucru nou învățat sau un pas concret făcut astăzi.',xp:10});
 const completed=missions.filter(m=>data.questDone[m.id==='reflect'?today+':reflect':'lesson:'+m.id]).length;
-let html=`<div class="aw-float"><button id="aw-open">🧬 Campania mea</button></div>`;
+let html=``;
 if(data.dashboard){html+=`<div class="aw-back"><section class="aw-card"><div class="aw-top">👑 LIFE CAMPAIGN <small>HUNTER · ${e(today)}</small></div><h2>🗺️ Prima ascensiune</h2><p class="aw-muted">Obiectiv: ${e(goal)}</p><div class="aw-progress"><i style="width:${completed/missions.length*100}%"></i></div><p>${completed}/${missions.length} misiuni înregistrate azi</p>${data.activeQuest?activeQuestHtml(activeQuestData(data.activeQuest,today)):''}${ascensionPanel(pathsChosen)}<h3>⚔️ QUEST EVOLUTION 2.2 · LECȚII PROGRESIVE</h3><p class="aw-muted">Hunter XP + Skill XP. Lecțiile următoare se deblochează după finalizarea celor precedente.</p><div class="aw-mission"><b>🌳 Arborele competențelor</b>${pathsChosen.map(p=>`<p>${e(p)}: ${Number(data.skillXP[p]||0)} Skill XP · nivel ${1+Math.floor(Number(data.skillXP[p]||0)/60)}</p>`).join('')}</div>${missions.map(m=>`<div class="aw-mission"><strong>${e(m.title)}</strong><p>${e(m.detail)}</p><button data-quest="${m.id}" ${data.questDone[m.id==='reflect'?today+':reflect':'lesson:'+m.id]?'disabled':''}>${data.questDone[m.id==='reflect'?today+':reflect':'lesson:'+m.id]?'✓ Realizat':'⚔️ Începe misiunea'}</button></div>`).join('')}<h3>🐉 BOSS: ${e(goal)}</h3><p>În această campanie, BOSS-ul este obiectivul tău real. Avansează cu pași mici, nu prin apăsări repetate.</p><h3>📅 PLANUL DE 30 DE ZILE</h3><div class="aw-plan">${plan().map((p,i)=>`<div><b>Săptămâna ${i+1}</b><p>${e(p)}</p></div>`).join('')}</div><p class="aw-muted">Misiuni ghidate · XP se adaugă la nivelul principal după finalizare. Fără penalizări pentru odihnă.</p><button class="aw-secondary" id="aw-close">← Înapoi în joc</button><button class="aw-secondary" id="aw-restart">↻ Refă evaluarea inițială</button></section></div>`}
 el.innerHTML=html;
 const color=document.getElementById('asc-color');if(color)color.onchange=()=>{data.avatarStyle=color.value;save();render()};
-const open=document.getElementById('aw-open');if(open)open.onclick=()=>{data.dashboard=true;save();render()};
+
 const close=document.getElementById('aw-close');if(close)close.onclick=()=>{data.dashboard=false;save();render()};const restart=document.getElementById('aw-restart');if(restart)restart.onclick=()=>{if(!confirm('Refaci testul de 20 de întrebări? Progresul principal din joc rămâne neschimbat.'))return;localStorage.setItem('monarch-awakening-previous-backup',JSON.stringify(data));data={step:0,answers:{},paths:[],assessment:{},finished:false,questDone:{}};save();render()};
 el.querySelectorAll('[data-quest]').forEach(b=>b.onclick=()=>{data.activeQuest=b.dataset.quest;data.activeStep=0;save();render();document.querySelector('.aw-back')?.scrollTo(0,0);window.scrollTo(0,0)});
 const nextQuest=document.getElementById('active-next');if(nextQuest)nextQuest.onclick=()=>{
@@ -106,6 +106,7 @@ data.activeQuest=null;data.activeStep=0;save();location.reload();
 const backQuest=document.getElementById('active-back');if(backQuest)backQuest.onclick=()=>{data.activeQuest=null;data.activeStep=0;save();render()};
 
 }
+document.addEventListener('click',ev=>{if(ev.target.closest('#aw-open')){data.dashboard=true;save();render();}});
 function questLesson(p,tier){
 const lessons={
 'Finanțe':[

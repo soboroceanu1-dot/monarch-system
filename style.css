@@ -53,3 +53,11 @@ html,body{min-height:100%;}
 .unified-tabs button{min-width:0;flex:1;max-width:150px;font-size:clamp(10px,2.6vw,12px);padding:12px 2px;white-space:nowrap;}
 .aw-float{display:none!important;}
 @media(max-width:360px){.unified-tabs button{font-size:10px;letter-spacing:-.3px}}
+
+/* V3: readable content above the fixed bottom navigation */
+html{scroll-padding-bottom:180px}
+#app{padding-bottom:calc(190px + env(safe-area-inset-bottom,0px))!important}
+.unified-tabs{min-height:68px;backdrop-filter:blur(14px)}
+.unified-tabs button{min-height:54px;line-height:1.25}
+.card:last-of-type{scroll-margin-bottom:180px}
+@media(max-width:380px){.unified-tabs button{font-size:10px;padding-inline:1px}}

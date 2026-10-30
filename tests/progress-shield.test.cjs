@@ -56,7 +56,7 @@ test('historical main and Awakening exports import only their own key with no au
 
 test('invalid, incomplete, foreign and unsupported files do not write anything',()=>{
  const data=fixture();delete data['other-app-token'];const good=shield.pack(data);
- const bad=[null,[],{}, {xp:5,tasks:[]}, {...good,formatVersion:99},{...good,exportedAt:'bad'},{...good,keys:[]},{...good,data:{}},{...good,data:{...data,[MAIN]:'null'}},{...good,data:{...data,[AW]:'{}'}},{...good,data:{...data,[PLAN]:'{}'}},{...good,data:{...data,[EQ]:'{}'}},{...good,data:{...data,'another-app':'private'}},{...good,data:{...data,[shield.JOURNAL]:'{}'}}];
+ const bad=[null,[],{}, {xp:5,tasks:null}, {...good,formatVersion:99},{...good,exportedAt:'bad'},{...good,keys:[]},{...good,data:{}},{...good,data:{...data,[MAIN]:'null'}},{...good,data:{...data,[AW]:'{"paths":null}'}},{...good,data:{...data,[PLAN]:'{"goals":[]}'}},{...good,data:{...data,[EQ]:'{"slots":5}'}},{...good,data:{...data,'another-app':'private'}},{...good,data:{...data,[shield.JOURNAL]:'{}'}}];
  const storage=memory(fixture()),api=shield.create(storage),before=original(storage);
  for(const value of bad){assert.throws(()=>api.restore(shield.parse(JSON.stringify(value))));assert.deepEqual(original(storage),before);}
  assert.throws(()=>shield.parse('{'));assert.deepEqual(original(storage),before);

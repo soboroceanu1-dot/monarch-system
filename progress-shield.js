@@ -9,58 +9,80 @@
   const FORMAT = 'monarch-system-backup', VERSION = 1;
   const JOURNAL = 'monarch-progress-shield-v1';
   const MAIN = 'monarch-life-v1', AW = 'monarch-awakening-v2';
-  const PLANNER = 'monarch-planner-v25';
+  const PLANNER = 'monarch-planner-v25', ARCHIVE = 'monarch-awakening-previous-backup';
   const known = [MAIN, AW, PLANNER, 'monarch-hunter-equipment-v23', 'monarch-hunter-equipment-v24', 'monarch-awakening-previous-backup'];
   const own = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
   const object = v => v !== null && typeof v === 'object' && !Array.isArray(v);
   const profileKey = k => typeof k === 'string' && k.startsWith('monarch-') && k !== JOURNAL;
   const fail = message => { throw new Error(message); };
   const finite = n => typeof n === 'number' && Number.isFinite(n) && n >= 0;
+  const numeric = n => finite(n) || (typeof n === 'string' && n.trim() !== '' && finite(Number(n)));
   function shape(key, raw) {
-    if (!known.includes(key)) return; // Future MONARCH keys are opaque and preserved byte for byte.
+    // This archived copy is never executed. Preserve it even when an older copy is malformed.
+    if (key === ARCHIVE || !known.includes(key)) return; // Future MONARCH keys are opaque and preserved byte for byte.
     let value;
     try { value = JSON.parse(raw); } catch { fail(key + ': JSON invalid.'); }
     if (!object(value)) fail(key + ': este necesar un obiect JSON.');
-    const fields = (names, check) => names.forEach(k => {
-      if (own(value, k) && !check(value[k])) fail(key + ': câmp invalid „' + k + '”.');
+    const fields = (names, check, nullish = false) => names.forEach(k => {
+      if (own(value, k) && !(nullish && value[k] == null) && !check(value[k])) fail(key + ': câmp invalid „' + k + '”.');
     });
     if (key === MAIN) {
-      if (!finite(value.xp) || !Array.isArray(value.tasks) || !Array.isArray(value.history) || !Array.isArray(value.bosses)) fail(key + ': lipsesc XP, tasks, history sau bosses valide.');
-      fields(['customTasks', 'logs', 'finance'], Array.isArray);
-      fields(['completed', 'debts', 'deferred', 'recovery', 'academy', 'adaptive'], object);
-      fields(['player'], v => typeof v === 'string');
+      if (!finite(value.xp) || !Array.isArray(value.tasks)) fail(key + ': lipsesc XP sau tasks valide.');
+      // Match app.js ?? defaults without materializing them in storage.
+      fields(['history','bosses','customTasks','logs','finance'], Array.isArray, true);
+      fields(['completed', 'debts', 'deferred', 'recovery', 'academy', 'adaptive'], object, true);
+      fields(['player'], v => typeof v === 'string', true);
       for (const name of ['tasks', 'customTasks', 'bosses']) for (const item of value[name] || []) {
         if (!object(item) || typeof item.id !== 'string' || typeof item.name !== 'string') fail(key + ': element invalid în ' + name + '.');
         if (name !== 'bosses' && (!finite(item.xp) || typeof item.category !== 'string')) fail(key + ': misiune invalidă.');
         if (name === 'bosses' && (!finite(item.progress) || !finite(item.reward) || !finite(item.target) || item.target < 1)) fail(key + ': proiect invalid.');
       }
-      for (const h of value.history) if (!object(h) || !finite(h.xp) || typeof h.date !== 'string' || typeof h.name !== 'string') fail(key + ': istoric invalid.');
+      for (const h of value.history || []) if (!object(h) || !finite(h.xp) || typeof h.date !== 'string' || typeof h.name !== 'string') fail(key + ': istoric invalid.');
       for (const h of value.logs || []) if (!object(h) || ['activity','food','sleep','weight'].some(k => own(h,k) && typeof h[k] !== 'string' && typeof h[k] !== 'number')) fail(key + ': jurnal invalid.');
       for (const f of value.finance || []) if (!object(f)) fail(key + ': notă financiară invalidă.');
       for (const name of ['academy','adaptive']) for (const [id,v] of Object.entries(value[name] || {})) if (!(name === 'academy' && id === 'bossClaimed' && typeof v === 'boolean') && !object(v)) fail(key + ': progres de curs invalid.');
-    } else if (key === AW || key === 'monarch-awakening-previous-backup') {
-      if (!object(value.answers) || !Array.isArray(value.paths) || typeof value.finished !== 'boolean' || !Number.isInteger(value.step)) fail(key + ': profil Awakening incomplet.');
-      fields(['answers','assessment','questDone','skillXP','questRewards'], object);
+    } else if (key === AW) {
+      // Awakening merges absent questionnaire fields with its in-memory initial object.
+      fields(['answers','assessment'], object);
+      fields(['questDone','skillXP','questRewards'], object, true);
       fields(['paths'], v => Array.isArray(v) && v.length <= 3 && v.every(p => typeof p === 'string'));
-      fields(['step'], v => Number.isInteger(v) && v >= 0 && v <= 24);
-      fields(['finished','dashboard','review','progressShieldRetake'], v => typeof v === 'boolean');
-      for (const v of Object.values(value.skillXP || {})) if (!finite(v)) fail(key + ': Skill XP invalid.');
+      fields(['step'], v => Number.isInteger(v) && v >= 0);
+      fields(['finished','dashboard','review','progressShieldRetake'], v => typeof v === 'boolean', true);
+      for (const v of Object.values(value.skillXP || {})) if (v !== null && !numeric(v)) fail(key + ': Skill XP invalid.');
     } else if (key === PLANNER) {
-      if (!object(value.goals) || !object(value.done)) fail(key + ': profil Life Evolution incomplet.');
-      fields(['goals','done','notes','skills','reports'], object);
+      fields(['goals','done','notes','skills','reports'], object, true);
       fields(['active'], v => v === null || (object(v) && typeof v.id === 'string' && typeof v.p === 'string'));
-      for (const v of Object.values(value.goals || {})) if (typeof v !== 'string') fail(key + ': obiectiv invalid.');
+      for (const v of Object.values(value.goals || {})) if (v !== null && typeof v !== 'string') fail(key + ': obiectiv invalid.');
       for (const v of Object.values(value.skills || {})) {
+        if (v === null) continue;
         if (!object(v)) fail(key + ': dificultate invalidă.');
-        for (const f of ['level','completed','streak']) if (own(v,f) && !finite(v[f])) fail(key + ': competență invalidă.');
-        if (own(v,'manual') && v.manual !== null && (!Number.isInteger(v.manual) || v.manual < 0 || v.manual > 3)) fail(key + ': dificultate manuală invalidă.');
+        for (const f of ['level','completed','streak']) if (own(v,f) && v[f] !== null && !numeric(v[f])) fail(key + ': competență invalidă.');
+        if (own(v,'manual') && v.manual !== null && (!numeric(v.manual) || !Number.isInteger(Number(v.manual)) || Number(v.manual) > 3)) fail(key + ': dificultate manuală invalidă.');
       }
     } else if (key.endsWith('v24')) {
-      if (!object(value.slots)) fail(key + ': sloturi de echipament absente.');
-      fields(['slots'], v => object(v) && Object.values(v).every(x => typeof x === 'string'));
+      // Missing/null slots intentionally fall back to equipment V23 in hunter24.js.
+      fields(['slots'], v => object(v) && Object.values(v).every(x => typeof x === 'string'), true);
     } else {
-      if (typeof value.equipped !== 'string') fail(key + ': echipament istoric absent.');
+      fields(['equipped'], v => typeof v === 'string', true);
     }
+  }
+  function fallbackWarnings(data) {
+    const defaults = {
+      [MAIN]: ['history','bosses','customTasks','logs','finance','completed','debts','deferred','recovery','academy','adaptive'],
+      [AW]: ['step','answers','paths','assessment','finished','questDone','skillXP'],
+      [PLANNER]: ['goals','done','notes','skills','reports'],
+      'monarch-hunter-equipment-v23': ['equipped'],
+      'monarch-hunter-equipment-v24': ['slots']
+    };
+    const warnings=[];
+    for(const [key,raw] of Object.entries(data)) {
+      if(!defaults[key])continue;
+      let value;try{value=JSON.parse(raw);}catch{continue;}
+      if(!object(value))continue;
+      const missing=defaults[key].filter(k=>value[k]==null);
+      if(missing.length)warnings.push(key+': câmpuri absente/null ('+missing.join(', ')+'). V9.0 folosește valori implicite sau echipamentul istoric, fără rescriere automată.');
+    }
+    return warnings;
   }
   function validateData(data, validateValues = true) {
     if (!object(data)) fail('Datele backupului trebuie să fie un obiect.');
@@ -155,9 +177,14 @@
       }
     }
     function inspect() {
-      const data = snapshot(), issues = [];
-      for (const [key,raw] of Object.entries(data)) try { shape(key,raw); } catch (e) { issues.push(e.message); }
-      return { data, issues, missing: known.slice(0,5).filter(k => !own(data,k)) };
+      const data = snapshot(), issues = [], warnings = fallbackWarnings(data);
+      for (const [key,raw] of Object.entries(data)) {
+        if (key === ARCHIVE) {
+          try { if (!object(JSON.parse(raw))) throw new Error(); } catch { warnings.push(ARCHIVE + ': copie arhivată neinterpretată; originalul este păstrat și poate fi exportat.'); }
+        }
+        try { shape(key,raw); } catch (e) { issues.push(e.message); }
+      }
+      return { data, issues, warnings, missing: known.slice(0,5).filter(k => !own(data,k)) };
     }
     function retake(current, expected) {
       const raw = storage.getItem(AW);
@@ -184,9 +211,40 @@
     const list = data => '<ul>' + Object.entries(data).map(([k,v]) => '<li>' + escape(describe(k,v)) + '</li>').join('') + '</ul>';
     function status(message) { const el = doc.getElementById('shield-status'); if (el) el.textContent = message; }
     function download(value, name) {
-      const url = win.URL.createObjectURL(new win.Blob([JSON.stringify(value,null,2)],{type:'application/json'}));
-      const a = doc.createElement('a'); a.href = url; a.download = name + '-' + new Date().toISOString().replace(/[:.]/g,'-') + '.json';
-      (doc.querySelector('#shield-dialog .life25-panel') || doc.body).append(a); a.click(); a.remove(); win.setTimeout(()=>win.URL.revokeObjectURL(url),60000);
+      const text = JSON.stringify(value,null,2);
+      const filename = name + '-' + new Date().toISOString().replace(/[:.]/g,'-') + '.json';
+      const blob = new win.Blob([text],{type:'application/json'});
+      const panel = doc.querySelector('#shield-dialog .life25-panel');
+      if (!panel) throw new Error('Deschide mai întâi opțiunile de backup.');
+      panel.querySelector('#shield-export-options')?.remove();
+      const options = doc.createElement('section'); options.id='shield-export-options'; options.className='life25-example';
+      options.innerHTML='<p>Fișier pregătit. Verifică dacă l-ai salvat în Descărcări / Fișiere înainte de restaurare. Dacă descărcarea nu funcționează în Telegram, poți partaja fișierul sau copia JSON-ul original.</p><button type="button" id="shield-download-again">Descarcă JSON</button><button type="button" id="shield-share-file">Partajează fișierul</button><button type="button" id="shield-show-json">Afișează / copiază JSON</button><label id="shield-json-label" hidden>JSON complet — selectează și copiază într-un fișier .json<textarea id="shield-export-json" readonly rows="8"></textarea></label><p id="shield-export-status" role="status" aria-live="polite"></p>';
+      panel.append(options);
+      const note=message=>{options.querySelector('#shield-export-status').textContent=message;};
+      const startDownload=()=>{
+        const url=win.URL.createObjectURL(blob),a=doc.createElement('a');
+        a.href=url;a.download=filename;options.append(a);a.click();a.remove();
+        win.setTimeout(()=>win.URL.revokeObjectURL(url),60000);
+        note('Descărcare solicitată. Salvarea efectivă depinde de browser; verifică fișierul pe telefon.');
+      };
+      options.querySelector('#shield-download-again').onclick=()=>{try{startDownload();}catch(e){note('Descărcarea nu este disponibilă. Folosește partajarea sau copierea JSON.');}};
+      let file=null;
+      try { file=new win.File([text],filename,{type:'application/json'}); } catch { /* Older WebViews can still copy text. */ }
+      const share=options.querySelector('#shield-share-file');
+      let canShare=false;
+      try { canShare=!!(file && win.navigator.share && win.navigator.canShare?.({files:[file]})); } catch { /* Unsupported file sharing. */ }
+      share.disabled=!canShare;
+      share.onclick=async()=>{
+        try { await win.navigator.share({files:[file],title:'Backup MONARCH SYSTEM'});note('Partajare încheiată. Verifică destinația aleasă înainte de restaurare.'); }
+        catch(e) { note(e.name==='AbortError'?'Partajare anulată. Datele MONARCH nu au fost modificate.':'Partajarea nu a reușit. Descarcă sau copiază JSON-ul.'); }
+      };
+      options.querySelector('#shield-show-json').onclick=async()=>{
+        const field=options.querySelector('#shield-export-json');field.value=text;
+        options.querySelector('#shield-json-label').hidden=false;field.focus();field.select();
+        try { if(!win.navigator.clipboard?.writeText)throw new Error();await win.navigator.clipboard.writeText(text);note('JSON copiat. Salvează-l într-un fișier .json înainte de restaurare.'); }
+        catch { note('JSON afișat integral. Selectează și copiază manual textul într-un fișier .json.'); }
+      };
+      try { startDownload(); } catch { note('Descărcarea nu este disponibilă. Folosește partajarea sau copierea JSON.'); }
     }
     function run(fn) { try { fn(); } catch (e) { if(doc.getElementById('shield-status')) status(e.message); else dialog('Operație oprită', '<p>'+escape(e.message)+'</p>'); } }
     function dialog(title, body, locked = false) {
@@ -217,7 +275,9 @@
     function preview(backup) {
       const expected = shield.snapshot();
       const preserved = Object.keys(expected).filter(k=>!own(backup.data,k));
-      const el = dialog('Verifică backupul înainte de restaurare', '<p>' + (backup.kind === 'complete' ? 'Backup complet' : 'Backup istoric parțial') + ' · ' + escape(backup.exportedAt) + '</p>' + list(backup.data) + '<p>' + preserved.length + ' chei existente, absente din fișier, vor rămâne nemodificate.</p><p class="note">Înlocuiește valorile cheilor afișate, inclusiv XP dacă diferă. Nu combină și nu recalculează progresul. Copia curentă va fi salvată local înainte de scriere. Închide celelalte file MONARCH.</p><button id="shield-preview-export">Exportă datele curente</button><label><input type="checkbox" id="shield-confirm"> Am verificat datele și confirm înlocuirea lor.</label><button id="shield-restore" disabled>Restaurează backupul</button>');
+      const compatibility=fallbackWarnings(backup.data);
+      const warning=compatibility.length?'<div class="note"><p>Salvare istorică: verifică valorile implicite înainte de înlocuirea datelor. Câmpurile existente la aceeași cheie nu sunt combinate cu cele din backup.</p><ul>'+compatibility.map(x=>'<li>'+escape(x)+'</li>').join('')+'</ul></div>':'';
+      const el = dialog('Verifică backupul înainte de restaurare', '<p>' + (backup.kind === 'complete' ? 'Backup complet' : 'Backup istoric parțial') + ' · ' + escape(backup.exportedAt) + '</p>' + list(backup.data) + warning + '<p>' + preserved.length + ' chei existente, absente din fișier, vor rămâne nemodificate.</p><p class="note">Înlocuiește valorile cheilor afișate, inclusiv XP dacă diferă. Nu combină și nu recalculează progresul. Copia curentă va fi salvată local înainte de scriere. Închide celelalte file MONARCH.</p><button id="shield-preview-export">Exportă datele curente</button><label><input type="checkbox" id="shield-confirm"> Am verificat datele și confirm înlocuirea lor.</label><button id="shield-restore" disabled>Restaurează backupul</button>');
       el.querySelector('#shield-preview-export').onclick=()=>run(exportCurrent);
       el.querySelector('#shield-confirm').onchange=e=>{el.querySelector('#shield-restore').disabled=!e.target.checked;};
       el.querySelector('#shield-restore').onclick=()=>run(()=>{
@@ -281,6 +341,9 @@
         });
       }
     };
+    // Export remains reachable while the first-time/historical questionnaire covers navigation.
+    const launcher=doc.createElement('button');launcher.id='shield-quick-export';launcher.type='button';
+    launcher.className='secondary shield-launcher';launcher.textContent='🛡️ Backup complet';doc.body.append(launcher);
     ready = boot(); win.MONARCH_PROGRESS_SHIELD.ready = ready;
     for (const event of ['click','submit','change','input']) doc.addEventListener(event,e=>{
       if ((!ready || doc.getElementById('shield-dialog')) && !e.target.closest('#shield-dialog')) { e.preventDefault(); e.stopImmediatePropagation(); }
@@ -296,12 +359,12 @@
     });
     doc.addEventListener('click', e=>{
       const b=e.target.closest('button'); if(!b)return;
-      if (b.id==='shield-export') run(()=>{dialog('Backup complet','<p>Se exportă toate cheile MONARCH ale acestui profil, cu valorile originale. Păstrează fișierul într-un loc sigur; poate conține jurnalul personal.</p>');exportCurrent();status('Fișierul a fost pregătit pentru descărcare. Verifică dacă apare în Descărcări / Fișiere.');});
+      if (b.id==='shield-export' || b.id==='shield-quick-export') run(()=>{dialog('Backup complet','<p>Se exportă toate cheile MONARCH ale acestui profil, cu valorile originale. Păstrează fișierul într-un loc sigur; poate conține jurnalul personal.</p>');exportCurrent();status('Fișierul a fost pregătit pentru descărcare. Verifică dacă apare în Descărcări / Fișiere.');});
       if (b.id==='shield-import') doc.getElementById('shield-importfile').click();
       if (b.id==='shield-recovery') run(()=>recoverUI());
       if (b.id==='shield-check') run(()=>{
         const report=shield.inspect();
-        dialog('Verificarea datelor salvate', list(report.data) + '<p>' + (report.issues.length ? 'Probleme: '+escape(report.issues.join(' ')) : 'Structurile recunoscute sunt valide. Verificarea nu modifică datele și nu recalculează XP.') + '</p><p>Chei opționale absente: '+escape(report.missing.join(', ') || 'niciuna')+'.</p><p>Cheile MONARCH necunoscute sunt păstrate ca valori originale; nu sunt interpretate.</p>');
+        dialog('Verificarea datelor salvate', list(report.data) + '<p>' + (report.issues.length ? 'Probleme: '+escape(report.issues.join(' ')) : 'Structurile recunoscute sunt valide. Verificarea nu modifică datele și nu recalculează XP.') + '</p>' + (report.warnings.length ? '<p>'+escape(report.warnings.join(' '))+'</p>' : '') + '<p>Chei opționale absente: '+escape(report.missing.join(', ') || 'niciuna')+'.</p><p>Cheile MONARCH necunoscute sunt păstrate ca valori originale; nu sunt interpretate.</p>');
       });
     });
     doc.addEventListener('change',e=>{if(e.target.id==='shield-importfile') { const file=e.target.files[0];e.target.value='';readFile(file); }});

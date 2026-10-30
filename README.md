@@ -31,3 +31,5 @@ După integrarea PR-ului, verifică publicarea GitHub Pages din ramura `main` ș
 ## V9.1 Progress Shield (ramură de dezvoltare)
 
 Backup complet, import cu previzualizare și copie de recuperare, verificare nedistructivă și refacerea protejată a chestionarului. Detalii despre format, recuperare, limite, teste și verificarea în Telegram: [PROGRESS_SHIELD.md](PROGRESS_SHIELD.md). Regulile XP și inventarul rămân neschimbate. Nu se publică automat și nu se integrează PR-ul automat.
+
+Revizuirea compatibilității: validarea respectă câmpurile opționale și valorile implicite din V9.0, fără rescrierea salvărilor. Exportul complet are opțiuni de descărcare, partajare și afișare/copiere JSON, inclusiv în timpul chestionarului și înaintea restaurării. Testele comparative folosesc 26 de profiluri fictive și sursa V9.0 din Git.

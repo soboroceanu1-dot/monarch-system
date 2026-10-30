@@ -48,6 +48,11 @@ const profile={
   await upload(page,pack(target));await page.locator('#shield-title').filter({hasText:'Verifică backupul'}).waitFor();
   assert.equal(await page.locator('#shield-restore').isDisabled(),true);assert.deepEqual(await saved(page),initial);
   assert.equal(await page.locator('#shield-dialog').evaluate(el=>el.scrollWidth<=innerWidth),true);
+  // Export from the actual import preview, before any restoration/checkpoint write.
+  const previewDownload=page.waitForEvent('download');await page.locator('#shield-preview-export').click();
+  const previewBackup=JSON.parse(await fs.readFile(await (await previewDownload).path(),'utf8'));
+  assert.deepEqual(previewBackup.data,initial);assert.equal(await page.evaluate(k=>localStorage.getItem(k),JOURNAL),null);
+  assert.equal(await page.locator('#shield-restore').isDisabled(),true);
   await page.locator('#shield-close').click();assert.deepEqual(await saved(page),initial);
   await upload(page,pack(target));await page.locator('#shield-confirm').check();page.once('dialog',d=>d.accept());
   await Promise.all([page.waitForEvent('load'),page.locator('#shield-restore').click()]);
@@ -102,7 +107,11 @@ const profile={
   const pending={...profile,[MAIN]:JSON.stringify({...JSON.parse(profile[MAIN]),xp:999}),[JOURNAL]:JSON.stringify({version:1,status:'pending',before:pendingBefore,touched:[MAIN,AW]})};
   const interrupted=await open(pending,412);const p=interrupted.page;
   assert.equal(await p.evaluate(()=>MONARCH_PROGRESS_SHIELD.ready),false);assert.equal(await p.locator('#app').innerHTML(),'');
-  assert.match(await p.locator('#shield-title').innerText(),/Recuperarea/);p.once('dialog',d=>d.accept());
+  assert.match(await p.locator('#shield-title').innerText(),/Recuperarea/);
+  const pendingDownload=p.waitForEvent('download');await p.locator('#shield-save-current').click();
+  const pendingBackup=JSON.parse(await fs.readFile(await (await pendingDownload).path(),'utf8'));
+  assert.equal(pendingBackup.data[MAIN],pending[MAIN]);assert.equal(await p.evaluate(k=>JSON.parse(localStorage.getItem(k)).status,JOURNAL),'pending');
+  p.once('dialog',d=>d.accept());
   await Promise.all([p.waitForEvent('load'),p.locator('#shield-rollback').click()]);assert.deepEqual(await saved(p),pendingBefore);
   await interrupted.context.close();console.log('PASS mobile 412px: interrupted startup blocks legacy writers, explicit recovery restores original profile.');
 

@@ -15,7 +15,7 @@ Aplicație statică pentru GitHub Pages / Telegram WebApp. Evaluarea din Discipl
 Cu Node.js 24:
 
 ```sh
-node --test --test-isolation=none tests/discipline.test.cjs
+node --test --test-isolation=none tests/*.test.cjs
 for file in *.js tests/*.cjs; do node --check "$file" || exit; done
 git diff --check
 ```
@@ -27,3 +27,7 @@ Testele acoperă diacritice, răspunsuri respinse, grile, ajutor, provocări, re
 La fiecare publicare care schimbă resurse, actualizează identificatorul `?v=` pentru resursele locale din `index.html`; actualizează și `MONARCH_BUILD` când se schimbă versiunea afișată. Păstrează ordinea scripturilor.
 
 După integrarea PR-ului, verifică publicarea GitHub Pages din ramura `main` și URL-ul folosit de Telegram. În Network, confirmă noul `index.html` și URL-urile locale cu identificatorul curent. Închide și redeschide WebApp-ul sau reîncarcă pagina dacă documentul HTML vechi este încă păstrat de client. Parametrii resurselor nu pot actualiza un document deja deschis sau un HTML vechi livrat din cache. Nu șterge localStorage pentru actualizare: conține progresul.
+
+## V9.1 Progress Shield (ramură de dezvoltare)
+
+Backup complet, import cu previzualizare și copie de recuperare, verificare nedistructivă și refacerea protejată a chestionarului. Detalii despre format, recuperare, limite, teste și verificarea în Telegram: [PROGRESS_SHIELD.md](PROGRESS_SHIELD.md). Regulile XP și inventarul rămân neschimbate. Nu se publică automat și nu se integrează PR-ul automat.

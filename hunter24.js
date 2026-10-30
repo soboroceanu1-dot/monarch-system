@@ -1,4 +1,5 @@
 (()=>{'use strict';
+if(window.MONARCH_PROGRESS_SHIELD?.ready!==true)return;
 const A='monarch-awakening-v2',G='monarch-life-v1',OLD='monarch-hunter-equipment-v23',KEY='monarch-hunter-equipment-v24';
 const items=[{id:'blade',slot:'weapon',name:'Sabia Începătorului',icon:'⚔️',need:1},{id:'cloak',slot:'cloak',name:'Mantia Exploratorului',icon:'🧥',need:3},{id:'guard',slot:'aura',name:'Aura Gardianului',icon:'🛡️',need:6},{id:'emblem',slot:'head',name:'Emblema Ascensiunii',icon:'👑',need:9}];
 const slots={weapon:'Armă',cloak:'Mantie',aura:'Aură',head:'Coroană'};

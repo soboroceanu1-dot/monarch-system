@@ -1,4 +1,5 @@
 (()=>{'use strict';
+window.MONARCH_BUILD='V9.0 · Disciplină pilot · 2026-10-30';
 const KEY='monarch-life-v1';const today=()=>new Date().toLocaleDateString('en-CA');
 const seed=()=>({version:1,player:'PLAYER 001',xp:0,history:[],tasks:[
 {id:'ai',name:'Continuă lecția AI',detail:'Studiază și aplică o idee din lecție.',xp:25,category:'intelligence',daily:true},
@@ -13,7 +14,7 @@ let tab='home';let adventureSection='missions';const save=()=>localStorage.setIt
 const level=()=>Math.floor(state.xp/100)+1;const ranks=['E','D','C','B','A','S'];const rank=()=>ranks[Math.min(5,Math.floor((level()-1)/10))];
 const counts=cat=>state.history.filter(x=>x.category===cat).length;
 function toast(msg){let el=document.createElement('div');el.className='toast';el.textContent=msg;document.body.append(el);setTimeout(()=>el.remove(),2700)}
-function header(){return `<div class="top"><div><div class="eyebrow">LIFE ASCENSION · V8.1 ADAPTIVE LEARNING</div><h1>⚔️ MONARCH</h1></div><div class="badge">RANG ${rank()}</div></div>`}
+function header(){return `<div class="top"><div><div class="eyebrow">LIFE ASCENSION · ${esc(window.MONARCH_BUILD)}</div><h1>⚔️ MONARCH</h1></div><div class="badge">RANG ${rank()}</div></div>`}
 function hero(){return `<section class="card hero"><div class="row"><div><div class="muted">${esc(state.player)}</div><h2 style="font-size:24px;margin:5px 0">LEVEL ${level()}</h2></div><span class="pill">${state.xp} XP total</span></div><div class="xpbar"><div style="width:${state.xp%100}%"></div></div><small>${state.xp%100} / 100 XP spre nivelul următor</small></section>`}
 function debtCount(){return Object.values(state.debts).reduce((a,b)=>a+b,0)}
 function hunter(){return `<section class="card"><h2>🛡️ HUNTER MODE</h2><div class="row"><strong>⚫ Shadow Debt</strong><span class="pill">${debtCount()} amânări</span></div><p class="muted">Amânările sunt urmărite numai dacă alegi explicit «Amână». Pauzele și misiunile de sănătate nu sunt penalizate.</p>${Object.entries(state.debts).filter(([k,v])=>v>0).map(([k,v])=>{let t=[...state.tasks,...state.customTasks].find(x=>x.id===k);return `<div class="quest"><strong>${esc(t?.name||'Misiune')}</strong><p>${v} amânări · ${v>=3?'🐉 BREAK THE CYCLE activ':v>=2?'⚔️ Recuperare disponibilă':'Pas mic recomandat'}</p><button class="secondary" data-action="recover" data-id="${esc(k)}">✓ Am realizat un pas mic</button></div>`}).join('')||'<p class="muted">Nicio amânare înregistrată. Continuă în ritmul tău.</p>'}</section>`}

@@ -1,6 +1,43 @@
-# V9.1.1 Progress Shield — format, recovery and verification
+# V9.1.2 Progress Shield — local text backup and host compatibility
 
 This feature does not recalculate XP, levels, ranks, characteristics, rewards or inventory unlocks. Existing profile keys are unchanged. No automatic migration or production publication is performed by this change.
+
+## V9.1.2: confirmed Samsung/Telegram limitation
+
+The user confirmed V9.1.1 loaded correctly but the exposed save picker produced no visible response on Samsung/Telegram Android. Checking only `typeof showSaveFilePicker` was insufficient. Android Chrome support does not prove the embedding app implements the native file chooser/save modes:
+
+- [Chromium Android implementation discussion](https://groups.google.com/a/chromium.org/g/blink-dev/c/x3IcFv2jY6c/m/SwteuaK9BQAJ): Android Chrome support and WebView host integration are separate concerns.
+- [Android WebChromeClient.onShowFileChooser](https://developer.android.com/reference/android/webkit/WebChromeClient#onShowFileChooser(android.webkit.WebView,android.webkit.ValueCallback%3Candroid.net.Uri[]%3E,android.webkit.WebChromeClient.FileChooserParams)): the host must handle native file requests; default handling cancels them.
+- [showSaveFilePicker requirements and exceptions](https://developer.mozilla.org/en-US/docs/Web/API/Window/showSaveFilePicker): secure context, user activation and origin constraints apply.
+
+There is no nonintrusive JavaScript probe proving Telegram's native save integration. V9.1.2 conservatively hides direct save for Telegram Android (SDK platform, or Android + Telegram launch data/UA) and detected Android WebViews, even if the method exists. Other browsers require a callable picker, HTTPS secure context and top-level page. This gate is a conservative product decision, not a claim that all Android WebViews will forever lack support.
+
+For eligible browsers, clicking save immediately displays progress and disables duplicate requests. A 15-second watchdog explains that there is still no response; it does not call the operation cancelled or claim success. The user may abandon waiting for the picker. A late handle is then ignored before any write; another attempt requires reopening export. Cancellation, access denial, opening errors and unverified writes are reported. Only exact readback confirms the saved file.
+
+### Local alternative independent of Blob and Web Share
+
+The complete readonly JSON is populated and visible immediately. The primary flow is **copy → paste → verify → save in a local plain-text editor**. It needs no new storage keys, backend, bot, message or external page. A dedicated select-all button supports the phone's native copy menu. Automatic copy tries Clipboard API with a 2.5-second deadline, then a best-effort `execCommand('copy')`; manual selection remains accessible throughout. A successful API response is only a copy request, not a permanent backup. Late copy/file-reading results cannot overwrite a newer text verification.
+
+Verification compares the entire snapshot, including metadata, key list and exact original raw values; truncated text, missing keys or changed values fail. It performs no restoration and no storage writes. Editing the pasted copy invalidates the displayed verification result. This is a check against the snapshot generated when export opened; later progress requires a new export. Clipboard contents and the open dialog are temporary, so an independently saved file is still needed for durable backup.
+
+Export, paste-verification and text-import fields disable visual line wrapping and use internal horizontal scrolling. The large Unicode fixture exposed Chromium stalls while editing long wrapped raw-value strings; disabling wrapping made that same native fill test pass. This changes display only, without inserting line breaks or altering the JSON.
+
+### Verificare de către utilizator pe Samsung / Telegram Android
+
+1. Verifică buildul **V9.1.2** și deschide **Evoluție → Progress Shield → Exportă backup complet**. Butonul de salvare directă trebuie să lipsească; explicația WebView trebuie să fie vizibilă.
+2. JSON-ul complet trebuie să apară imediat. Apasă **Copiază JSON integral**. Dacă nu funcționează, apasă **Selectează tot JSON-ul**, ține apăsat în text și folosește **Selectează tot → Copiază** din meniul telefonului.
+3. În câmpul de verificare, ține apăsat și alege **Lipire**, apoi **Verifică textul copiat**. Numai potrivirea integrală trebuie să confirme copia. Nu este necesară restaurarea.
+4. Elimină un caracter și reverifică: copia trebuie respinsă. Revino la copia integrală și verific-o din nou.
+5. Păstrează textul într-un editor local de text simplu, UTF-8, cu extensia `.json`; nu exporta prin Samsung Notes și nu trimite prin mesaje Telegram. Redeschide fișierul și verifică-l cu **Verifică fișierul salvat** sau relipind textul original. Nu șterge datele aplicației între timp.
+6. Pe un profil fictiv, încearcă **Importă JSON din text**. Trebuie să existe previzualizare și o confirmare explicită înainte de restaurare; poți închide fără modificări.
+
+**Testarea pe Samsung / Telegram Android real trebuie efectuată de utilizator. Testele Chromium cu API-uri simulate nu certifică dialogul nativ, meniul de copiere sau clipboardul acelui dispozitiv.** Nu se transmite backupul către servere sau prin metodele Telegram. XP, nivelurile, inventarul, lecțiile, misiunile, formatul backupului v1 și structura localStorage rămân neschimbate.
+
+### Automated V9.1.2 checks
+
+`node --test tests/*.test.cjs` covers runtime save eligibility as well as existing data-preservation/compatibility behavior. `node tests/browser-backup-v912.cjs` covers visible large (>100 KB) Unicode JSON without transport APIs, manual select-all, missing/denied/pending/legacy/working clipboard, altered-copy rejection, invalidation after edits, protected text-import preview, Android's exposed-but-disabled picker, ordinary-browser save outcomes, no response and abandoned late handles. It checks no storage changes or outbound backup requests. Existing browser suites also remain applicable. All browser tests use Chromium and mocked native APIs, not a real phone.
+
+V9.1.2 run results (2026-10-30): **56/56 Node tests passed**, **13/13 new Chromium scenarios passed**, and the previous **9/9 export scenarios**, mobile Progress Shield integration suite and **26-profile differential V9.0/current suite passed**. The historical comparison again used the exact pinned V9.0 source through `MONARCH_V90_DIR`. Real Samsung/Telegram Android testing remains explicitly pending with the user.
 
 ## V9.1.1 export behavior and evidence
 
@@ -116,7 +153,7 @@ Browser tests cover 360px and 412px mobile touch viewports; file download; check
 
 Do not publish or merge automatically. For an approved test deployment, use the PR branch in an isolated test origin/browser profile. Do not run restoration tests against a real player's profile.
 
-1. Open the test WebApp on Android; verify the resources have `?v=monarch-v911-backup-20261030` and Shield loads before app.js.
+1. Open the test WebApp on Android; verify the resources have `?v=monarch-v912-local-backup-20261030` and Shield loads before app.js.
 2. In Evolution, tap **Verifică datele salvate**. Verify that this does not change the profile.
 3. In **Evoluție → Progress Shield**, tap **Exportă backup complet**. There is no floating launcher. Awakening-only export is also located here. In Telegram Android, download does not start automatically: use file sharing if confirmed by `navigator.canShare({files})`, or **Afișează / copiază JSON**. An unsupported share button is hidden and explained. **Încearcă descărcarea JSON** is only an attempt, never proof of saving. Where supported, **Salvează direct în fișier** writes through the file picker and reads back the result. Paste the copied text into the verification field or select the saved file; verification compares the complete exported snapshot without writing storage. Use a plain UTF-8 editor, not Samsung Notes. Alternatively, **Importă JSON din text** accepts the unchanged complete JSON and shows the normal protected restore preview. Emergency export remains in blocked-startup/recovery dialogs so damaged data can still be rescued.
 4. On a fictional profile, import that JSON. Inspect the preview, cancel once, then import again and explicitly confirm. Check XP, equipment, goals, difficulty and completed lessons.

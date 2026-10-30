@@ -20,7 +20,7 @@ const snapshot=p=>p.evaluate(()=>Object.fromEntries(Object.keys(localStorage).ma
    const p=await context.newPage(),errors=[],outbound=[];p.on('pageerror',e=>errors.push(e.message));
    await p.route('**/*',async r=>{
     const u=new URL(r.request().url());
-    if(u.hostname==='telegram.org')return r.fulfill({contentType:'text/javascript',body:'window.Telegram={WebApp:{platform:"android",version:"6.0",initData:"test",ready(){},expand(){},downloadFile(){throw Error("must not use remote download")},shareMessage(){throw Error("must not send private backup")}}};'});
+    if(u.hostname==='telegram.org')return r.fulfill({contentType:'text/javascript',body:'window.Telegram={WebApp:{platform:"'+(mode.startsWith('picker')?'unknown':'android')+'",version:"6.0",initData:"'+(mode.startsWith('picker')?'':'test')+'",ready(){},expand(){},downloadFile(){throw Error("must not use remote download")},shareMessage(){throw Error("must not send private backup")}}};'});
     if(u.hostname!=='monarch.test'){outbound.push(u.href);return r.abort();}
     const file=path.join(root,u.pathname==='/'?'index.html':u.pathname.slice(1));
     try{return r.fulfill({body:await fs.readFile(file),contentType:file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html'});}catch{return r.fulfill({status:404,body:''});}
@@ -48,7 +48,7 @@ const snapshot=p=>p.evaluate(()=>Object.fromEntries(Object.keys(localStorage).ma
     await p.locator('nav [data-tab="'+tab+'"]').click();assert.equal(await p.locator('#shield-export').count(),0);
    }
    await p.locator('nav [data-tab="evolution"]').click();await p.locator('#shield-export').click();
-   assert.match(await p.locator('#shield-export-status').innerText(),/În Telegram/);
+   assert.match(await p.locator('#shield-export-status').innerText(),mode.startsWith('picker')?/nu este disponibilă/:/În Telegram/);
    assert.equal(await p.locator('#shield-share-file').isVisible(),mode.startsWith('share'));
    await p.locator('#shield-download-again').click();assert.match(await p.locator('#shield-export-status').innerText(),/nu este disponibilă/);
    if(mode.startsWith('share')){
@@ -58,7 +58,7 @@ const snapshot=p=>p.evaluate(()=>Object.fromEntries(Object.keys(localStorage).ma
    }
    if(mode.startsWith('picker')){
     await p.locator('#shield-save-file').click();
-    await p.waitForFunction(()=>/Copia verificată|anulată/.test(document.getElementById('shield-export-status').textContent));
+    await p.waitForFunction(()=>/Copia verificată|anulată/.test(document.getElementById('shield-save-status').textContent));
     if(mode==='picker')assert.deepEqual(JSON.parse(await p.evaluate(()=>savedText)).data,Object.fromEntries(Object.entries(seed).filter(([k])=>k.startsWith('monarch-'))));
    }
    await p.locator('#shield-show-json').click();const text=await p.locator('#shield-export-json').inputValue();

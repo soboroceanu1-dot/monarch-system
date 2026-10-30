@@ -3,6 +3,22 @@ const {test}=require('node:test'),assert=require('node:assert/strict');
 const Shield=require('../progress-shield.js');
 const {combined}=require('./fixtures/historical-saves.cjs');
 const data=()=>Object.fromEntries(Object.entries(combined()).filter(([k])=>Shield.profileKey(k)));
+test('save picker presence cannot enable the known unreliable Telegram Android/WebView path',()=>{
+  const browser={isSecureContext:true,navigator:{userAgent:'Chrome'},showSaveFilePicker(){}};
+  browser.self=browser;browser.top=browser;
+  assert.equal(Shield.directSaveSupport(browser).available,true);
+  const host=overrides=>Object.assign(Object.create(browser),{self:browser,top:browser},overrides);
+  for(const unsafe of [
+    host({Telegram:{WebApp:{platform:'android'}}}),
+    host({navigator:{userAgent:'Android; wv) Chrome/140.0.0.0'}}),
+    host({navigator:{userAgent:'Android Version/4.0 Chrome/140'}}),
+    host({navigator:{userAgent:'Android Chrome/140'},Telegram:{WebApp:{initData:'fixture'}}}),
+    host({isSecureContext:false}),host({top:{}}),host({showSaveFilePicker:undefined})
+  ])assert.equal(Shield.directSaveSupport(unsafe).available,false);
+  assert.equal(Shield.directSaveSupport(host({navigator:{userAgent:'Android Chrome/140'}})).available,true,'ordinary Chrome Android remains feature-detected');
+  const frame=host({});Object.defineProperty(frame,'top',{get(){throw Error('restricted');}});
+  assert.equal(Shield.directSaveSupport(frame).available,false);
+});
 test('validated serialization retains every raw value, unicode, whitespace and unknown keys',()=>{
   const original={...data(),'monarch-future':'\u0000\nșț 😀 "quote" <script> &'};
   const backup=Shield.pack(original),result=Shield.serialize(backup);

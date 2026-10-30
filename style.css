@@ -79,6 +79,7 @@ html{scroll-padding-bottom:180px}
 .shield-modal button{max-width:100%;white-space:normal}
 
 .shield-modal [hidden]{display:none!important}
-.shield-modal textarea{display:block;width:100%;max-width:100%;box-sizing:border-box;min-height:120px;font-family:monospace;font-size:16px}
+.shield-modal textarea{display:block;width:100%;max-width:100%;box-sizing:border-box;min-height:120px;font-family:monospace;font-size:16px;white-space:pre;overflow-wrap:normal;word-break:normal}
 .shield-modal input[type=file]{max-width:100%}
+.shield-modal #shield-export-json{-webkit-user-select:text;user-select:text}
 

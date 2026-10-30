@@ -69,7 +69,7 @@ const old=new Map(['index.html','app.js','awakening.js','hunter24.js','life25.js
   await fallback.page.locator('#shield-show-json').click();
   const copied=JSON.parse(await fallback.page.locator('#shield-export-json').inputValue());
   assert.deepEqual(copied.data,Object.fromEntries(Object.entries(seed).filter(([k])=>k.startsWith('monarch-'))));
-  assert.match(await fallback.page.locator('#shield-export-status').innerText(),/manual/);assert.deepEqual(await snapshot(fallback.page),seed);
+  assert.match(await fallback.page.locator('#shield-export-status').innerText(),/manual|alternativ/);assert.deepEqual(await snapshot(fallback.page),seed);
   await fallback.context.close();console.log('PASS Android WebView simulation: failed blob download + unavailable sharing/clipboard still exposes complete JSON without writes.');
   const sharing=await open(seed,false,'share');
   await sharing.page.evaluate(()=>document.querySelector('nav [data-tab="evolution"]').click());await sharing.page.locator('#shield-export').click();await sharing.page.locator('#shield-share-file').click();

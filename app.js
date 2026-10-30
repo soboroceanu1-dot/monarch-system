@@ -1,6 +1,6 @@
 (()=>{'use strict';
 if(window.MONARCH_PROGRESS_SHIELD?.ready!==true){if(!window.MONARCH_PROGRESS_SHIELD)document.getElementById('app').textContent='Protecția progresului nu s-a încărcat. Reîncarcă pagina fără a șterge datele browserului.';return;}
-window.MONARCH_BUILD='V9.1.1 · Progress Shield · 2026-10-30';
+window.MONARCH_BUILD='V9.1.2 · Progress Shield · 2026-10-30';
 const KEY='monarch-life-v1';const today=()=>new Date().toLocaleDateString('en-CA');
 const seed=()=>({version:1,player:'PLAYER 001',xp:0,history:[],tasks:[
 {id:'ai',name:'Continuă lecția AI',detail:'Studiază și aplică o idee din lecție.',xp:25,category:'intelligence',daily:true},

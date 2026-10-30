@@ -97,9 +97,21 @@
   function pack(data, now = new Date().toISOString()) {
     return { format: FORMAT, formatVersion: VERSION, exportedAt: now, keys: Object.keys(data).sort(), data };
   }
+  function serialize(value) {
+    // Even damaged profiles must remain exportable for recovery, byte for byte.
+    validateData(value.data, false);
+    const text = JSON.stringify(value, null, 2), decoded = JSON.parse(text);
+    if (JSON.stringify(decoded) !== JSON.stringify(pack(decoded.data, decoded.exportedAt)) ||
+        Object.keys(value.data).some(k => decoded.data[k] !== value.data[k])) fail('Verificarea JSON-ului exportat a eșuat.');
+    let warning = '';
+    try { parse(text); } catch (e) { warning = 'Copie pentru recuperare: JSON-ul exterior este valid, dar importul normal este oprit: ' + e.message; }
+    return { text, warning };
+  }
   function parse(text) {
+    // UTF-8 text editors may prepend a BOM. Do not repair quotes or truncate text.
+    text = text.replace(/^\uFEFF/, '');
     let value;
-    try { value = JSON.parse(text); } catch { fail('Fișierul nu este JSON valid.'); }
+    try { value = JSON.parse(text); } catch { fail('Fișierul nu este JSON valid. Folosește textul original complet, fără titlu, ghilimele modificate sau formatare din Samsung Notes. Redenumirea TXT în JSON nu repară conținutul.'); }
     if (!object(value)) fail('Structură de backup invalidă.');
     if (own(value, 'format') || own(value, 'formatVersion') || own(value, 'data')) {
       if (value.format !== FORMAT || value.formatVersion !== VERSION || typeof value.exportedAt !== 'string' || !Number.isFinite(Date.parse(value.exportedAt))) fail('Format, versiune sau dată de export invalidă.');
@@ -211,21 +223,47 @@
     const list = data => '<ul>' + Object.entries(data).map(([k,v]) => '<li>' + escape(describe(k,v)) + '</li>').join('') + '</ul>';
     function status(message) { const el = doc.getElementById('shield-status'); if (el) el.textContent = message; }
     function download(value, name) {
-      const text = JSON.stringify(value,null,2);
+      const { text, warning } = serialize(value);
       const filename = name + '-' + new Date().toISOString().replace(/[:.]/g,'-') + '.json';
-      const blob = new win.Blob([text],{type:'application/json'});
+      let blob = null;
+      try { blob = new win.Blob([text],{type:'application/json'}); } catch { /* Text fallback remains available. */ }
       const panel = doc.querySelector('#shield-dialog .life25-panel');
       if (!panel) throw new Error('Deschide mai întâi opțiunile de backup.');
       panel.querySelector('#shield-export-options')?.remove();
       const options = doc.createElement('section'); options.id='shield-export-options'; options.className='life25-example';
-      options.innerHTML='<p>Fișier pregătit. Verifică dacă l-ai salvat în Descărcări / Fișiere înainte de restaurare. Dacă descărcarea nu funcționează în Telegram, poți partaja fișierul sau copia JSON-ul original.</p><button type="button" id="shield-download-again">Descarcă JSON</button><button type="button" id="shield-share-file">Partajează fișierul</button><button type="button" id="shield-show-json">Afișează / copiază JSON</button><label id="shield-json-label" hidden>JSON complet — selectează și copiază într-un fișier .json<textarea id="shield-export-json" readonly rows="8"></textarea></label><p id="shield-export-status" role="status" aria-live="polite"></p>';
+      options.innerHTML='<p>JSON generat și verificat local. Salvarea pe telefon nu este încă confirmată. Backupul nu este trimis către servere.</p><p id="shield-export-warning"></p><p id="shield-export-name"></p><button type="button" id="shield-save-file">Salvează direct în fișier</button><button type="button" id="shield-download-again">Încearcă descărcarea JSON</button><button type="button" id="shield-share-file">Partajează fișierul</button><p id="shield-capabilities"></p><button type="button" id="shield-show-json">Afișează / copiază JSON</button><label id="shield-json-label" hidden>JSON complet — copiază tot textul<textarea id="shield-export-json" readonly rows="8"></textarea></label><p>Alternativă locală: copiază textul integral într-un editor de text simplu, salvează în UTF-8 cu extensia .json și verifică fișierul mai jos. Nu folosi Samsung Notes: exportul TXT și redenumirea pot modifica sau scurta textul. Poți restaura și prin „Importă JSON din text” în Evoluție → Progress Shield. Nu șterge datele aplicației înainte de verificarea copiei.</p><label>Relipește copia pentru verificare, fără restaurare<textarea id="shield-copy-check" rows="4" spellcheck="false"></textarea></label><button type="button" id="shield-verify-copy">Verifică textul copiat</button><label>Verifică fișierul salvat, fără restaurare<input type="file" id="shield-verify-file" accept="application/json,.json,text/plain,.txt"></label><p id="shield-export-status" role="status" aria-live="polite"></p>';
       panel.append(options);
+      options.querySelector('#shield-export-warning').textContent=warning;
+      options.querySelector('#shield-export-name').textContent='Nume sugerat: '+filename;
       const note=message=>{options.querySelector('#shield-export-status').textContent=message;};
+      const verify=copy=>{
+        try {
+          const decoded=JSON.parse(copy.replace(/^\uFEFF/,''));
+          if(JSON.stringify(decoded)!==JSON.stringify(JSON.parse(text)))throw new Error();
+          note(warning || 'Copia verificată conține integral datele exportate. Verificarea nu a modificat progresul.');
+        } catch { note('Copia este incompletă, modificată sau nu este JSON valid. Copiază din nou textul original integral; nu restaura această copie.'); }
+      };
+      options.querySelector('#shield-verify-copy').onclick=()=>verify(options.querySelector('#shield-copy-check').value);
+      options.querySelector('#shield-verify-file').onchange=async e=>{
+        const file=e.target.files[0];if(!file)return;
+        try { verify(await file.text()); } catch { note('Fișierul nu a putut fi citit. Păstrează datele aplicației și reîncearcă.'); }
+        e.target.value='';
+      };
+      const save=options.querySelector('#shield-save-file');
+      save.hidden=typeof win.showSaveFilePicker!=='function';
+      save.onclick=async()=>{
+        try {
+          const handle=await win.showSaveFilePicker({suggestedName:filename,types:[{description:'Backup JSON',accept:{'application/json':['.json']}}]});
+          const writer=await handle.createWritable();await writer.write(text);await writer.close();
+          verify(await (await handle.getFile()).text());
+        } catch(e) { note(e.name==='AbortError'?'Salvare anulată. Progresul nu a fost modificat.':'Salvarea nu a putut fi verificată. Folosește copierea JSON și verifică copia.'); }
+      };
       const startDownload=()=>{
+        if(!blob || typeof win.URL?.createObjectURL!=='function' || !('download' in doc.createElement('a')))throw new Error();
         const url=win.URL.createObjectURL(blob),a=doc.createElement('a');
         a.href=url;a.download=filename;options.append(a);a.click();a.remove();
         win.setTimeout(()=>win.URL.revokeObjectURL(url),60000);
-        note('Descărcare solicitată. Salvarea efectivă depinde de browser; verifică fișierul pe telefon.');
+        note('Descărcare solicitată, fără confirmarea salvării. În Telegram Android poate să nu apară niciun fișier. Alege fișierul salvat la „Verifică fișierul” sau folosește copierea JSON.');
       };
       options.querySelector('#shield-download-again').onclick=()=>{try{startDownload();}catch(e){note('Descărcarea nu este disponibilă. Folosește partajarea sau copierea JSON.');}};
       let file=null;
@@ -233,18 +271,25 @@
       const share=options.querySelector('#shield-share-file');
       let canShare=false;
       try { canShare=!!(file && win.navigator.share && win.navigator.canShare?.({files:[file]})); } catch { /* Unsupported file sharing. */ }
-      share.disabled=!canShare;
+      share.hidden=!canShare;
+      // Telegram downloadFile (8.0+) requires a remotely hosted HTTPS file.
+      // Never pass blob:/data: URLs or upload a private backup to make it work.
+      options.querySelector('#shield-capabilities').textContent=canShare
+        ? 'Partajarea de fișiere este disponibilă. Alege o destinație locală de încredere; aplicația aleasă poate transmite datele.'
+        : 'Acest browser nu confirmă suportul pentru partajarea fișierelor. Folosește copierea JSON. Descărcarea nativă Telegram necesită un fișier HTTPS găzduit pe server și nu este folosită pentru backupul privat local.';
       share.onclick=async()=>{
-        try { await win.navigator.share({files:[file],title:'Backup MONARCH SYSTEM'});note('Partajare încheiată. Verifică destinația aleasă înainte de restaurare.'); }
+        try { await win.navigator.share({files:[file],title:'Backup MONARCH SYSTEM'});note('Fișier predat aplicației alese; salvarea nu este confirmată. Verifică fișierul rezultat înainte de restaurare.'); }
         catch(e) { note(e.name==='AbortError'?'Partajare anulată. Datele MONARCH nu au fost modificate.':'Partajarea nu a reușit. Descarcă sau copiază JSON-ul.'); }
       };
       options.querySelector('#shield-show-json').onclick=async()=>{
         const field=options.querySelector('#shield-export-json');field.value=text;
         options.querySelector('#shield-json-label').hidden=false;field.focus();field.select();
-        try { if(!win.navigator.clipboard?.writeText)throw new Error();await win.navigator.clipboard.writeText(text);note('JSON copiat. Salvează-l într-un fișier .json înainte de restaurare.'); }
+        try { if(!win.navigator.clipboard?.writeText)throw new Error();await win.navigator.clipboard.writeText(text);note('Text trimis în clipboard. Relipește-l mai jos pentru a verifica dacă este complet. Clipboardul nu este un backup permanent.'); }
         catch { note('JSON afișat integral. Selectează și copiază manual textul într-un fișier .json.'); }
       };
-      try { startDownload(); } catch { note('Descărcarea nu este disponibilă. Folosește partajarea sau copierea JSON.'); }
+      const tg=win.Telegram?.WebApp;
+      if(tg && (tg.platform==='android' || tg.initData))note('În Telegram, începe cu afișarea / copierea JSON sau partajarea, dacă este disponibilă. Verifică întotdeauna copia.');
+      else try { startDownload(); } catch { note('Descărcarea nu este disponibilă. Folosește partajarea sau copierea JSON.'); }
     }
     function run(fn) { try { fn(); } catch (e) { if(doc.getElementById('shield-status')) status(e.message); else dialog('Operație oprită', '<p>'+escape(e.message)+'</p>'); } }
     function dialog(title, body, locked = false) {
@@ -331,8 +376,7 @@
       restartAwakening(current, apply) {
         run(()=>{
           const expected = shield.snapshot();
-          const el = dialog('Refacerea chestionarului Awakening', '<p>Se refac doar răspunsurile și evaluarea introductivă. Hunter XP, Skill XP, lecțiile, echipamentele și personalizarea sunt păstrate. Cele trei direcții și ordinea lor rămân aceleași pentru a proteja lecțiile deja finalizate.</p><p class="note">Copia profilului curent este salvată înainte de modificare. Poți descărca și un backup complet acum.</p><button id="shield-retake-export">Exportă backup complet</button><button id="shield-retake-confirm">Refă chestionarul și păstrează progresul</button>');
-          el.querySelector('#shield-retake-export').onclick=()=>run(exportCurrent);
+          const el = dialog('Refacerea chestionarului Awakening', '<p>Se refac doar răspunsurile și evaluarea introductivă. Hunter XP, Skill XP, lecțiile, echipamentele și personalizarea sunt păstrate. Cele trei direcții și ordinea lor rămân aceleași pentru a proteja lecțiile deja finalizate.</p><p class="note">Copia profilului curent este salvată înainte de modificare. Pentru un backup complet, folosește Evoluție → Progress Shield înainte de refacere.</p><button id="shield-retake-confirm">Refă chestionarul și păstrează progresul</button>');
           el.querySelector('#shield-retake-confirm').onclick=()=>run(()=>{
             if (!win.confirm('Confirmi refacerea răspunsurilor, cu păstrarea progresului și a direcțiilor?')) return;
             try { const next=shield.retake(current,expected); el.remove(); apply(next); }
@@ -341,9 +385,6 @@
         });
       }
     };
-    // Export remains reachable while the first-time/historical questionnaire covers navigation.
-    const launcher=doc.createElement('button');launcher.id='shield-quick-export';launcher.type='button';
-    launcher.className='secondary shield-launcher';launcher.textContent='🛡️ Backup complet';doc.body.append(launcher);
     ready = boot(); win.MONARCH_PROGRESS_SHIELD.ready = ready;
     for (const event of ['click','submit','change','input']) doc.addEventListener(event,e=>{
       if ((!ready || doc.getElementById('shield-dialog')) && !e.target.closest('#shield-dialog')) { e.preventDefault(); e.stopImmediatePropagation(); }
@@ -351,7 +392,7 @@
     doc.addEventListener('keydown',e=>{
       const modal=doc.getElementById('shield-dialog');
       if(!modal || e.key!=='Tab')return;
-      const items=[...modal.querySelectorAll('button:not(:disabled),input:not([hidden]),[tabindex="0"]')];
+      const items=[...modal.querySelectorAll('button:not(:disabled),input,textarea,select,[tabindex="0"]')].filter(el=>!el.hidden && el.getClientRects().length);
       if(!items.length)return;
       const first=items[0],last=items[items.length-1];
       if(e.shiftKey&&(doc.activeElement===first||doc.activeElement.id==='shield-title')){e.preventDefault();last.focus();}
@@ -359,7 +400,16 @@
     });
     doc.addEventListener('click', e=>{
       const b=e.target.closest('button'); if(!b)return;
-      if (b.id==='shield-export' || b.id==='shield-quick-export') run(()=>{dialog('Backup complet','<p>Se exportă toate cheile MONARCH ale acestui profil, cu valorile originale. Păstrează fișierul într-un loc sigur; poate conține jurnalul personal.</p>');exportCurrent();status('Fișierul a fost pregătit pentru descărcare. Verifică dacă apare în Descărcări / Fișiere.');});
+      if (b.id==='shield-export') run(()=>{dialog('Backup complet','<p>Se exportă toate cheile MONARCH ale acestui profil, cu valorile originale. Păstrează fișierul într-un loc sigur; poate conține jurnalul personal.</p>');exportCurrent();});
+      if (b.id==='shield-export-awakening') run(()=>{
+        const raw=shield.snapshot()[AW];if(raw===undefined)throw new Error('Nu există un profil Awakening salvat.');
+        dialog('Backup Awakening','<p>Copie parțială: doar profilul Awakening, în formatul de backup verificat. Importul istoric rămâne disponibil.</p>');
+        download(pack({[AW]:raw}),'monarch-awakening-backup');
+      });
+      if (b.id==='shield-import-text') {
+        const el=dialog('Importă JSON din text','<p>Lipește JSON-ul original complet. Verificarea afișează o previzualizare; restaurarea cere confirmare și creează o copie de recuperare.</p><label>JSON de importat<textarea id="shield-import-json" rows="10" spellcheck="false"></textarea></label><button type="button" id="shield-preview-text">Verifică și previzualizează</button>');
+        el.querySelector('#shield-preview-text').onclick=()=>run(()=>preview(shield.parse(el.querySelector('#shield-import-json').value)));
+      }
       if (b.id==='shield-import') doc.getElementById('shield-importfile').click();
       if (b.id==='shield-recovery') run(()=>recoverUI());
       if (b.id==='shield-check') run(()=>{
@@ -371,5 +421,6 @@
     // A second tab must not keep writing an old in-memory profile during recovery.
     win.addEventListener('storage',e=>{if(e.key===JOURNAL) { ready=false;win.MONARCH_PROGRESS_SHIELD.ready=false;dialog('Date modificate într-o altă filă','<p>Reîncarcă înainte de a continua. Nu folosi alte file în timpul restaurării.</p><button id="shield-other-reload">Reîncarcă și verifică</button>',true).querySelector('#shield-other-reload').onclick=()=>win.location.reload(); }});
   }
-  return { FORMAT, VERSION, JOURNAL, known, profileKey, shape, pack, parse, create, mount };
+  return { FORMAT, VERSION, JOURNAL, known, profileKey, shape, pack, parse, serialize, create, mount };
 });
+

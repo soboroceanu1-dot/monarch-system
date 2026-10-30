@@ -5,7 +5,7 @@ const fs=require('node:fs/promises');const path=require('node:path');const {exec
 const {cases,combined,MAIN}=require('./fixtures/historical-saves.cjs');
 const {JOURNAL,pack}=require('../progress-shield.js');
 const root=path.join(__dirname,'..'),BASE='28a901ea8d951e02692b1ae2fe144b3a71150168';
-const old=new Map(['index.html','app.js','awakening.js','hunter24.js','life25.js','style.css'].map(name=>[name,execFileSync('git',['show',BASE+':'+name],{cwd:root})]));
+const old=new Map(['index.html','app.js','awakening.js','hunter24.js','life25.js','style.css'].map(name=>[name,process.env.MONARCH_V90_DIR ? require('node:fs').readFileSync(path.join(process.env.MONARCH_V90_DIR,name)) : execFileSync('git',['show',BASE+':'+name],{cwd:root})]));
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox'],headless:true});
  async function open(seed,baseline=false,mode='normal'){
@@ -33,7 +33,8 @@ const old=new Map(['index.html','app.js','awakening.js','hunter24.js','life25.js
  }
  const snapshot=p=>p.evaluate(()=>Object.fromEntries(Object.keys(localStorage).map(k=>[k,localStorage.getItem(k)])));
  const exported=async(p,button)=>{
-  const pending=p.waitForEvent('download');await p.locator(button).click();const d=await pending;
+  if(button==='#shield-export')await p.evaluate(()=>document.querySelector('nav [data-tab="evolution"]').click());
+  const pending=p.waitForEvent('download');await p.evaluate(selector=>document.querySelector(selector).click(),button);const d=await pending;
   return JSON.parse(await fs.readFile(await d.path(),'utf8'));
  };
  try{
@@ -49,7 +50,7 @@ const old=new Map(['index.html','app.js','awakening.js','hunter24.js','life25.js
     assert.deepEqual(await snapshot(page),seed,item.name+' startup/navigation must not migrate saves');
     assert.deepEqual(errors,[],item.name+' has no errors in '+(baseline?'V9.0':'Shield'));
     if(!baseline){
-     const backup=await exported(page,'#shield-quick-export');
+     const backup=await exported(page,'#shield-export');
      assert.deepEqual(backup.data,Object.fromEntries(Object.entries(seed).filter(([k])=>k.startsWith('monarch-'))));
      assert.equal(backup.data['unrelated-app'],undefined);assert.equal(await page.evaluate(k=>localStorage.getItem(k),JOURNAL),null);
      await page.locator('#shield-show-json').click();
@@ -63,15 +64,15 @@ const old=new Map(['index.html','app.js','awakening.js','hunter24.js','life25.js
   }
   const seed=combined();
   const fallback=await open(seed,false,'no-download');
-  await fallback.page.locator('#shield-quick-export').click();
-  assert.equal(await fallback.page.locator('#shield-share-file').isDisabled(),true);
+  await fallback.page.evaluate(()=>document.querySelector('nav [data-tab="evolution"]').click());await fallback.page.locator('#shield-export').click();
+  assert.equal(await fallback.page.locator('#shield-share-file').isHidden(),true);
   await fallback.page.locator('#shield-show-json').click();
   const copied=JSON.parse(await fallback.page.locator('#shield-export-json').inputValue());
   assert.deepEqual(copied.data,Object.fromEntries(Object.entries(seed).filter(([k])=>k.startsWith('monarch-'))));
   assert.match(await fallback.page.locator('#shield-export-status').innerText(),/manual/);assert.deepEqual(await snapshot(fallback.page),seed);
   await fallback.context.close();console.log('PASS Android WebView simulation: failed blob download + unavailable sharing/clipboard still exposes complete JSON without writes.');
   const sharing=await open(seed,false,'share');
-  await sharing.page.locator('#shield-quick-export').click();await sharing.page.locator('#shield-share-file').click();
+  await sharing.page.evaluate(()=>document.querySelector('nav [data-tab="evolution"]').click());await sharing.page.locator('#shield-export').click();await sharing.page.locator('#shield-share-file').click();
   await sharing.page.waitForFunction(()=>sharedBackup!==null);
   const shared=await sharing.page.evaluate(()=>sharedBackup);assert.match(shared.name,/\.json$/);assert.deepEqual(JSON.parse(shared.text).data,copied.data);assert.deepEqual(await snapshot(sharing.page),seed);
   await sharing.context.close();console.log('PASS Android file-share API simulation: exact complete backup file, no restore or storage writes.');
@@ -81,3 +82,4 @@ const old=new Map(['index.html','app.js','awakening.js','hunter24.js','life25.js
   await blocked.context.close();console.log('PASS blocked-startup pre-restore export preserves even corrupt raw originals.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1});
+

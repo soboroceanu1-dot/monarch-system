@@ -78,6 +78,7 @@ html{scroll-padding-bottom:180px}
 .shield-modal input[type=checkbox]{width:auto;display:inline-block;margin-right:8px}
 .shield-modal button{max-width:100%;white-space:normal}
 
-.shield-launcher{position:fixed;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:100025;max-width:170px;font-size:12px}
 .shield-modal [hidden]{display:none!important}
-.shield-modal #shield-export-json{min-height:160px;font-family:monospace;font-size:12px}
+.shield-modal textarea{display:block;width:100%;max-width:100%;box-sizing:border-box;min-height:120px;font-family:monospace;font-size:16px}
+.shield-modal input[type=file]{max-width:100%}
+

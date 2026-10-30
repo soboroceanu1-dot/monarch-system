@@ -1,6 +1,29 @@
-# V9.1 Progress Shield — format, recovery and verification
+# V9.1.1 Progress Shield — format, recovery and verification
 
 This feature does not recalculate XP, levels, ranks, characteristics, rewards or inventory unlocks. Existing profile keys are unchanged. No automatic migration or production publication is performed by this change.
+
+## V9.1.1 export behavior and evidence
+
+The previous implementation relied on a Blob anchor click; Telegram Android may ignore it. File sharing is a separate Web Share capability, not guaranteed by the Telegram SDK. Copying through Samsung Notes can change or truncate JSON; renaming the extension cannot repair the content. The reported Notes file was not supplied, so its exact corruption has not been diagnosed.
+
+The official [Telegram Mini Apps documentation](https://core.telegram.org/bots/webapps#downloadfileparams) specifies an HTTPS URL for `downloadFile` (Bot API 8.0+). Its callback confirms acceptance of the download request, not persistence. `shareMessage` requires a bot-prepared message. Neither is a local-file export API; this implementation deliberately calls neither and never uploads backups. Web Share is offered only after checking File construction, `navigator.share` and `navigator.canShare({files})`, including exceptions. Sharing runs only on an explicit tap; the chosen target may transmit data, so choose a trusted local destination.
+
+Serialization now checks the generated JSON envelope and exact raw-value roundtrip before any transport. Normal backups pass the existing importer too. Damaged profile roots remain exportable for rescue with an explicit warning that normal import will reject them. Format version 1 and all profile storage shapes remain unchanged. A UTF-8 BOM on imported text is accepted; quotes, prefixes or truncated content are never guessed or repaired.
+
+Local text is always selectable, including when Blob, File, clipboard, download and share APIs are absent or fail. Read-back verification checks saved files and pasted copies against the exact exported snapshot without restoring. A clipboard acknowledgement or completed share promise never claims that a permanent backup exists. Switching to Chrome does not transfer Telegram localStorage.
+
+Validation for this release uses only fictional profiles. Commands:
+
+```sh
+node --test tests/*.test.cjs
+node tests/browser-progress-shield.cjs
+node tests/browser-historical-compatibility.cjs
+node tests/browser-backup-export.cjs
+```
+
+Playwright must be installed and Chromium available (`CHROMIUM_PATH` overrides `/usr/bin/chromium`). The historical suite optionally accepts `MONARCH_V90_DIR` as described below. The added browser suite covers 320/360/412px layouts and nine mocked host scenarios: missing APIs, denied clipboard/download, throwing canShare, file sharing, share cancellation/failure, file picker/readback/cancellation and missing Blob/File. It verifies full JSON, altered-copy rejection, file read-back, text preview/cancel/restore/rollback, exact raw values and no outbound backup requests. These are Chromium simulations. **A physical Android device running Telegram has not been tested; Android export is not certified by these results.**
+
+Run results (2026-10-30): **55/55 Node tests passed**; all existing mobile Progress Shield integration checks passed; all **26 historical profile shapes** passed differential V9.0/current browser checks; all **9 added host-API scenarios passed**. Browser page-error checks passed. The V9.0 comparison used source files fetched from the pinned commit via the GitHub connector and `MONARCH_V90_DIR`, because this workspace was populated from repository files without older Git objects.
 
 ## Complete backup
 
@@ -87,15 +110,15 @@ CHROMIUM_PATH=/usr/bin/chromium node tests/browser-historical-compatibility.cjs
 
 Node tests cover complete export and raw-string preservation, legacy exports, valid restoration, invalid/incomplete files, quota failure, transient/persistent write failures, interrupted restoration and recovery, retention of unknown keys, changed data after preview, corrupt originals and questionnaire preservation. The V9.0 discipline tests remain included.
 
-Browser tests cover 360px and 412px mobile touch viewports; file download; check-only and invalid-file no-write behavior; preview/cancel/confirmation; full restore and undo; legacy import preview; questionnaire completion with locked directions; startup recovery; corrupt-save protection; Telegram ready/expand via an SDK stub; and unchanged +20 Life Evolution / +35 Academy rewards and inventory rules. These tests do not substitute for testing an actual Android Telegram client. The second browser suite loads the same 26 fictional historical profiles into the actual V9.0 source at commit `28a901e` and the current source, exercises navigation/inventory readers, and verifies identical raw storage plus pre-restore JSON downloads. It requires that base commit in the local Git history. Fixture provenance is recorded in `tests/fixtures/historical-saves.cjs`; the suite distinguishes historical writer shapes from missing/null variants explicitly tolerated by their readers. Android user agent, touch viewport, file sharing and unsupported download/clipboard behavior are simulated, not real-device measurements.
+Browser tests cover 360px and 412px mobile touch viewports; file download; check-only and invalid-file no-write behavior; preview/cancel/confirmation; full restore and undo; legacy import preview; questionnaire completion with locked directions; startup recovery; corrupt-save protection; Telegram ready/expand via an SDK stub; and unchanged +20 Life Evolution / +35 Academy rewards and inventory rules. These tests do not substitute for testing an actual Android Telegram client. The second browser suite loads the same 26 fictional historical profiles into the actual V9.0 source at commit `28a901e` and the current source, exercises navigation/inventory readers, and verifies identical raw storage plus pre-restore JSON downloads. It requires that base commit in the local Git history, or the exact six source files from that commit in `MONARCH_V90_DIR`. Fixture provenance is recorded in `tests/fixtures/historical-saves.cjs`; the suite distinguishes historical writer shapes from missing/null variants explicitly tolerated by their readers. Android user agent, touch viewport, file sharing and unsupported download/clipboard behavior are simulated, not real-device measurements.
 
 ## Telegram verification after review
 
 Do not publish or merge automatically. For an approved test deployment, use the PR branch in an isolated test origin/browser profile. Do not run restoration tests against a real player's profile.
 
-1. Open the test WebApp on Android; verify the resources have `?v=monarch-v91-shield2-20261030` and Shield loads before app.js.
+1. Open the test WebApp on Android; verify the resources have `?v=monarch-v911-backup-20261030` and Shield loads before app.js.
 2. In Evolution, tap **Verifică datele salvate**. Verify that this does not change the profile.
-3. Tap **Exportă backup complet**, or the always-visible **🛡️ Backup complet** button during onboarding. Confirm the JSON file exists in Android Downloads/Files before restoring anything. Export is also available inside the import preview and in a blocked-startup recovery dialog. **Descarcă JSON** retries download; **Partajează fișierul** uses native file sharing when supported; **Afișează / copiază JSON** always exposes the full raw-value envelope, even if both download and clipboard APIs fail. Save the copied text as a `.json` file. These actions never write profile keys or create a recovery journal.
+3. In **Evoluție → Progress Shield**, tap **Exportă backup complet**. There is no floating launcher. Awakening-only export is also located here. In Telegram Android, download does not start automatically: use file sharing if confirmed by `navigator.canShare({files})`, or **Afișează / copiază JSON**. An unsupported share button is hidden and explained. **Încearcă descărcarea JSON** is only an attempt, never proof of saving. Where supported, **Salvează direct în fișier** writes through the file picker and reads back the result. Paste the copied text into the verification field or select the saved file; verification compares the complete exported snapshot without writing storage. Use a plain UTF-8 editor, not Samsung Notes. Alternatively, **Importă JSON din text** accepts the unchanged complete JSON and shows the normal protected restore preview. Emergency export remains in blocked-startup/recovery dialogs so damaged data can still be rescued.
 4. On a fictional profile, import that JSON. Inspect the preview, cancel once, then import again and explicitly confirm. Check XP, equipment, goals, difficulty and completed lessons.
 5. Open **Recuperează copia anterioară** and verify undo on the fictional profile. Verify the prior checkpoint can also be downloaded.
 6. Try an invalid file; ensure the data is unchanged. Confirm dialogs and long key names fit the screen and scroll correctly.
@@ -112,3 +135,4 @@ The first review run reproduced 17 failures in newly added tests: the validator 
 The corrected validator preserves the bytes of both the stored and restored saves. Differential browser tests confirm all 26 fixture shapes load under both the real V9.0 base and the PR, without errors or storage mutations. Invalid active JSON/roots and unsafe collection types still block or reject import. Optional fields defaulted by V9.0 raise informational warnings rather than fatal errors. This is compatibility validation, not automatic repair or migration.
 
 Exports occur before any restore in the tests, including from the actual import preview (while confirmation remains disabled), a pending-recovery dialog, and blocked startup with corrupt raw originals. Unsupported Blob download + unavailable clipboard still leaves the entire JSON selectable; the native-file-share simulation checks the exact JSON bytes. Successful Chromium download/share calls are not proof of behavior on a particular Android/Telegram release.
+

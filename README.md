@@ -1,6 +1,6 @@
-# MONARCH SYSTEM V8.1 — INTEGRATION FIX
+# MONARCH SYSTEM V8.3 — Difficulty Controls Fix
 
-- Antetul indică V8.1.
-- Competențele și reglarea dificultății sunt vizibile direct în Plan.
-- Restul modulelor și cheile localStorage sunt păstrate.
-- Testați funcționalitatea în Telegram după publicare.
+- Selector explicit Automat / Manual (Începător, Intermediar, Avansat, Expert).
+- Buton Aplică dificultatea și confirmare vizibilă.
+- Actualizare imediată în Plan; păstrează cheile localStorage existente.
+- Testați în Telegram după publicarea GitHub Pages.

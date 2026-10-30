@@ -71,3 +71,13 @@ html{scroll-padding-bottom:180px}
 
 /* SMART MISSIONS V5 */
 .life25-choice{display:block;width:100%;text-align:left;margin:12px 0;padding:15px;border:1px solid #456386;border-radius:12px;background:#172840;color:#f1f7ff;white-space:normal;line-height:1.4}.life25-choice:active{background:#245b78}.life25-example{padding:15px;margin:15px 0;border-left:3px solid #48d4e8;background:#142b40;border-radius:8px}.life25-panel select,.life25-panel input[type=number]{width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px;border-radius:9px;border:1px solid #58799c;background:#0b1730;color:white}
+
+/* Progress Shield uses existing cards/buttons, above all legacy overlays. */
+.shield-modal{z-index:100030;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+.shield-modal .life25-panel{overflow-wrap:anywhere}
+.shield-modal input[type=checkbox]{width:auto;display:inline-block;margin-right:8px}
+.shield-modal button{max-width:100%;white-space:normal}
+
+.shield-launcher{position:fixed;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:100025;max-width:170px;font-size:12px}
+.shield-modal [hidden]{display:none!important}
+.shield-modal #shield-export-json{min-height:160px;font-family:monospace;font-size:12px}

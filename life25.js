@@ -1,4 +1,5 @@
 (()=>{'use strict';
+if(window.MONARCH_PROGRESS_SHIELD?.ready!==true)return;
 const KEY='monarch-planner-v25',AW='monarch-awakening-v2',GAME='monarch-life-v1';
 const get=k=>{try{return JSON.parse(localStorage.getItem(k)||'{}')}catch{return {}}};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

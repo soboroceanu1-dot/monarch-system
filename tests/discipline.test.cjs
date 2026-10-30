@@ -17,7 +17,7 @@ function session(level = 0, done = {}) {
   const listeners = {}, fields = { 'life25-error': {}, 'life25-exp-category': { value: 'Citit' }, 'life25-exp-note': { value: '' } };
   let html = '', reloads = 0;
   vm.runInNewContext(source, {
-    window: { MONARCH_BUILD: 'V9.0 test' },
+    window: { MONARCH_BUILD: 'V9.0 test', MONARCH_PROGRESS_SHIELD: { ready: true } },
     localStorage: { getItem: k => values.get(k), setItem: (k, v) => values.set(k, v) },
     document: {
       addEventListener: (name, fn) => { listeners[name] = fn; },
@@ -102,7 +102,7 @@ test('historical completion is a review with zero XP and keeps saved data', () =
 test('all local assets share a release token and version labels use the build', () => {
   const html = readFileSync(path.join(root, 'index.html'), 'utf8');
   const assets = [...html.matchAll(/(?:src|href)="(?!https:)([^"?]+)\?v=([^"]+)"/g)];
-  assert.equal(assets.length, 5);
+  assert.equal(assets.length, 6);
   assert.equal(new Set(assets.map(m => m[2])).size, 1);
   for (const [, file] of assets) assert.ok(readFileSync(path.join(root, file)).length);
   const app = readFileSync(path.join(root, 'app.js'), 'utf8');

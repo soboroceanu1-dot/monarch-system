@@ -1,0 +1,9 @@
+# V9.3-A — audit și implementare vizuală
+
+Audit înainte de modificări: app.js furnizează hero(), level(), rank(), questItems(), bossItems(), unifiedGoals() și navigarea delegată. Hunter24 furnizează inventarul, echiparea și pragurile existente. CSS are deja navigare inferioară fixă, safe-area și modale deasupra navigării. Progress Core/Shield și lesson-ids rămân neschimbate. Nu există imagini finale de personaj în repository și conceptul vizual menționat nu este atașat acestei conversații.
+
+Se reutilizează exclusiv state.xp, player, tasks, completed, bosses și goals din planner. Proiectul afișat este primul proiect activ în ordinea salvată, nu o prioritate inventată. Dacă nu există obiective/misiuni/proiecte, se afișează stări goale. Personajul este un placeholder original SVG decorativ; nu reprezintă obiecte de inventar sau recompense noi.
+
+Personajul AETHER MONARCH folosește același rang E/D/C/B/A/S calculat deja în aplicație. Conturul/energia și insigna diferă prin data-rank; artă finală distinctă nu este disponibilă. Registrul CHARACTER_ART din app.js permite înlocuirea placeholderului pentru fiecare rang. Sunt necesare șase ilustrații originale: assets/characters/aether-e.webp, aether-d.webp, aether-c.webp, aether-b.webp, aether-a.webp, aether-s.webp. Livrare recomandată: 900×1200 px, fundal transparent, aceeași poziție/încadrare, armură antracit, accente aurii și energie turcoaz-violet; fără echipamente specifice neobținute. Nu adăuga acele căi în registru înainte ca fișierele să existe.
+
+Capturile din docs/screenshots folosesc exclusiv profil fictiv. Viewporturi 360/390/430 px; testele Chromium nu certifică Telegram Android real. Animația decorativă respectă prefers-reduced-motion. Fără fonturi sau imagini externe, modificări de stocare, reguli XP ori mecanisme noi de recompensă.

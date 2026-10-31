@@ -1,65 +1,61 @@
-# V9.3-A — adaptarea conceptului MONARCH SYSTEM
+# V9.3-A — structura exactă a dashboardului
 
-## Audit înainte de modificări
+## Audit și limitele modificării
 
-app.js oferă hero(), level(), rank(), questItems(), bossItems(), unifiedGoals() și navigarea delegată. Hunter24 oferă inventarul și echiparea. Meniul inferior și modalele existente sunt păstrate. Core V9.2, Shield și lesson-ids rămân nemodificate. Capturile PNG locale din execuția anterioară au fost păstrate fără ștergere.
+Continuare pe branch-ul existent `feature/v9.3-a-dashboard`, exclusiv în PR #6. Au fost verificate starea Git și commiturile anterioare înainte de editare. Capturile PNG locale din execuțiile anterioare sunt păstrate. Nu sunt modificate Progress Core, Progress Shield, registrul lesson-ids, handler-ele de recompense, inventarul, stocarea sau formatele backupurilor.
 
-## Resurse și implementare
+Sunt reutilizate `hero()`, `level()`, `rank()`, `counts()`, `unifiedGoals()`, lista reală de misiuni și proiectele `bosses`. Navigarea rămâne delegată prin `data-tab` / `data-adventure`. Personalizarea deschide Hunter și inventarul Hunter24 existent. Panoul Atribute deschide detaliile existente, cu numărul integral de realizări.
 
-Referința vizuală atașată este adaptată prin componente HTML/CSS: logo cu coroană, panou nivel/rang/XP auriu, personaj pe decor violet-albastru electric, carduri transparente cu contur luminos, Compania mea și acțiuni aurii. Imaginea întreagă nu este folosită drept fundal. Layoutul orizontal este transformat în flux vertical pentru telefon, fără statistici fictive, streak-uri inventate sau procente fără sursă.
+Această implementare înlocuiește modul compact anterior care ascundea cardurile MONARCH și înlocuia personajul/atributele cu scurtături. Aceste zone rămân acum vizibile; nu există ecran suplimentar „Panoul MONARCH”.
 
-Cele șase fișiere WebP au fost extrase byte-for-byte din arhiva furnizată în assets/characters/aether-{e,d,c,b,a,s}.webp. Toate sunt RGBA 900×1200. CHARACTER_ART mapează fiecare rang existent la resursa corespunzătoare; src absent sau eroare de încărcare folosește SVG-ul placeholder existent. Imaginile au margini transparente ample, compensate prin încadrare CSS fără modificarea fișierelor originale.
+## Cele opt zone, în ordinea cerută
 
-În partea de sus: rang/nivel/XP și personajul. Misiunea zilei începe înainte de 650px pe fixture-ul mobil testat. Obiectivul săptămânal este textul salvat; proiectul este primul proiect activ, etichetat ca atare. Atributele sunt într-o secțiune extensibilă. Inventarul și evoluția au acces separat. Meniul inferior este singurul meniu permanent; scurtăturile duplicate și al doilea card vizual de personaj din Acasă nu mai sunt afișate. Funcțiile Hunter24 sunt accesibile prin pagina Personaj și inventar.
+| Zonă | Structură |
+| --- | --- |
+| A. Header | Un rând: logo/versiune, indicatori neutri sau calculați, activitate recentă, setări |
+| B. Hero | Personaj E–S în stânga; o singură insignă de rang, nivel și XP în dreapta |
+| C. Panoul MONARCH | Titlu și EXACT patru carduri egale într-un singur rând: Misiuni, Academie, Proiecte, Obiectiv |
+| D. Compania mea | Banner panoramic compact, titlu/subtitlu în stânga, castel în dreapta |
+| E. Misiune | Card orizontal auriu: titlu/nume în stânga, XP real/acțiune în dreapta |
+| F. Progres | Două coloane egale: obiectiv săptămânal în stânga; proiect sus și citat dedesubt în dreapta |
+| G. Personaj și atribute | Două coloane: portret/Personalizează; șase rânduri cu atribute reale |
+| H. Navigare | Un rând separat, fără suprapunere: Acasă, Aventuri, Plan, Hunter, Evoluție |
 
-## Verificare vizuală
+Structura exterioară folosește CSS Grid pentru header, conținut și meniu; conținutul este o grilă cu șase rânduri `minmax(0, …fr)`. Astfel se obțin cele opt zone. Proporțiile sunt ajustate pentru ca cele șase rânduri de atribute și butonul Personalizează să rămână lizibile. Nu se folosește `transform: scale()` pe dashboard. Toate grilele relevante au dimensiuni minime zero. `.monarch-actions` utilizează `repeat(4, minmax(0, 1fr))` la toate lățimile. Modul compact modifică numai spațierea, fără schimbarea coloanelor sau ascunderea secțiunilor. Cardurile nu au scroll interior.
 
-Capturile 360/390/430px din docs/screenshots/dashboard-*.jpg au fost comparate cu referința: au fost apropiate paleta, contururile violet, progresul auriu, titlul serif al brandului și ierarhia companiei. Nu sunt reproduse castelul panoramic, meniul lateral ori barele numerice fictive; spațiul și datele reale impun adaptarea mobilă. Misiunea și progresul au prioritate față de decor. Animațiile ușoare respectă reduced motion.
+## Sursele datelor
 
-## Teste și limite
+- XP, nivel, rang: aceleași funcții și reguli existente; fără un al doilea sistem XP.
+- Misiuni: `tasks + customTasks`, excluzând misiunile finalizate/amânate astăzi. Misiunea afișată este prima disponibilă, iar XP-ul aparține aceleiași misiuni. Dacă există numai text în Plan, acesta nu primește o recompensă inventată.
+- Academie: lecțiile fixe nefinalizate și cursul Promptcraft nefinalizat. Indicatorul nu pretinde că numără toate activitățile Awakening.
+- Proiecte: `bosses` fără `claimed`. Proiectul prezentat este primul activ; datele existente nu conțin o ordine de prioritate distinctă. Bara folosește `progress/target` numai când ambele valori sunt finite și ținta este pozitivă.
+- Obiectiv săptămânal: textul salvat în Plan. Nu există checklist sau țintă numerică, deci se afișează „Progres necuantificat” și un indicator neutru, fără procent sau umplere fictivă.
+- Atribute: `counts(category)`, nivel `floor(n/5)+1`, progres nativ `n%5` din 5. Barele reprezintă realizările până la nivelul următor. De exemplu, 6 realizări înseamnă LVL 2 și 1/5. Nu se modifică datele pentru afișare.
+- Header: contorul calendarului reprezintă realizările din ultimele șapte zile, fără o țintă inventată. Streak-ul nesalvat este „—”. Accesul la activitate deschide Evoluție; nu se fabrică notificări sau buline de necitit.
+- Citatul este text editorial static, fără semnificație de progres/recompensă.
 
-108 teste Node; 18 combinații viewport/rang (360/390/430 × E–S), cu verificarea resursei, fallbackului, XP real, overflow, reduced motion, un singur nav, inventar, navigare și lipsa scrierilor în profil. Integrarea Progress Core rămâne testată separat. Toate capturile și scrierile de test folosesc profiluri fictive. Testele Chromium nu certifică Telegram Android real. Nu se modifică chei localStorage, reguli XP, recompense, echipamente, lecții sau planificare. Nu se face merge/deploy automat.
+Cardurile deschid modulele existente. Dashboardul nu finalizează misiuni și nu acordă XP. Denumirile și descrierile integrale rămân disponibile în modulele respective. Textele obișnuite din profilul fictiv de verificare nu sunt decupate prin elipsă.
 
-## Redesign final — referința aprobată
+## Viewport Telegram și accesibilitate
 
-Zona superioară folosește o singură insignă de rang și o singură afișare a nivelului, alături de XP-ul real și forma E–S. Butonul din brand este acces către setări/evoluție, fără al doilea rang. Nu se afișează streak sau un progres săptămânal fictiv.
+CSS utilizează `100dvh`, cu fallback `100vh`. JavaScript folosește minimul valorilor pozitive disponibile din `innerHeight`, `visualViewport.height` și `Telegram.WebApp.viewportHeight` (sau `viewportStableHeight` ca fallback). Antetul nativ Telegram nu este scăzut a doua oară. Sunt urmărite resize și evenimentele Telegram disponibile pentru viewport/safe area. Paddingul folosește maximul dintre inseturile CSS și Telegram, fără însumare dublă.
 
-Panoul MONARCH: carduri albastre/violet/aurii/turcoaz într-o grilă 2×2. Misiuni = tasks + customTasks nefinalizate și neamânate astăzi; Academie = lecțiile fixe nefinalizate + cursul promptcraft dacă nu este finalizat (nu toate activitățile Awakening); Proiecte = bosses fără claimed; Obiectiv = existența textului săptămânal. Textul de obiectiv nu are criterii/checklist măsurabile, deci nu se inventează un procent. Progresul proiectului este raportul real progress/target. Mesajul motivațional este static, fără valoare de progres.
+Pentru datele scurte testate, cele opt zone încap simultan la 360×800, 390×844 și 430×932 px, precum și într-un WebView simulat cu înălțime 740 px și inseturi top 8/bottom 16. Butoanele principale au ținte de minimum 44×44 px, inclusiv fiecare card MONARCH, personalizare, panoul atributelor și meniul inferior. Nu există scroll orizontal sau vertical pe aceste cazuri.
 
-Compania mea include banner cu castel, misiune, obiectiv săptămânal, primul proiect activ, mesaj motivațional, portret/personalizare și atribute reale. La 390/430px cardurile companiei și zona secundară pot folosi două coloane; la 360px păstrează lizibilitatea prin stivuire. Navigarea permanentă unică este Acasă / Aventuri / Plan / Hunter / Evoluție, mapată la aceleași data-tab existente.
+Limita de încadrare nu este o promisiune pentru orice text sau dispozitiv: sub 680 px utili (după safe area), la font rădăcină peste 21 px sau când măsurarea arată text/carduri care depășesc spațiul disponibil, apare o explicație și se păstrează derulare accesibilă a paginii. Coloanele și toate secțiunile rămân prezente. Nu se decupează pagina pentru a simula un test trecut. Textul folosește rem; la 200% se mărește efectiv. Acest caz este o limitare explicită a cerinței single-screen, nu un rezultat trecut. Nu există scroll în carduri și nu este introdus un meniu suplimentar.
 
-### Castel și resurse lipsă
+## Resurse și comparație cu referința
 
-Repository-ul nu conține picturile panoramice din referință. assets/monarch-castle.svg este un decor vectorial original, provizoriu, creat pentru această compoziție (castel, munți, cer violet și lumină aurie), nu o imagine aleatorie și nici imaginea de referință integrală. Nu este o reproducere fotorealistă a castelului aprobat și nu folosește elemente Solo Leveling.
+`CHARACTER_ART` păstrează cele șase WebP furnizate, nemodificate: `assets/characters/aether-{e,d,c,b,a,s}.webp`. Eroarea de încărcare a oricărei forme folosește placeholderul existent, atât în hero cât și în portret. Încadrarea CSS compensează marginile transparente ale imaginilor.
 
-Pentru fidelitatea finală sunt necesare două ilustrații originale/autorizate:
-- assets/scenes/monarch-castle-hero.webp: aproximativ 1600×700 px, cetate gotică pe creastă, cer bleumarin, lumină violet/albastru electric, puncte aurii; spațiu întunecat pentru text/rang în centru-dreapta și personaj în stânga.
-- assets/scenes/monarch-company-panorama.webp: aproximativ 1600×400 px, castel auriu pe stâncă în dreapta, apus violet/albastru, jumătatea stângă liberă pentru titlul Compania mea.
+Panorama `assets/scenes/monarch-castle-panorama.webp` este originală, deja integrată în PR: castel pe creastă, nori violet-albaștri și lumină aurie. Se utilizează decorativ în hero și banner, nu imaginea integrală a interfeței. Personajele sau elementele Solo Leveling nu sunt copiate.
 
-Diferențe rămase: decorul este vectorial, nu pictat; energia este realizată în CSS, fără creatura/dragonul din referință (resursă originală separată nepusă la dispoziție); iconografia și portretele sunt adaptate la dimensiunile telefonului. Nu se vor substitui bare numerice demonstrative pentru a imita compoziția.
+Capturile noi reproduc structura referinței: cele opt zone, rândul de patru carduri colorate, misiune aurie, obiectiv/proiect/citat în coloanele cerute și personaj/atribute alăturate. Diferențe rămase: ilustrația castelului este o compoziție originală, fără dragon; emblema și pictogramele sunt în principal text/simboluri și nu resursele pictate ale conceptului; fonturile și bordurile sunt realizate în CSS; datele reale nu permit procente/checklist-uri demonstrative. La 360 px, etichetele atributelor au 11 px la text standard, iar textele principale 12–17 px; reglajele de text Android pot activa fallbackul accesibil.
 
-Verificări finale: 108 teste Node, 18 combinații ecran/rang, fallback, valori reale și stări goale, cele patru acțiuni ale panoului, etichetele meniului, conținut accesibil la finalul paginii fără acoperire de meniu, reduced motion și lipsa erorilor/scrierilor la navigare. Suitele Core, Shield, backup și compatibilitatea celor 26 de profiluri istorice sunt rulate separat. Capturile JPG sunt regenerate și inspectate față de referință; profilul din capturi este fictiv.
+Resurse opționale pentru o etapă grafică ulterioară: set original coerent de pictograme SVG pentru cele patru acțiuni și meniul inferior, emblemă MONARCH vectorială, panorame distincte pentru hero/banner și un familiar/efect de energie original. Nicio resursă suplimentară nu este necesară pentru structura funcțională livrată.
 
-Cardul Misiuni deschide lista zilnică reală (componenta quests existentă) împreună cu lecțiile ghidate din Aventuri, astfel încât numărul afișat corespunde misiunilor accesibile. Nu se modifică handler-ele de finalizare sau recompensele.
+## Teste și capturi
 
-## Final visual polish — panoramă originală integrată
+Rezultate finale: 108 teste Node trecute; 18 combinații exacte viewport/rang; trei simulări Telegram la 740 px; limite confirmate la 700 px cu 24 px safe area și la 420 px/text 200%; 10 scenarii browser Progress Core; regresia mobilă Progress Shield; nouă scenarii export și 13 scenarii V9.1.2; 26 de profiluri istorice comparate cu V9.0 plus verificări de backup pentru host limitat și profil corupt. Toate suitele au ieșit cu cod 0. Sunt verificate separat navigarea panoului Atribute, inventarul, forma E–S, fallbackul imaginilor, valorile reale, lipsa scrierilor la navigare și absența erorilor JavaScript. Toate profilurile care sunt modificate în teste sunt fictive. Capturi: `docs/screenshots/dashboard-360.jpg` (360×800), `dashboard-390.jpg` (390×844), `dashboard-430.jpg` (430×932). Capturile mai vechi cu alte dimensiuni sunt păstrate ca istoric, nu ca dovezi pentru această structură.
 
-Resursa assets/scenes/monarch-castle-panorama.webp înlocuiește decorul vectorial în hero și în bannerul Compania mea. Este o panoramă originală generată pentru acest proiect: castel pe creastă, nori violet/albastru, ferestre și lumină aurie, jumătate stângă întunecată pentru text. Sursa PNG generată este păstrată local în generated_images; resursa WebP este codificată pentru livrare, fără modificarea formelor de personaj E–S. Secțiunile anterioare care solicită pregătirea panoramei descriu etapa precedentă și sunt acum depășite: panorama este furnizată în această actualizare.
-
-Personajul principal și portretul sunt mărite, conturul misiunii este auriu mai vizibil, panoul păstrează cele patru culori și valori reale. Cardurile obiectiv/proiect și personalizare nu mai sunt întinse artificial pe înălțimea coloanei vecine.
-
-Atributele folosesc în continuare counts(category) și nivelul existent floor(n/5)+1. Prezentarea adaugă elemente progress native cu max=5 și value=n%5: progresul ciclului curent către următorul nivel. Etichetele arată numărul real de realizări și fracția 0–4/5; nu se inventează procente, valori de atribut sau un sistem XP secundar. Bara revine la 0/5 când începe un nivel nou. Testele verifică explicit 3 realizări → LVL1, 3/5 și 6 realizări → LVL2, 1/5, fără scriere în profil.
-
-Capturile de la 360/390/430px sunt regenerate și comparate cu referința. Diferențe intenționate: profilul fictiv de test nu are toate atributele avansate; obiectivul săptămânal rămâne text fără procent; nu sunt afișate streak sau checklist-uri inexistente. Nu este inclus un dragon/familiar — ar necesita o resursă originală suplimentară și nu trebuie confundat cu o recompensă de inventar. Panorama furnizată este o compoziție nouă, nu o copie pixel cu pixel a referinței. Testarea Telegram Android real rămâne necesară.
-
-## Cerință prioritară: single-screen dashboard
-
-Acasă este acum o grilă cu înălțime egală cu spațiul disponibil, nu o pagină lungă: antet, personaj/progres, Panoul MONARCH, Compania mea, misiune, obiectiv/proiect, acces la personalizare/atribute și navigare inferioară. Meniul este un rând separat al grilei, fără suprapunerea conținutului. Detaliile și acțiunile existente se deschid în ecranele Aventuri, Plan, Hunter, Evoluție, Atribute sau Panoul MONARCH; acestea pot avea derulare normală. Cardurile de Acasă nu au scroll interior.
-
-CSS folosește 100dvh (100vh fallback), suprascris cu minimul valorilor pozitive disponibile din window.innerHeight, visualViewport.height și Telegram.WebApp.viewportHeight (viewportStableHeight doar fallback). Înălțimea raportată de Telegram reprezintă WebView-ul: antetul nativ nu este scăzut a doua oară. Sunt urmărite resize, visualViewport.resize și, când onEvent există, viewportChanged/safeAreaChanged/contentSafeAreaChanged. Safe-area superioară/inferioară utilizează maximul dintre CSS env și valorile Telegram, fără însumare dublă.
-
-La înălțime redusă sau font mare, modul compact mută grila cu patru carduri în ecranul Panoul MONARCH, deschis printr-un buton de minimum 44px. Misiunea, obiectivul și proiectul rămân simultan vizibile ca rezumate. Textele lungi pot avea elipsă, dar denumirile complete sunt în numele accesibile și ecranele de detaliu. Nu se acordă recompense din cardurile rezumative și nu se ascund module.
-
-Matrice verificată în Chromium: lățimi 360/390/430px, înălțimi 568/640/740/900px la font normal; font rădăcină 32px (200%) la 900px; viewport Telegram simulat 640px cu inset top10/bottom20 și eveniment viewportChanged. Sunt verificate lipsa ambelor derulări pe Acasă, încadrarea navigării și zero scrieri în profil. Capturi suplimentare: dashboard-360x568.jpg și dashboard-390-large-text.jpg. Textul mărit poate apărea diferit pe un Android real și necesită verificare pe dispozitiv.
-
-Limită explicită: nu se garantează încadrarea lizibilă sub 568px înălțime la font normal sau sub 900px la text 200%; combinația 420px înălțime + text 200% este testată ca excepție. Dacă măsurarea reală arată că nici modul compact nu încape, nu se aplică overflow:hidden sau fonturi minuscule: se afișează o explicație și se păstrează derulare normală accesibilă, cu meniul permanent și fără scroll în carduri. Nu se pretinde că acel caz este single-screen. Aceasta este limita fizică documentată, nu o simulare prin decuparea conținutului. Limitele testate nu certifică toate setările de font, tastatură sau Telegram Android real.
+Testarea Chromium și simularea API-urilor Telegram nu certifică Telegram Android/Samsung real. Verificarea pe dispozitiv rămâne necesară. Nu se efectuează merge sau deploy automat.

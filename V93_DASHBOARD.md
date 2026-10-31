@@ -41,3 +41,13 @@ Diferențe rămase: decorul este vectorial, nu pictat; energia este realizată �
 Verificări finale: 108 teste Node, 18 combinații ecran/rang, fallback, valori reale și stări goale, cele patru acțiuni ale panoului, etichetele meniului, conținut accesibil la finalul paginii fără acoperire de meniu, reduced motion și lipsa erorilor/scrierilor la navigare. Suitele Core, Shield, backup și compatibilitatea celor 26 de profiluri istorice sunt rulate separat. Capturile JPG sunt regenerate și inspectate față de referință; profilul din capturi este fictiv.
 
 Cardul Misiuni deschide lista zilnică reală (componenta quests existentă) împreună cu lecțiile ghidate din Aventuri, astfel încât numărul afișat corespunde misiunilor accesibile. Nu se modifică handler-ele de finalizare sau recompensele.
+
+## Final visual polish — panoramă originală integrată
+
+Resursa assets/scenes/monarch-castle-panorama.webp înlocuiește decorul vectorial în hero și în bannerul Compania mea. Este o panoramă originală generată pentru acest proiect: castel pe creastă, nori violet/albastru, ferestre și lumină aurie, jumătate stângă întunecată pentru text. Sursa PNG generată este păstrată local în generated_images; resursa WebP este codificată pentru livrare, fără modificarea formelor de personaj E–S. Secțiunile anterioare care solicită pregătirea panoramei descriu etapa precedentă și sunt acum depășite: panorama este furnizată în această actualizare.
+
+Personajul principal și portretul sunt mărite, conturul misiunii este auriu mai vizibil, panoul păstrează cele patru culori și valori reale. Cardurile obiectiv/proiect și personalizare nu mai sunt întinse artificial pe înălțimea coloanei vecine.
+
+Atributele folosesc în continuare counts(category) și nivelul existent floor(n/5)+1. Prezentarea adaugă elemente progress native cu max=5 și value=n%5: progresul ciclului curent către următorul nivel. Etichetele arată numărul real de realizări și fracția 0–4/5; nu se inventează procente, valori de atribut sau un sistem XP secundar. Bara revine la 0/5 când începe un nivel nou. Testele verifică explicit 3 realizări → LVL1, 3/5 și 6 realizări → LVL2, 1/5, fără scriere în profil.
+
+Capturile de la 360/390/430px sunt regenerate și comparate cu referința. Diferențe intenționate: profilul fictiv de test nu are toate atributele avansate; obiectivul săptămânal rămâne text fără procent; nu sunt afișate streak sau checklist-uri inexistente. Nu este inclus un dragon/familiar — ar necesita o resursă originală suplimentară și nu trebuie confundat cu o recompensă de inventar. Panorama furnizată este o compoziție nouă, nu o copie pixel cu pixel a referinței. Testarea Telegram Android real rămâne necesară.

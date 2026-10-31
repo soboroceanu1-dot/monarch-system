@@ -1,9 +1,21 @@
-# V9.3-A — audit și implementare vizuală
+# V9.3-A — adaptarea conceptului MONARCH SYSTEM
 
-Audit înainte de modificări: app.js furnizează hero(), level(), rank(), questItems(), bossItems(), unifiedGoals() și navigarea delegată. Hunter24 furnizează inventarul, echiparea și pragurile existente. CSS are deja navigare inferioară fixă, safe-area și modale deasupra navigării. Progress Core/Shield și lesson-ids rămân neschimbate. Nu există imagini finale de personaj în repository și conceptul vizual menționat nu este atașat acestei conversații.
+## Audit înainte de modificări
 
-Se reutilizează exclusiv state.xp, player, tasks, completed, bosses și goals din planner. Proiectul afișat este primul proiect activ în ordinea salvată, nu o prioritate inventată. Dacă nu există obiective/misiuni/proiecte, se afișează stări goale. Personajul este un placeholder original SVG decorativ; nu reprezintă obiecte de inventar sau recompense noi.
+app.js oferă hero(), level(), rank(), questItems(), bossItems(), unifiedGoals() și navigarea delegată. Hunter24 oferă inventarul și echiparea. Meniul inferior și modalele existente sunt păstrate. Core V9.2, Shield și lesson-ids rămân nemodificate. Capturile PNG locale din execuția anterioară au fost păstrate fără ștergere.
 
-Personajul AETHER MONARCH folosește același rang E/D/C/B/A/S calculat deja în aplicație. Conturul/energia și insigna diferă prin data-rank; artă finală distinctă nu este disponibilă. Registrul CHARACTER_ART din app.js permite înlocuirea placeholderului pentru fiecare rang. Sunt necesare șase ilustrații originale: assets/characters/aether-e.webp, aether-d.webp, aether-c.webp, aether-b.webp, aether-a.webp, aether-s.webp. Livrare recomandată: 900×1200 px, fundal transparent, aceeași poziție/încadrare, armură antracit, accente aurii și energie turcoaz-violet; fără echipamente specifice neobținute. Nu adăuga acele căi în registru înainte ca fișierele să existe.
+## Resurse și implementare
 
-Capturile din docs/screenshots folosesc exclusiv profil fictiv. Viewporturi 360/390/430 px; testele Chromium nu certifică Telegram Android real. Animația decorativă respectă prefers-reduced-motion. Fără fonturi sau imagini externe, modificări de stocare, reguli XP ori mecanisme noi de recompensă.
+Referința vizuală atașată este adaptată prin componente HTML/CSS: logo cu coroană, panou nivel/rang/XP auriu, personaj pe decor violet-albastru electric, carduri transparente cu contur luminos, Compania mea și acțiuni aurii. Imaginea întreagă nu este folosită drept fundal. Layoutul orizontal este transformat în flux vertical pentru telefon, fără statistici fictive, streak-uri inventate sau procente fără sursă.
+
+Cele șase fișiere WebP au fost extrase byte-for-byte din arhiva furnizată în assets/characters/aether-{e,d,c,b,a,s}.webp. Toate sunt RGBA 900×1200. CHARACTER_ART mapează fiecare rang existent la resursa corespunzătoare; src absent sau eroare de încărcare folosește SVG-ul placeholder existent. Imaginile au margini transparente ample, compensate prin încadrare CSS fără modificarea fișierelor originale.
+
+În partea de sus: rang/nivel/XP și personajul. Misiunea zilei începe înainte de 650px pe fixture-ul mobil testat. Obiectivul săptămânal este textul salvat; proiectul este primul proiect activ, etichetat ca atare. Atributele sunt într-o secțiune extensibilă. Inventarul și evoluția au acces separat. Meniul inferior este singurul meniu permanent; scurtăturile duplicate și al doilea card vizual de personaj din Acasă nu mai sunt afișate. Funcțiile Hunter24 sunt accesibile prin pagina Personaj și inventar.
+
+## Verificare vizuală
+
+Capturile 360/390/430px din docs/screenshots/dashboard-*.jpg au fost comparate cu referința: au fost apropiate paleta, contururile violet, progresul auriu, titlul serif al brandului și ierarhia companiei. Nu sunt reproduse castelul panoramic, meniul lateral ori barele numerice fictive; spațiul și datele reale impun adaptarea mobilă. Misiunea și progresul au prioritate față de decor. Animațiile ușoare respectă reduced motion.
+
+## Teste și limite
+
+108 teste Node; 18 combinații viewport/rang (360/390/430 × E–S), cu verificarea resursei, fallbackului, XP real, overflow, reduced motion, un singur nav, inventar, navigare și lipsa scrierilor în profil. Integrarea Progress Core rămâne testată separat. Toate capturile și scrierile de test folosesc profiluri fictive. Testele Chromium nu certifică Telegram Android real. Nu se modifică chei localStorage, reguli XP, recompense, echipamente, lecții sau planificare. Nu se face merge/deploy automat.

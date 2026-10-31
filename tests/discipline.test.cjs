@@ -109,7 +109,7 @@ test('all local assets share a release token and version labels use the build', 
   for (const [, file] of assets) assert.ok(readFileSync(path.join(root, file)).length);
   const app = readFileSync(path.join(root, 'app.js'), 'utf8');
   assert.match(app, /window.MONARCH_BUILD='V9.3-A/);
-  assert.match(app, /LIFE ASCENSION · \$\{esc\(window.MONARCH_BUILD\)\}/);
+  assert.match(app, /<small>\$\{esc\(window.MONARCH_BUILD\)\}/);
   assert.doesNotMatch(app + source, /V8\.1|V8\.3|Versiune încărcată: V8/);
 });
 

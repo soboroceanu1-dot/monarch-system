@@ -129,3 +129,19 @@ body{background:radial-gradient(ellipse at 0 15%,#5025a047,transparent 38%),radi
 .dashboard-attributes{position:relative}.single-dashboard .attributes-open{position:absolute;inset:0;width:100%;height:100%;min-height:44px;padding:0;background:transparent;border:0;border-radius:12px;color:inherit}.single-dashboard .attributes-open:focus-visible{outline:2px solid #ffdf88;outline-offset:-3px}.single-screen.dashboard-overflow .dashboard-weekly,.single-screen.dashboard-overflow .dashboard-project{overflow-wrap:anywhere}.single-screen.dashboard-overflow .dashboard-progress-right{grid-template-rows:minmax(min-content,1fr) auto}
 
 .single-screen.dashboard-overflow[data-dashboard-large-text=true] .brand-wordmark h1{line-height:1.15}.single-screen.dashboard-overflow[data-dashboard-large-text=true] .monarch-hero .hero-progress{left:46%;grid-template-columns:40px minmax(0,1fr);gap:8px}.single-screen.dashboard-overflow[data-dashboard-large-text=true] .hero-progress .rank-seal{width:40px;font-size:1.5rem}.single-screen.dashboard-overflow[data-dashboard-large-text=true] .hero-progress .rank-seal small{font-size:.35rem}
+
+/* Concept graphics only: existing tracks, spacing, text and touch targets are unchanged. */
+.hero-scene-window{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;border-radius:inherit}
+/* The right half is scenery. Keep the baked shield/second character outside the window. */
+.hero-cinematic{position:absolute;right:0;top:0;width:200%;height:100%;max-width:none;object-fit:cover;object-position:right center}
+.hero-cinematic[data-fallback=true]{width:100%}
+.hero-scene-window::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#080b24 0%,#080b24aa 6%,transparent 22%),linear-gradient(90deg,#0a092852 5%,#0b0b2433 42%,#080b228c 65%,#080c2480);pointer-events:none}
+.panel-icon{display:inline-grid;place-items:center;width:1.4em;height:1em;flex:none}
+.graphic-icon{display:block;width:100%;height:100%;object-fit:contain;mix-blend-mode:screen}
+.graphic-icon[hidden],.icon-fallback{display:none}.art-missing>.icon-fallback{display:block}
+.single-dashboard .dashboard-attributes .stat i{display:inline-grid;place-items:center;vertical-align:middle;width:14px;height:14px;line-height:1}
+.single-screen .monarch-panel{box-shadow:0 0 12px #7d4bd747,inset 0 1px 0 #c6a0ef33}
+.single-screen .monarch-actions button{box-shadow:inset 0 0 13px #4269bc44,0 0 7px #649af52b}
+.single-screen .monarch-actions [data-summary=academy]{box-shadow:inset 0 0 15px #9043d447,0 0 8px #ad65f333}
+.single-screen .monarch-actions [data-summary=projects]{box-shadow:inset 0 0 15px #ab7c3047,0 0 8px #e5bb5433}
+.single-screen .monarch-actions [data-summary=goal]{box-shadow:inset 0 0 15px #299d8647,0 0 8px #5ee8c133}

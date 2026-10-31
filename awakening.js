@@ -1,7 +1,8 @@
 (()=>{'use strict';
-if(window.MONARCH_PROGRESS_SHIELD?.ready!==true)return;
-const KEY='monarch-awakening-v2';let data={step:0,answers:{},paths:[],assessment:{},finished:false};try{data={...data,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch{};
-const save=()=>localStorage.setItem(KEY,JSON.stringify(data));
+if(window.MONARCH_PROGRESS_SHIELD?.ready!==true||window.MONARCH_PROGRESS_CORE?.ready!==true||!window.MONARCH_LESSON_IDS)return;
+const core=window.MONARCH_PROGRESS_CORE.scope('awakening'),IDS=window.MONARCH_LESSON_IDS;
+const KEY='monarch-awakening-v2',MAIN='monarch-life-v1';let data={step:0,answers:{},paths:[],assessment:{},finished:false,...core.read(KEY,{})};
+const save=()=>core.write(KEY,data);
 const multi={0:3,8:5,13:5,14:4,15:5};const array=v=>Array.isArray(v)?v:(v?[v]:[]);const dateKey=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};data.questDone??={};data.skillXP??={};
 const questions=[
 ['Ce ai vrea să îmbunătățești cel mai mult? (alege maximum 3)','Finanțe','Carieră și afaceri','Învățare','Organizare','Bunăstare','Relații','Timp liber','Mișcare și sport','Alimentație și obiceiuri sănătoase'],
@@ -58,7 +59,7 @@ const finish=document.getElementById('aw-finish');if(finish)finish.onclick=()=>{
 }
 function ascensionPanel(paths){
  const earned=Object.values(data.skillXP||{}).reduce((a,b)=>a+(Number(b)||0),0);
- const done=Object.keys(data.questDone||{}).filter(k=>k.startsWith('lesson:')).length;
+ const done=IDS.countAwakening(data);
  const rank=done>=9?'C':done>=6?'D':'E';
  const unlocked=done>=6?3:done>=3?2:1;
  const titles=['Novice al Ascensiunii','Explorator al celor Trei Tărâmuri','Gardian al Progresului'];
@@ -69,15 +70,15 @@ function ascensionPanel(paths){
 }
 function renderDashboard(){
 const goal=data.answers[19]||data.answers[1]||'Dezvoltare personală';const today=dateKey();const pathsChosen=data.paths.length?data.paths:['Disciplină'];
-const missions=pathsChosen.map((p,i)=>{const count=Object.keys(data.questDone).filter(k=>k.includes(':path-'+i+'-')).length;const tier=Math.min(2,count);const q=questLesson(p,tier);return {id:'path-'+i+'-'+tier,title:['⚔️','🧠','🌱'][i]+' '+p+' · Lecția '+(tier+1),detail:q.intro,xp:q.xp};});
+const missions=pathsChosen.map((p,i)=>{const catalog=questLessons(p),q=IDS.nextAwakening(data,catalog);return {id:q.id,title:['⚔️','🧠','🌱'][i]+' '+p+' · Lecția '+(catalog.indexOf(q)+1),detail:q.intro,xp:q.xp};});
 missions.push({id:'reflect',title:'📜 Jurnalul aventurii',detail:'Notează un lucru nou învățat sau un pas concret făcut astăzi.',xp:10});
-const completed=missions.filter(m=>data.questDone[m.id==='reflect'?today+':reflect':'lesson:'+m.id]).length;
+const completed=missions.filter(m=>m.id==='reflect'?data.questDone[today+':reflect']:IDS.awakeningClaimed(data,m.id)).length;
 let html=``;
-if(data.dashboard){html+=`<div class="aw-back"><section class="aw-card"><div class="aw-top">👑 LIFE CAMPAIGN <small>HUNTER · ${e(today)}</small></div><h2>🗺️ Prima ascensiune</h2><p class="aw-muted">Obiectiv: ${e(goal)}</p><div class="aw-progress"><i style="width:${completed/missions.length*100}%"></i></div><p>${completed}/${missions.length} misiuni înregistrate azi</p>${data.activeQuest?activeQuestHtml(activeQuestData(data.activeQuest,today)):''}${ascensionPanel(pathsChosen)}<h3>⚔️ QUEST EVOLUTION 2.2 · LECȚII PROGRESIVE</h3><p class="aw-muted">Hunter XP + Skill XP. Lecțiile următoare se deblochează după finalizarea celor precedente.</p><div class="aw-mission"><b>🌳 Arborele competențelor</b>${pathsChosen.map(p=>`<p>${e(p)}: ${Number(data.skillXP[p]||0)} Skill XP · nivel ${1+Math.floor(Number(data.skillXP[p]||0)/60)}</p>`).join('')}</div>${missions.map(m=>`<div class="aw-mission"><strong>${e(m.title)}</strong><p>${e(m.detail)}</p><button data-quest="${m.id}" ${data.questDone[m.id==='reflect'?today+':reflect':'lesson:'+m.id]?'disabled':''}>${data.questDone[m.id==='reflect'?today+':reflect':'lesson:'+m.id]?'✓ Realizat':'⚔️ Începe misiunea'}</button></div>`).join('')}<h3>🐉 BOSS: ${e(goal)}</h3><p>În această campanie, BOSS-ul este obiectivul tău real. Avansează cu pași mici, nu prin apăsări repetate.</p><h3>📅 PLANUL DE 30 DE ZILE</h3><div class="aw-plan">${plan().map((p,i)=>`<div><b>Săptămâna ${i+1}</b><p>${e(p)}</p></div>`).join('')}</div><p class="aw-muted">Misiuni ghidate · XP se adaugă la nivelul principal după finalizare. Fără penalizări pentru odihnă.</p><button class="aw-secondary" id="aw-close">← Înapoi în joc</button><button class="aw-secondary" id="aw-restart">↻ Refă evaluarea inițială</button></section></div>`}
+if(data.dashboard){html+=`<div class="aw-back"><section class="aw-card"><div class="aw-top">👑 LIFE CAMPAIGN <small>HUNTER · ${e(today)}</small></div><h2>🗺️ Prima ascensiune</h2><p class="aw-muted">Obiectiv: ${e(goal)}</p><div class="aw-progress"><i style="width:${completed/missions.length*100}%"></i></div><p>${completed}/${missions.length} misiuni înregistrate azi</p>${data.activeQuest?activeQuestHtml(activeQuestData(data.activeQuest,today)):''}${ascensionPanel(pathsChosen)}<h3>⚔️ QUEST EVOLUTION 2.2 · LECȚII PROGRESIVE</h3><p class="aw-muted">Hunter XP + Skill XP. Lecțiile următoare se deblochează după finalizarea celor precedente.</p><div class="aw-mission"><b>🌳 Arborele competențelor</b>${pathsChosen.map(p=>`<p>${e(p)}: ${Number(data.skillXP[p]||0)} Skill XP · nivel ${1+Math.floor(Number(data.skillXP[p]||0)/60)}</p>`).join('')}</div>${missions.map(m=>`<div class="aw-mission"><strong>${e(m.title)}</strong><p>${e(m.detail)}</p><button data-quest="${m.id}" ${(m.id==='reflect'?data.questDone[today+':reflect']:IDS.awakeningClaimed(data,m.id))?'disabled':''}>${(m.id==='reflect'?data.questDone[today+':reflect']:IDS.awakeningClaimed(data,m.id))?'✓ Realizat':'⚔️ Începe misiunea'}</button></div>`).join('')}<h3>🐉 BOSS: ${e(goal)}</h3><p>În această campanie, BOSS-ul este obiectivul tău real. Avansează cu pași mici, nu prin apăsări repetate.</p><h3>📅 PLANUL DE 30 DE ZILE</h3><div class="aw-plan">${plan().map((p,i)=>`<div><b>Săptămâna ${i+1}</b><p>${e(p)}</p></div>`).join('')}</div><p class="aw-muted">Misiuni ghidate · XP se adaugă la nivelul principal după finalizare. Fără penalizări pentru odihnă.</p><button class="aw-secondary" id="aw-close">← Înapoi în joc</button><button class="aw-secondary" id="aw-restart">↻ Refă evaluarea inițială</button></section></div>`}
 el.innerHTML=html;
 const color=document.getElementById('asc-color');if(color)color.onchange=()=>{data.avatarStyle=color.value;save();render()};
 
-const close=document.getElementById('aw-close');if(close)close.onclick=()=>{data.dashboard=false;save();render()};const restart=document.getElementById('aw-restart');if(restart)restart.onclick=()=>{window.MONARCH_PROGRESS_SHIELD?.restartAwakening(data,next=>{data=next;render()})};
+const close=document.getElementById('aw-close');if(close)close.onclick=()=>{data.dashboard=false;save();render()};const restart=document.getElementById('aw-restart');if(restart)restart.onclick=()=>{window.MONARCH_PROGRESS_SHIELD?.restartAwakening(data,next=>{data=core.read(KEY,next);render()})};
 el.querySelectorAll('[data-quest]').forEach(b=>b.onclick=()=>{data.activeQuest=b.dataset.quest;data.activeStep=0;save();render();document.querySelector('.aw-back')?.scrollTo(0,0);window.scrollTo(0,0)});
 const nextQuest=document.getElementById('active-next');if(nextQuest)nextQuest.onclick=()=>{
 const q=activeQuestData(data.activeQuest,today);if(!q)return;
@@ -94,39 +95,42 @@ const v=document.getElementById('journal-answer')?.value.trim();if(!v||v.length<
 }
 if(data.activeStep===0&&q.type==='movement'&&!document.getElementById('movement-choice')?.value){document.getElementById('active-feedback').textContent='Alege mai întâi o activitate.';return}
 if(data.activeStep<1){data.activeStep=1;save();render();return}
-const k=data.activeQuest==='reflect'?today+':reflect':'lesson:'+data.activeQuest;
-if(data.questDone[k])return;
-data.questDone[k]=true;if(q.skill){data.skillXP[q.skill]=(Number(data.skillXP[q.skill])||0)+q.xp;}data.questRewards??={};data.questRewards[k]=q.xp;
-try{const mainKey='monarch-life-v1',main=JSON.parse(localStorage.getItem(mainKey)||'null');if(main&&Array.isArray(main.history)){
+const k=data.activeQuest==='reflect'?today+':reflect':'lesson:'+q.id;
+if(data.activeQuest==='reflect'?(data.questDone[k]||Object.prototype.hasOwnProperty.call(data.questRewards||{},k)):IDS.awakeningClaimed(data,q.id))return;
+// Completion, Skill XP and authoritative MAIN XP share one verified transaction.
+const next=JSON.parse(JSON.stringify(data));
+next.questDone[k]=true;if(q.skill){next.skillXP[q.skill]=(Number(next.skillXP[q.skill])||0)+q.xp;}next.questRewards??={};next.questRewards[k]=q.xp;
+const main=core.read(MAIN,window.MONARCH_MAIN_DEFAULTS?.()||{xp:0,tasks:[],history:[]});main.history??=[];
 main.xp=(Number(main.xp)||0)+q.xp;
-main.history.push({name:'⚔️ Campania: '+q.title,xp:q.xp,category:q.category,date:new Date().toISOString()});localStorage.setItem(mainKey,JSON.stringify(main));
-}}catch(err){console.warn('Nu am putut actualiza XP-ul principal',err)}
-data.activeQuest=null;data.activeStep=0;save();location.reload();
+main.history.push({name:'⚔️ Campania: '+q.title,xp:q.xp,category:q.category,date:new Date().toISOString()});
+next.activeQuest=null;next.activeStep=0;core.commit({[KEY]:next,[MAIN]:main});data=next;location.reload();
 };
 const backQuest=document.getElementById('active-back');if(backQuest)backQuest.onclick=()=>{data.activeQuest=null;data.activeStep=0;save();render()};
 
 }
 document.addEventListener('click',ev=>{if(ev.target.closest('#aw-open')){data.dashboard=true;save();render();}});
-function questLesson(p,tier){
+function questLessons(p){
 const lessons={
 'Finanțe':[
-{title:'Trezoreria I · Bugetul',intro:'Exemplu fictiv: ai 2.000 lei; cheltuieli de 800, 350 și 150 lei. Cât rămâne?',answer:700,hint:'Scade suma celor trei cheltuieli din 2.000.'},
-{title:'Trezoreria II · Rezerva',intro:'Exemplu fictiv: economisești 150 lei lunar, timp de 6 luni. Ce sumă acumulezi fără dobândă?',answer:900,hint:'Înmulțește suma lunară cu numărul lunilor.'},
-{title:'Trezoreria III · Planul',intro:'Exemplu fictiv: un obiectiv costă 1.200 lei și ai deja 300 lei. Cât mai trebuie economisit?',answer:900,hint:'Scade banii disponibili din costul obiectivului.'}],
+{id:'awakening.finance.budget',xp:20,title:'Trezoreria I · Bugetul',intro:'Exemplu fictiv: ai 2.000 lei; cheltuieli de 800, 350 și 150 lei. Cât rămâne?',answer:700,hint:'Scade suma celor trei cheltuieli din 2.000.'},
+{id:'awakening.finance.reserve',xp:30,title:'Trezoreria II · Rezerva',intro:'Exemplu fictiv: economisești 150 lei lunar, timp de 6 luni. Ce sumă acumulezi fără dobândă?',answer:900,hint:'Înmulțește suma lunară cu numărul lunilor.'},
+{id:'awakening.finance.goal',xp:40,title:'Trezoreria III · Planul',intro:'Exemplu fictiv: un obiectiv costă 1.200 lei și ai deja 300 lei. Cât mai trebuie economisit?',answer:900,hint:'Scade banii disponibili din costul obiectivului.'}],
 'Organizare':[
-{title:'First Order I · Primul pas',intro:'Alege o activitate importantă și descompune-o într-un prim pas concret.'},
-{title:'First Order II · Prioritatea',intro:'Alege activitatea cu impactul cel mai mare și formulează primul pas care poate fi realizat astăzi.'},
-{title:'First Order III · Finalizarea',intro:'Alege o activitate începută, definește ce înseamnă terminată și fă următorul pas.'}],
+{id:'awakening.organization.first-step',xp:20,title:'First Order I · Primul pas',intro:'Alege o activitate importantă și descompune-o într-un prim pas concret.'},
+{id:'awakening.organization.priority',xp:30,title:'First Order II · Prioritatea',intro:'Alege activitatea cu impactul cel mai mare și formulează primul pas care poate fi realizat astăzi.'},
+{id:'awakening.organization.finish',xp:40,title:'First Order III · Finalizarea',intro:'Alege o activitate începută, definește ce înseamnă terminată și fă următorul pas.'}],
 'Mișcare și sport':[
-{title:'Vitality I · Mișcare plăcută',intro:'Alege o activitate fizică plăcută, adaptată posibilităților tale. Odihna este o alegere validă.'},
-{title:'Vitality II · Varietate',intro:'Explorează o activitate diferită sau continuă una care îți place. Nu există obiective de greutate sau intensitate impuse.'},
-{title:'Vitality III · Recuperare',intro:'Observă cum te simți după activitate și alege între mișcare lejeră și recuperare.'}]};
-const arr=lessons[p]||lessons['Organizare'];const item=arr[tier]||arr[2];const type=p==='Finanțe'?'finance':p==='Mișcare și sport'?'movement':'organize';return {...item,type,xp:20+10*tier,category:type==='finance'?'wealth':type==='movement'?'vitality':'discipline',skill:p};
+{id:'awakening.movement.pleasant-movement',xp:20,title:'Vitality I · Mișcare plăcută',intro:'Alege o activitate fizică plăcută, adaptată posibilităților tale. Odihna este o alegere validă.'},
+{id:'awakening.movement.variety',xp:30,title:'Vitality II · Varietate',intro:'Explorează o activitate diferită sau continuă una care îți place. Nu există obiective de greutate sau intensitate impuse.'},
+{id:'awakening.movement.recovery',xp:40,title:'Vitality III · Recuperare',intro:'Observă cum te simți după activitate și alege între mișcare lejeră și recuperare.'}]};
+const arr=lessons[p]||lessons['Organizare'];const type=p==='Finanțe'?'finance':p==='Mișcare și sport'?'movement':'organize';return arr.map(item=>({...item,id:IDS.awakeningForPath(item.id,p),type,category:type==='finance'?'wealth':type==='movement'?'vitality':'discipline',skill:p}));
 }
 function activeQuestData(id,today){
 if(id==='reflect')return {title:'Jurnalul aventurii',type:'journal',xp:10,category:'mindset',intro:'Notează o realizare sau o lecție concretă din ziua de azi.'};
-const match=/^path-(\d+)-(\d+)$/.exec(id||'');if(!match)return null;
-const p=data.paths[Number(match[1])]||'Organizare';return questLesson(p,Number(match[2]));
+const stable=IDS.resolveAwakening(id,data);if(!stable)return null;
+const labels=[...new Set([...(data.paths||[]),'Organizare','Disciplină'])];
+for(const p of labels){const q=IDS.awakeningLesson(questLessons(p),stable,data);if(q)return q}
+return null;
 }
 function activeQuestHtml(q){if(!q)return '';const stage=data.activeStep||0;
 let body='';

@@ -1,13 +1,14 @@
 (()=>{'use strict';
-if(window.MONARCH_PROGRESS_SHIELD?.ready!==true)return;
+if(window.MONARCH_PROGRESS_SHIELD?.ready!==true||window.MONARCH_PROGRESS_CORE?.ready!==true||!window.MONARCH_LESSON_IDS)return;
+const core=window.MONARCH_PROGRESS_CORE.scope('equipment');
 const A='monarch-awakening-v2',G='monarch-life-v1',OLD='monarch-hunter-equipment-v23',KEY='monarch-hunter-equipment-v24';
 const items=[{id:'blade',slot:'weapon',name:'Sabia Începătorului',icon:'⚔️',need:1},{id:'cloak',slot:'cloak',name:'Mantia Exploratorului',icon:'🧥',need:3},{id:'guard',slot:'aura',name:'Aura Gardianului',icon:'🛡️',need:6},{id:'emblem',slot:'head',name:'Emblema Ascensiunii',icon:'👑',need:9}];
 const slots={weapon:'Armă',cloak:'Mantie',aura:'Aură',head:'Coroană'};
-const get=k=>{try{return JSON.parse(localStorage.getItem(k)||'{}')}catch{return {}}};
-const count=a=>Object.keys(a.questDone||{}).filter(k=>k.startsWith('lesson:')&&a.questDone[k]).length;
+const get=k=>core.read(k);
+const count=a=>window.MONARCH_LESSON_IDS.countAwakening(a,true);
 const aura=a=>['cyan','violet','gold'].includes(a.avatarStyle)?a.avatarStyle:'cyan';
 function equipment(){const raw=get(KEY);if(raw&&raw.slots&&typeof raw.slots==='object')return raw.slots;const legacy=get(OLD).equipped;const eq={};const found=items.find(x=>x.id===legacy);if(found)eq[found.slot]=found.id;return eq}
-function save(eq){localStorage.setItem(KEY,JSON.stringify({slots:eq}))}
+function save(eq){const current=get(KEY);core.write(KEY,{...current,slots:eq})}
 function equippedNames(eq){return items.filter(i=>eq[i.slot]===i.id).map(i=>i.icon+' '+i.name).join(' · ')||'Echipament implicit'}
 function avatar(a,eq){return `<div class="asc-avatar ${aura(a)} hunter24-avatar ${eq.cloak==='cloak'?'hunter24-cloak':''} ${eq.aura==='guard'?'hunter24-guard':''}" role="img" aria-label="Personaj Hunter cu echipamentele selectate"><span class="asc-halo"></span><span class="asc-head"></span><span class="asc-body"></span>${eq.weapon==='blade'?'<span class="hunter24-weapon">⚔️</span>':''}${eq.head==='emblem'?'<span class="hunter24-crown">👑</span>':''}<span class="asc-sigil">✦</span></div>`}
 function home(){const a=get(A),g=get(G),n=count(a),eq=equipment(),xp=Number(g.xp)||0;return `<section class="card hunter24-home" data-hunter24-state="${xp}:${n}:${aura(a)}:${Object.values(eq).join(',')}"><div class="hunter23-label">👑 PERSONAJUL MEU</div><div class="hunter23-row">${avatar(a,eq)}<div><b>RANG ${['E','D','C','B','A','S'][Math.min(5,Math.floor(Math.floor(xp/100)/10))]}</b><h2>HUNTER · LVL ${Math.floor(xp/100)+1}</h2><p>${xp} Hunter XP · ${n}/9 lecții</p><p>${equippedNames(eq)}</p></div></div><button class="hunter23-btn" id="hunter24-open">🎒 Inventarul meu</button></section>`}

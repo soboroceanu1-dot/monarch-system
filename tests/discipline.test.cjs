@@ -8,7 +8,7 @@ const source = readFileSync(path.join(root, 'life25.js'), 'utf8');
 
 function session(level = 0, done = {}) {
   const keys = { planner: 'monarch-planner-v25', game: 'monarch-life-v1' };
-  const game = { xp: 123, history: [], inventory: ['keep'], characteristics: { vitality: 7 } };
+  const game = { xp: 123, tasks: [], history: [], inventory: ['keep'], characteristics: { vitality: 7 } };
   const values = new Map([
     [keys.game, JSON.stringify(game)],
     [keys.planner, JSON.stringify({ done, skills: { 'Disciplină': { level, completed: 0, streak: 0, manual: null } }, goals: { year: 'keep' } })],
@@ -16,9 +16,11 @@ function session(level = 0, done = {}) {
   ]);
   const listeners = {}, fields = { 'life25-error': {}, 'life25-exp-category': { value: 'Citit' }, 'life25-exp-note': { value: '' } };
   let html = '', reloads = 0;
+  const storage={getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
+  const core=require('../progress-core.js').create(storage,{validate:require('../progress-shield.js').shape});
   vm.runInNewContext(source, {
-    window: { MONARCH_BUILD: 'V9.0 test', MONARCH_PROGRESS_SHIELD: { ready: true } },
-    localStorage: { getItem: k => values.get(k), setItem: (k, v) => values.set(k, v) },
+    window: { MONARCH_BUILD: 'V9.0 test', MONARCH_PROGRESS_SHIELD: { ready: true }, MONARCH_PROGRESS_CORE: core, MONARCH_LESSON_IDS: require('../lesson-ids.js') },
+    localStorage: storage,
     document: {
       addEventListener: (name, fn) => { listeners[name] = fn; },
       getElementById: id => fields[id] || null,
@@ -102,11 +104,11 @@ test('historical completion is a review with zero XP and keeps saved data', () =
 test('all local assets share a release token and version labels use the build', () => {
   const html = readFileSync(path.join(root, 'index.html'), 'utf8');
   const assets = [...html.matchAll(/(?:src|href)="(?!https:)([^"?]+)\?v=([^"]+)"/g)];
-  assert.equal(assets.length, 6);
+  assert.equal(assets.length, 8);
   assert.equal(new Set(assets.map(m => m[2])).size, 1);
   for (const [, file] of assets) assert.ok(readFileSync(path.join(root, file)).length);
   const app = readFileSync(path.join(root, 'app.js'), 'utf8');
-  assert.match(app, /window.MONARCH_BUILD='V9.1.2/);
+  assert.match(app, /window.MONARCH_BUILD='V9.2/);
   assert.match(app, /LIFE ASCENSION · \$\{esc\(window.MONARCH_BUILD\)\}/);
   assert.doesNotMatch(app + source, /V8\.1|V8\.3|Versiune încărcată: V8/);
 });

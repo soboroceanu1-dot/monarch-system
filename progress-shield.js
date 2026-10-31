@@ -3,11 +3,16 @@
   'use strict';
   const api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
-  if (root && root.document) api.mount(root);
+  if (root && root.document) {
+    root.MONARCH_PROGRESS_VALIDATOR=api.shape;
+    root.MONARCH_PROGRESS_CORE?.recover();
+    api.mount(root);
+  }
 })(typeof window === 'undefined' ? null : window, function () {
   'use strict';
   const FORMAT = 'monarch-system-backup', VERSION = 1;
   const JOURNAL = 'monarch-progress-shield-v1';
+  const CORE_JOURNAL = '__monarch_progress_core_txn_v1__';
   const MAIN = 'monarch-life-v1', AW = 'monarch-awakening-v2';
   const PLANNER = 'monarch-planner-v25', ARCHIVE = 'monarch-awakening-previous-backup';
   const known = [MAIN, AW, PLANNER, 'monarch-hunter-equipment-v23', 'monarch-hunter-equipment-v24', 'monarch-awakening-previous-backup'];
@@ -170,6 +175,7 @@
       if (storage.getItem(JOURNAL) !== raw) fail('Copia de recuperare nu a putut fi verificată.');
     }
     function rollback() {
+      if(storage.getItem(CORE_JOURNAL)!=null)fail('Reîncarcă pentru recuperarea operației Progress Core înainte de restaurare sau import.');
       const j = journal();
       if (!j) fail('Nu există o copie de recuperare.');
       // Persist intent first; an interrupted rollback must also block normal startup.
@@ -182,6 +188,7 @@
       writeJournal({ ...j, status: 'rolled-back' });
     }
     function restore(backup, expected) {
+      if(storage.getItem(CORE_JOURNAL)!=null)fail('Reîncarcă pentru recuperarea operației Progress Core înainte de restaurare sau import.');
       validateData(backup.data);
       const existing = journal();
       if (existing?.status === 'pending') fail('Finalizează recuperarea operației întrerupte înainte de un alt import.');
@@ -391,7 +398,12 @@
       el.querySelector('#shield-close')?.addEventListener('click',()=>{el.remove();if(!ready && boot()) win.location.reload();});
       return el;
     }
-    function exportCurrent() { download(shield.export(), 'monarch-backup-complet'); }
+    function exportCurrent() {
+      download(shield.export(), 'monarch-backup-complet');
+      if(win.localStorage.getItem(CORE_JOURNAL)!=null){
+        doc.getElementById('shield-export-warning').textContent='Operația Progress Core nu este finalizată. Această copie păstrează valorile curente pentru diagnostic și poate conține o salvare parțială. Reîncarcă pentru recuperare și exportă din nou înainte de transfer sau restaurare.';
+      }
+    }
     function recoverUI(locked = false) {
       const j = shield.journal();
       if (!j) throw new Error('Nu există încă o copie de recuperare.');
@@ -446,6 +458,10 @@
     function boot() {
       try {
         shield ||= create(win.localStorage);
+        if(win.MONARCH_PROGRESS_CORE && !win.MONARCH_PROGRESS_CORE.ready){
+          dialog('Progress Core a oprit scrierile','<p>'+escape(win.MONARCH_PROGRESS_CORE.error)+'</p><p>Nu șterge datele aplicației. Poți exporta originalele. Reîncarcă pentru a relua recuperarea după rezolvarea erorii de stocare.</p>',true);
+          addBlockedActions();return false;
+        }
         const j = shield.journal();
         if (j?.status === 'pending') { recoverUI(true); return false; }
         const report = shield.inspect();
@@ -462,6 +478,11 @@
     }
     win.MONARCH_PROGRESS_SHIELD = {
       ready: false,
+      block(message) {
+        ready=false;this.ready=false;
+        dialog('Salvarea progresului a fost oprită','<p>'+escape(message)+'</p><p>Reîncarcă înainte de alte modificări. Datele salvate pot fi exportate fără restaurare.</p>',true);
+        addBlockedActions();
+      },
       importFile: readFile,
       restartAwakening(current, apply) {
         run(()=>{

@@ -92,7 +92,7 @@ const profile={
   await page.locator('[data-exp-check="0"]').click();await page.locator('[data-v8-challenge="0"]').click();
   page.once('dialog',d=>d.accept());await Promise.all([page.waitForEvent('load'),page.locator('#life25-exp-finish').click()]);
   const rewarded=await saved(page);assert.equal(JSON.parse(rewarded[MAIN]).xp,445);assert.equal(rewarded[EQ],profile[EQ]);
-  assert.equal(JSON.parse(rewarded[PLAN]).skills['Disciplină'].manual,3);assert.ok(JSON.parse(rewarded[PLAN]).done['Disciplină:0']);assert.ok(JSON.parse(rewarded[PLAN]).done['Disciplină:1']);
+  assert.equal(JSON.parse(rewarded[PLAN]).skills['Disciplină'].manual,3);assert.ok(JSON.parse(rewarded[PLAN]).done['Disciplină:0']);assert.ok(JSON.parse(rewarded[PLAN]).done[require('../lesson-ids.js').plannerId('Disciplină',1)]);
   await page.locator('nav [data-tab="adventure"]').click();await page.locator('[data-adventure="academy"]').click();
   await page.locator('[data-action="openlesson"][data-id="ai1"]').click();await page.locator('[data-action="answer"][data-choice="1"]').click();
   assert.equal(JSON.parse((await saved(page))[MAIN]).xp,480);

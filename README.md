@@ -1,6 +1,10 @@
-# MONARCH SYSTEM V9.0 — Disciplină pilot
+# MONARCH SYSTEM V9.2 — Progress Core
 
 Aplicație statică pentru GitHub Pages / Telegram WebApp. Evaluarea din Disciplină este locală, pe reguli; nu este evaluare AI.
+
+V9.2 introduce salvări verificate și recuperabile prin Progress Core, identificatori permanenți ai lecțiilor și adaptoare pentru progresul istoric. Nu recalculează progresul și nu migrează automat profilurile. Auditul anterior modificărilor: [PROGRESS_CORE_AUDIT.md](PROGRESS_CORE_AUDIT.md). Contract, compatibilitate, limite și teste: [PROGRESS_CORE.md](PROGRESS_CORE.md). Funcțiile backup Progress Shield V9.1.2 sunt păstrate.
+
+Folosește o singură filă pentru modificări. PR-urile nu sunt integrate sau publicate automat. Informațiile V9.0 de mai jos descriu istoricul funcționalităților; ordinea de încărcare și verificările curente sunt documentate în Progress Core.
 
 ## Corecții și diagnostic
 

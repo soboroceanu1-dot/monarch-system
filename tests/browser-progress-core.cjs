@@ -73,7 +73,7 @@ function withPlannerActive(seed,id='Disciplină:1'){
   assert.deepEqual(await all(baseline.page),baseline.seed,'boot must preserve every raw value');
   assert.match(await baseline.page.locator('.card.hero').innerText(),/425/);
   assert.match(await baseline.page.locator('.hunter24-home').innerText(),/LVL 5/);
-  await baseline.page.locator('#hunter24-open').click();
+  await baseline.page.locator('nav [data-tab="hunterpage"]').click();await baseline.page.locator('#hunter24-open').click();
   assert.equal(await baseline.page.locator('[data-hunter24-item="blade"]').isEnabled(),true);
   assert.equal(await baseline.page.locator('[data-hunter24-item="cloak"]').isDisabled(),true);
   await baseline.page.locator('#hunter24-close').click();

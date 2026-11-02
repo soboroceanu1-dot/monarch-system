@@ -1,0 +1,653 @@
+{
+  "base_commit": "c65f2d174b8e71c3aaa1d4919096787008a53451",
+  "captures": [
+    {
+      "filename": "E-360x800.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "fixture": {
+        "rank": "E",
+        "xp": 425
+      },
+      "observed": {
+        "rank": "E",
+        "seal": "E",
+        "level": 5,
+        "xp": 425
+      },
+      "sha256": "c9a6fcdd8a103d5a6a46eec82dd9fcc6d10805049e02bfe9b771979272a5dac9"
+    },
+    {
+      "filename": "D-360x800.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "fixture": {
+        "rank": "D",
+        "xp": 1000
+      },
+      "observed": {
+        "rank": "D",
+        "seal": "D",
+        "level": 11,
+        "xp": 1000
+      },
+      "sha256": "b859b00da8107e4778171de9dc1b4c9df5d0d1fc08fc9a796ac09464aff53337"
+    },
+    {
+      "filename": "C-360x800.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "fixture": {
+        "rank": "C",
+        "xp": 2000
+      },
+      "observed": {
+        "rank": "C",
+        "seal": "C",
+        "level": 21,
+        "xp": 2000
+      },
+      "sha256": "d7dc2687c0e1c9dc0e91c38c043a973b48ea945f3b99159195c0450855c8ab95"
+    },
+    {
+      "filename": "B-360x800.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "fixture": {
+        "rank": "B",
+        "xp": 3000
+      },
+      "observed": {
+        "rank": "B",
+        "seal": "B",
+        "level": 31,
+        "xp": 3000
+      },
+      "sha256": "7887e65134046d1ab6404ebfc6921252c55edd35f363f391cbca45444c43b9aa"
+    },
+    {
+      "filename": "A-360x800.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "fixture": {
+        "rank": "A",
+        "xp": 4000
+      },
+      "observed": {
+        "rank": "A",
+        "seal": "A",
+        "level": 41,
+        "xp": 4000
+      },
+      "sha256": "54351c8a3c365f8587bdcc00c9b5669dfd74233b736e5a7fab32d73eae37b1bc"
+    },
+    {
+      "filename": "S-360x800.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "fixture": {
+        "rank": "S",
+        "xp": 5000
+      },
+      "observed": {
+        "rank": "S",
+        "seal": "S",
+        "level": 51,
+        "xp": 5000
+      },
+      "sha256": "4064e6cb736a3b346fd5415a75e72ae4b7176069f1028a71cb95c45a6ab71619"
+    },
+    {
+      "filename": "E-390x844.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fixture": {
+        "rank": "E",
+        "xp": 425
+      },
+      "observed": {
+        "rank": "E",
+        "seal": "E",
+        "level": 5,
+        "xp": 425
+      },
+      "sha256": "57db361d1d1d889c345f244481f11067a021ded30c393fed6c93eda4f0086fe0"
+    },
+    {
+      "filename": "D-390x844.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fixture": {
+        "rank": "D",
+        "xp": 1000
+      },
+      "observed": {
+        "rank": "D",
+        "seal": "D",
+        "level": 11,
+        "xp": 1000
+      },
+      "sha256": "7312c585227d2366402df770d1fe191799666db529fed67ebac8ae8994ec63b4"
+    },
+    {
+      "filename": "C-390x844.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fixture": {
+        "rank": "C",
+        "xp": 2000
+      },
+      "observed": {
+        "rank": "C",
+        "seal": "C",
+        "level": 21,
+        "xp": 2000
+      },
+      "sha256": "323069e07c39d05a0b20fc760858ece8fd51dbf9400e4041305af5f5eff24769"
+    },
+    {
+      "filename": "B-390x844.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fixture": {
+        "rank": "B",
+        "xp": 3000
+      },
+      "observed": {
+        "rank": "B",
+        "seal": "B",
+        "level": 31,
+        "xp": 3000
+      },
+      "sha256": "f8d063b4f7b515b0ad320f40629e2cbe8e3052366f0cc2918fa4f44b7a583043"
+    },
+    {
+      "filename": "A-390x844.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fixture": {
+        "rank": "A",
+        "xp": 4000
+      },
+      "observed": {
+        "rank": "A",
+        "seal": "A",
+        "level": 41,
+        "xp": 4000
+      },
+      "sha256": "4b7b1aa89bc17018a6af7b0c12bf061aa76543d843c2821936be38240610d61a"
+    },
+    {
+      "filename": "S-390x844.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fixture": {
+        "rank": "S",
+        "xp": 5000
+      },
+      "observed": {
+        "rank": "S",
+        "seal": "S",
+        "level": 51,
+        "xp": 5000
+      },
+      "sha256": "217b9841b24e5249000e92b061eb7295e6b688fcb0fa63adaefafd53a2620a3a"
+    },
+    {
+      "filename": "E-430x932.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "fixture": {
+        "rank": "E",
+        "xp": 425
+      },
+      "observed": {
+        "rank": "E",
+        "seal": "E",
+        "level": 5,
+        "xp": 425
+      },
+      "sha256": "f2d305d88da962504acc2f261482b3c6c29508f0297b94dcec44d7f7ea33806f"
+    },
+    {
+      "filename": "D-430x932.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "fixture": {
+        "rank": "D",
+        "xp": 1000
+      },
+      "observed": {
+        "rank": "D",
+        "seal": "D",
+        "level": 11,
+        "xp": 1000
+      },
+      "sha256": "ad19e97330fa3cfde99572dbacda266806ab44b35a5b59af1ca346d7d0577923"
+    },
+    {
+      "filename": "C-430x932.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "fixture": {
+        "rank": "C",
+        "xp": 2000
+      },
+      "observed": {
+        "rank": "C",
+        "seal": "C",
+        "level": 21,
+        "xp": 2000
+      },
+      "sha256": "341a99f602df257ee6e01e13265602ea485357b7a9e405e38ea92b4cf5aabc10"
+    },
+    {
+      "filename": "B-430x932.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "fixture": {
+        "rank": "B",
+        "xp": 3000
+      },
+      "observed": {
+        "rank": "B",
+        "seal": "B",
+        "level": 31,
+        "xp": 3000
+      },
+      "sha256": "9978654db092465fac56974ec30ce27036860d2f4fa6e43a92de53c7aa9123aa"
+    },
+    {
+      "filename": "A-430x932.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "fixture": {
+        "rank": "A",
+        "xp": 4000
+      },
+      "observed": {
+        "rank": "A",
+        "seal": "A",
+        "level": 41,
+        "xp": 4000
+      },
+      "sha256": "881d4df5f91ea74a1001528ea3c4ec45e8c628d0e8a70331c80b4097fa271291"
+    },
+    {
+      "filename": "S-430x932.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "fixture": {
+        "rank": "S",
+        "xp": 5000
+      },
+      "observed": {
+        "rank": "S",
+        "seal": "S",
+        "level": 51,
+        "xp": 5000
+      },
+      "sha256": "e7617073c5facfb58c7713818055bd296263cfc23e5231424a48f958fa0d8aad"
+    },
+    {
+      "filename": "E-390x740.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "E",
+        "xp": 425
+      },
+      "observed": {
+        "rank": "E",
+        "seal": "E",
+        "level": 5,
+        "xp": 425
+      },
+      "sha256": "3fd1c92106e0ad95db0c144db3d52a6f1c80e3b6000de299fa864359e7e17f19"
+    },
+    {
+      "filename": "D-390x740.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "D",
+        "xp": 1000
+      },
+      "observed": {
+        "rank": "D",
+        "seal": "D",
+        "level": 11,
+        "xp": 1000
+      },
+      "sha256": "1f54d79583e520fb42efdd90d94fdcac35d7813c1b03fabac294141f22e5dcfa"
+    },
+    {
+      "filename": "C-390x740.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "C",
+        "xp": 2000
+      },
+      "observed": {
+        "rank": "C",
+        "seal": "C",
+        "level": 21,
+        "xp": 2000
+      },
+      "sha256": "164bf61ef1bc9e79996107a1603db2033ad296751242149b911c04952d14e30f"
+    },
+    {
+      "filename": "B-390x740.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "B",
+        "xp": 3000
+      },
+      "observed": {
+        "rank": "B",
+        "seal": "B",
+        "level": 31,
+        "xp": 3000
+      },
+      "sha256": "664143e3efb9b3f09cc55a01489d3857bcabef8e0635228e33054ce09b01f9c6"
+    },
+    {
+      "filename": "A-390x740.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "A",
+        "xp": 4000
+      },
+      "observed": {
+        "rank": "A",
+        "seal": "A",
+        "level": 41,
+        "xp": 4000
+      },
+      "sha256": "2e28b7794978d3940b1edb836c981c99f1956d552677b1dab8a184f92b546ad6"
+    },
+    {
+      "filename": "S-390x740.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "S",
+        "xp": 5000
+      },
+      "observed": {
+        "rank": "S",
+        "seal": "S",
+        "level": 51,
+        "xp": 5000
+      },
+      "sha256": "0f8d234d52eac8fdb35770ad5d47842150dd7a3b72f8470cf58481058fcc8941"
+    },
+    {
+      "filename": "E-360x740.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "E",
+        "xp": 425
+      },
+      "observed": {
+        "rank": "E",
+        "seal": "E",
+        "level": 5,
+        "xp": 425
+      },
+      "sha256": "85ec7ccc0ae2547760a15b4b97ed6fb4eac1ccc1f0833a0603f1414da4723107"
+    },
+    {
+      "filename": "D-360x740.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "D",
+        "xp": 1000
+      },
+      "observed": {
+        "rank": "D",
+        "seal": "D",
+        "level": 11,
+        "xp": 1000
+      },
+      "sha256": "c4279050cfd35578cdc43bb6aab77021501faaa1aa5a5e5bfed8ef7ac50e05f8"
+    },
+    {
+      "filename": "C-360x740.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "C",
+        "xp": 2000
+      },
+      "observed": {
+        "rank": "C",
+        "seal": "C",
+        "level": 21,
+        "xp": 2000
+      },
+      "sha256": "c41b1780c03dcf737da66f9a1596f0b7d03d47376792e778e056b3609a11b57e"
+    },
+    {
+      "filename": "B-360x740.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "B",
+        "xp": 3000
+      },
+      "observed": {
+        "rank": "B",
+        "seal": "B",
+        "level": 31,
+        "xp": 3000
+      },
+      "sha256": "24521e8075ff91f3ab755c259d64da404930613a5b857eaab2fca1ed295100aa"
+    },
+    {
+      "filename": "A-360x740.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "A",
+        "xp": 4000
+      },
+      "observed": {
+        "rank": "A",
+        "seal": "A",
+        "level": 41,
+        "xp": 4000
+      },
+      "sha256": "474723c38c2d3a4bcbdc20a2e59cae29c38ee54c7db5e96103cb9aca37279734"
+    },
+    {
+      "filename": "S-360x740.jpg",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "S",
+        "xp": 5000
+      },
+      "observed": {
+        "rank": "S",
+        "seal": "S",
+        "level": 51,
+        "xp": 5000
+      },
+      "sha256": "20119ebaef00c391c94a076d31c14bc4ad210745aeac3a1d32f611491f4275be"
+    },
+    {
+      "filename": "E-430x740.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "E",
+        "xp": 425
+      },
+      "observed": {
+        "rank": "E",
+        "seal": "E",
+        "level": 5,
+        "xp": 425
+      },
+      "sha256": "5302516579ce0a25d52b1c22d76cea14d5ccf9f68c304ebd6cf3524890928a79"
+    },
+    {
+      "filename": "D-430x740.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "D",
+        "xp": 1000
+      },
+      "observed": {
+        "rank": "D",
+        "seal": "D",
+        "level": 11,
+        "xp": 1000
+      },
+      "sha256": "b9657e5a31f0bb4d55fa922cededb4810555bae0b65f572322f9ad5f10552dd8"
+    },
+    {
+      "filename": "C-430x740.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "C",
+        "xp": 2000
+      },
+      "observed": {
+        "rank": "C",
+        "seal": "C",
+        "level": 21,
+        "xp": 2000
+      },
+      "sha256": "fda927110f5a2037f74c14af1fc5010bb5badec3467c4fc885699d34476a8821"
+    },
+    {
+      "filename": "B-430x740.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "B",
+        "xp": 3000
+      },
+      "observed": {
+        "rank": "B",
+        "seal": "B",
+        "level": 31,
+        "xp": 3000
+      },
+      "sha256": "c62ad079d2099fb0d9afe68ce5703ba8d6bec0074d80aac47b08d1e4a9ac949f"
+    },
+    {
+      "filename": "A-430x740.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "A",
+        "xp": 4000
+      },
+      "observed": {
+        "rank": "A",
+        "seal": "A",
+        "level": 41,
+        "xp": 4000
+      },
+      "sha256": "e20ab0f470952652298eb8a8fb5aaa048f936ae6213f5cbca741bb60c35b3689"
+    },
+    {
+      "filename": "S-430x740.jpg",
+      "viewport": {
+        "width": 430,
+        "height": 740
+      },
+      "fixture": {
+        "rank": "S",
+        "xp": 5000
+      },
+      "observed": {
+        "rank": "S",
+        "seal": "S",
+        "level": 51,
+        "xp": 5000
+      },
+      "sha256": "9a116aadc7267b95708b0edfe5ef2dcf8b0df5e6ba5d2076d35b538fa9fce4b4"
+    }
+  ]
+}

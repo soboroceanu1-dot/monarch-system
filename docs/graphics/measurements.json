@@ -1,0 +1,782 @@
+{
+  "commit": "d72ff6c3b96a8625d9a7bedd1e09339b97909507",
+  "environment": "Chromium simulated mobile; normal text; no Telegram safe-area insets in this table",
+  "measurements": [
+    {
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "dims": {
+        ".monarch-brand": {
+          "x": 10,
+          "y": 6,
+          "w": 340,
+          "h": 44,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".monarch-hero": {
+          "x": 10,
+          "y": 56,
+          "w": 340,
+          "h": 131.34375,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".hero-scene-window": {
+          "x": 11,
+          "y": 57,
+          "w": 338,
+          "h": 129.34375,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".hero-cinematic": {
+          "x": -327,
+          "y": 57,
+          "w": 676,
+          "h": 129.34375,
+          "fit": "cover",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".character-stage": {
+          "x": 11,
+          "y": 57,
+          "w": 169,
+          "h": 129.34375,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".aether-character": {
+          "x": -124.5,
+          "y": -78,
+          "w": 440,
+          "h": 587,
+          "fit": "contain",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".hero-progress": {
+          "x": 176.609375,
+          "y": 70.671875,
+          "w": 164.390625,
+          "h": 102,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".monarch-panel": {
+          "x": 10,
+          "y": 192.34375,
+          "w": 340,
+          "h": 92.703125,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".monarch-actions button": {
+          "x": 18,
+          "y": 219.34375,
+          "w": 76.5,
+          "h": 59.703125,
+          "fit": "fill",
+          "position": "relative",
+          "font": "14px"
+        },
+        ".panel-icon": {
+          "x": 39.453125,
+          "y": 222.25,
+          "w": 33.59375,
+          "h": 24,
+          "fit": "fill",
+          "position": "static",
+          "font": "24px"
+        },
+        ".company-banner": {
+          "x": 10,
+          "y": 290.046875,
+          "w": 340,
+          "h": 46.359375,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".dashboard-mission": {
+          "x": 10,
+          "y": 341.40625,
+          "w": 340,
+          "h": 77.265625,
+          "fit": "fill",
+          "position": "static",
+          "font": "14px"
+        },
+        ".dashboard-progress": {
+          "x": 10,
+          "y": 423.671875,
+          "w": 340,
+          "h": 146.796875,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".dashboard-character-attributes": {
+          "x": 10,
+          "y": 575.46875,
+          "w": 340,
+          "h": 154.53125,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".portrait-stage": {
+          "x": 17,
+          "y": 602.46875,
+          "w": 153,
+          "h": 74.53125,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".aether-portrait": {
+          "x": -121.5,
+          "y": 457.46875,
+          "w": 430,
+          "h": 573,
+          "fit": "contain",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".dashboard-attributes .stat i": {
+          "x": 190,
+          "y": 607.03125,
+          "w": 14,
+          "h": 14,
+          "fit": "fill",
+          "position": "static",
+          "font": "12px"
+        },
+        "nav": {
+          "x": 10,
+          "y": 736,
+          "w": 340,
+          "h": 58,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        "nav button": {
+          "x": 14,
+          "y": 740,
+          "w": 64.796875,
+          "h": 50,
+          "fit": "fill",
+          "position": "static",
+          "font": "11px"
+        },
+        ".nav-symbol": {
+          "x": 39.890625,
+          "y": 745.90625,
+          "w": 13,
+          "h": 22,
+          "fit": "fill",
+          "position": "static",
+          "font": "22px"
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "dims": {
+        ".monarch-brand": {
+          "x": 10,
+          "y": 6,
+          "w": 370,
+          "h": 44,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".monarch-hero": {
+          "x": 10,
+          "y": 56,
+          "w": 370,
+          "h": 140.25,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".hero-scene-window": {
+          "x": 11,
+          "y": 57,
+          "w": 368,
+          "h": 138.25,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".hero-cinematic": {
+          "x": -357,
+          "y": 57,
+          "w": 736,
+          "h": 138.25,
+          "fit": "cover",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".character-stage": {
+          "x": 11,
+          "y": 57,
+          "w": 184,
+          "h": 138.25,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".aether-character": {
+          "x": -117,
+          "y": -78,
+          "w": 440,
+          "h": 587,
+          "fit": "contain",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".hero-progress": {
+          "x": 191.3125,
+          "y": 75.125,
+          "w": 179.6875,
+          "h": 102,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".monarch-panel": {
+          "x": 10,
+          "y": 201.25,
+          "w": 370,
+          "h": 99,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".monarch-actions button": {
+          "x": 18,
+          "y": 228.25,
+          "w": 84,
+          "h": 66,
+          "fit": "fill",
+          "position": "relative",
+          "font": "14px"
+        },
+        ".panel-icon": {
+          "x": 43.203125,
+          "y": 234.296875,
+          "w": 33.59375,
+          "h": 24,
+          "fit": "fill",
+          "position": "static",
+          "font": "24px"
+        },
+        ".company-banner": {
+          "x": 10,
+          "y": 305.25,
+          "w": 370,
+          "h": 49.5,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".dashboard-mission": {
+          "x": 10,
+          "y": 359.75,
+          "w": 370,
+          "h": 82.5,
+          "fit": "fill",
+          "position": "static",
+          "font": "14px"
+        },
+        ".dashboard-progress": {
+          "x": 10,
+          "y": 447.25,
+          "w": 370,
+          "h": 156.75,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".dashboard-character-attributes": {
+          "x": 10,
+          "y": 609,
+          "w": 370,
+          "h": 165,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".portrait-stage": {
+          "x": 17,
+          "y": 636,
+          "w": 168,
+          "h": 85,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".aether-portrait": {
+          "x": -114,
+          "y": 491,
+          "w": 430,
+          "h": 573,
+          "fit": "contain",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".dashboard-attributes .stat i": {
+          "x": 205,
+          "y": 641.4375,
+          "w": 14,
+          "h": 14,
+          "fit": "fill",
+          "position": "static",
+          "font": "12px"
+        },
+        "nav": {
+          "x": 10,
+          "y": 780,
+          "w": 370,
+          "h": 58,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        "nav button": {
+          "x": 14,
+          "y": 784,
+          "w": 70.796875,
+          "h": 50,
+          "fit": "fill",
+          "position": "static",
+          "font": "11px"
+        },
+        ".nav-symbol": {
+          "x": 42.75,
+          "y": 789.90625,
+          "w": 13.296875,
+          "h": 22,
+          "fit": "fill",
+          "position": "static",
+          "font": "22px"
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "dims": {
+        ".monarch-brand": {
+          "x": 10,
+          "y": 6,
+          "w": 410,
+          "h": 44,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".monarch-hero": {
+          "x": 10,
+          "y": 56,
+          "w": 410,
+          "h": 158.046875,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".hero-scene-window": {
+          "x": 11,
+          "y": 57,
+          "w": 408,
+          "h": 156.046875,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".hero-cinematic": {
+          "x": -397,
+          "y": 57,
+          "w": 816,
+          "h": 156.046875,
+          "fit": "cover",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".character-stage": {
+          "x": 11,
+          "y": 57,
+          "w": 204,
+          "h": 156.046875,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".aether-character": {
+          "x": -107,
+          "y": -78,
+          "w": 440,
+          "h": 587,
+          "fit": "contain",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".hero-progress": {
+          "x": 210.90625,
+          "y": 94.015625,
+          "w": 200.09375,
+          "h": 82,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".monarch-panel": {
+          "x": 10,
+          "y": 219.046875,
+          "w": 410,
+          "h": 111.578125,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".monarch-actions button": {
+          "x": 18,
+          "y": 246.046875,
+          "w": 94,
+          "h": 78.578125,
+          "fit": "fill",
+          "position": "relative",
+          "font": "14px"
+        },
+        ".panel-icon": {
+          "x": 48.203125,
+          "y": 258.390625,
+          "w": 33.59375,
+          "h": 24,
+          "fit": "fill",
+          "position": "static",
+          "font": "24px"
+        },
+        ".company-banner": {
+          "x": 10,
+          "y": 335.625,
+          "w": 410,
+          "h": 55.78125,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".dashboard-mission": {
+          "x": 10,
+          "y": 396.40625,
+          "w": 410,
+          "h": 92.984375,
+          "fit": "fill",
+          "position": "static",
+          "font": "14px"
+        },
+        ".dashboard-progress": {
+          "x": 10,
+          "y": 494.390625,
+          "w": 410,
+          "h": 176.65625,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".dashboard-character-attributes": {
+          "x": 10,
+          "y": 676.046875,
+          "w": 410,
+          "h": 185.9375,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".portrait-stage": {
+          "x": 17,
+          "y": 703.046875,
+          "w": 188,
+          "h": 105.9375,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".aether-portrait": {
+          "x": -104,
+          "y": 558.046875,
+          "w": 430,
+          "h": 573,
+          "fit": "contain",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".dashboard-attributes .stat i": {
+          "x": 225,
+          "y": 710.21875,
+          "w": 14,
+          "h": 14,
+          "fit": "fill",
+          "position": "static",
+          "font": "12px"
+        },
+        "nav": {
+          "x": 10,
+          "y": 868,
+          "w": 410,
+          "h": 58,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        "nav button": {
+          "x": 14,
+          "y": 872,
+          "w": 78.796875,
+          "h": 50,
+          "fit": "fill",
+          "position": "static",
+          "font": "11px"
+        },
+        ".nav-symbol": {
+          "x": 46.75,
+          "y": 877.90625,
+          "w": 13.296875,
+          "h": 22,
+          "fit": "fill",
+          "position": "static",
+          "font": "22px"
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "dims": {
+        ".monarch-brand": {
+          "x": 10,
+          "y": 6,
+          "w": 370,
+          "h": 44,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".monarch-hero": {
+          "x": 10,
+          "y": 55,
+          "w": 370,
+          "h": 121.421875,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".hero-scene-window": {
+          "x": 11,
+          "y": 56,
+          "w": 368,
+          "h": 119.421875,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".hero-cinematic": {
+          "x": -357,
+          "y": 56,
+          "w": 736,
+          "h": 119.421875,
+          "fit": "cover",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".character-stage": {
+          "x": 11,
+          "y": 56,
+          "w": 184,
+          "h": 119.421875,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".aether-character": {
+          "x": -117,
+          "y": -79,
+          "w": 440,
+          "h": 587,
+          "fit": "contain",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".hero-progress": {
+          "x": 191.3125,
+          "y": 64.703125,
+          "w": 179.6875,
+          "h": 102,
+          "fit": "fill",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".monarch-panel": {
+          "x": 10,
+          "y": 180.421875,
+          "w": 370,
+          "h": 85.71875,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".monarch-actions button": {
+          "x": 17,
+          "y": 204.421875,
+          "w": 84.5,
+          "h": 56.71875,
+          "fit": "fill",
+          "position": "relative",
+          "font": "14px"
+        },
+        ".panel-icon": {
+          "x": 44.546875,
+          "y": 207.34375,
+          "w": 29.390625,
+          "h": 21,
+          "fit": "fill",
+          "position": "static",
+          "font": "21px"
+        },
+        ".company-banner": {
+          "x": 10,
+          "y": 270.140625,
+          "w": 370,
+          "h": 42.859375,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".dashboard-mission": {
+          "x": 10,
+          "y": 317,
+          "w": 370,
+          "h": 71.421875,
+          "fit": "fill",
+          "position": "static",
+          "font": "14px"
+        },
+        ".dashboard-progress": {
+          "x": 10,
+          "y": 392.421875,
+          "w": 370,
+          "h": 135.71875,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".dashboard-character-attributes": {
+          "x": 10,
+          "y": 532.140625,
+          "w": 370,
+          "h": 142.859375,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        ".portrait-stage": {
+          "x": 17,
+          "y": 559.140625,
+          "w": 168,
+          "h": 62.859375,
+          "fit": "fill",
+          "position": "relative",
+          "font": "15px"
+        },
+        ".aether-portrait": {
+          "x": -114,
+          "y": 414.140625,
+          "w": 430,
+          "h": 573,
+          "fit": "contain",
+          "position": "absolute",
+          "font": "15px"
+        },
+        ".dashboard-attributes .stat i": {
+          "x": 205,
+          "y": 562.734375,
+          "w": 14,
+          "h": 14,
+          "fit": "fill",
+          "position": "static",
+          "font": "12px"
+        },
+        "nav": {
+          "x": 10,
+          "y": 680,
+          "w": 370,
+          "h": 54,
+          "fit": "fill",
+          "position": "static",
+          "font": "15px"
+        },
+        "nav button": {
+          "x": 14,
+          "y": 684,
+          "w": 70.796875,
+          "h": 46,
+          "fit": "fill",
+          "position": "static",
+          "font": "11px"
+        },
+        ".nav-symbol": {
+          "x": 42.75,
+          "y": 687.90625,
+          "w": 13.296875,
+          "h": 22,
+          "fit": "fill",
+          "position": "static",
+          "font": "22px"
+        }
+      }
+    }
+  ],
+  "provenance": {
+    "method": "getBoundingClientRect / getComputedStyle after image decode and two animation frames",
+    "fixture": "profile() in tests/browser-dashboard.cjs; fictional E rank, 425 XP",
+    "viewports": [
+      [
+        360,
+        800
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        430,
+        932
+      ],
+      [
+        390,
+        740
+      ]
+    ],
+    "source_commit": "d72ff6c3b96a8625d9a7bedd1e09339b97909507",
+    "safe_area_note": "The dimensions below have zero simulated Telegram insets. Separate 740px tests used top=8 and bottom=16; those are not these measurements."
+  }
+}

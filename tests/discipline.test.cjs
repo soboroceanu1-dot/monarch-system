@@ -104,12 +104,15 @@ test('historical completion is a review with zero XP and keeps saved data', () =
 test('all local assets share a release token and version labels use the build', () => {
   const html = readFileSync(path.join(root, 'index.html'), 'utf8');
   const assets = [...html.matchAll(/(?:src|href)="(?!https:)([^"?]+)\?v=([^"]+)"/g)];
-  assert.equal(assets.length, 8);
+  assert.equal(assets.length, 10);
+  assert.ok(assets.some(m => m[1] === 'assets/graphics/final-assets.js'));
+  assert.ok(assets.some(m => m[1] === 'assets/graphics/v9.3/manifest.js'));
+  assert.ok(html.indexOf('assets/graphics/v9.3/manifest.js') < html.indexOf('src="app.js'));
   assert.equal(new Set(assets.map(m => m[2])).size, 1);
   for (const [, file] of assets) assert.ok(readFileSync(path.join(root, file)).length);
   const app = readFileSync(path.join(root, 'app.js'), 'utf8');
-  assert.match(app, /window.MONARCH_BUILD='V9.2/);
-  assert.match(app, /LIFE ASCENSION · \$\{esc\(window.MONARCH_BUILD\)\}/);
+  assert.match(app, /window.MONARCH_BUILD='V9.3-A/);
+  assert.match(app, /<small>\$\{esc\(window.MONARCH_BUILD\)\}/);
   assert.doesNotMatch(app + source, /V8\.1|V8\.3|Versiune încărcată: V8/);
 });
 

@@ -66,8 +66,10 @@ Doar rangul curent este solicitat; cele șase URL-uri nu declanșează preload.
 - Fallback imagine eșuat: imaginea se ascunde, HTML-ul/gradientul rămân.
 - Manifest absent/malformat sau helper absent: fallback fără acces la stocare.
 
-Personajele sunt contain integral în ferestrele existente; nu se reutilizează
-offseturile negative ale vechilor decupaje. Bannerul este contain și aliniat
+Personajele sunt acum încadrate ca portret în dashboard: 2,6× în Hero și 3× în
+Personaj, cu proporții păstrate și verificări pentru cap/coroană/piept. Partea
+inferioară este decupată intenționat; containerele rămân identice. Încadrarea
+celorlalte vizualizări este păstrată. Vezi HERO_FRAMING_REPORT.md. Bannerul este contain și aliniat
 dreapta pentru a conserva castelul; textul este HTML. Scenele Hero sunt cover
 la 100% din fereastră, cu decupare decorativă dependentă de aspect, fără vechea
 fereastră la 200%. Nu se modifică trackurile, dimensiunile sau ordinea zonelor.
@@ -101,3 +103,5 @@ Nu este certificare Telegram Android/Samsung real. Nu face merge/deploy automat.
 Raport: `docs/graphics/INTEGRATION_REPORT.md`; inventar și hashuri:
 `docs/graphics/supplied-inventory.json`. Auditul și măsurătorile istorice rămân
 separate, legate de commitul lor original, fără rescriere retroactivă.
+
+Capturile și diagnosticul E/S actualizate sunt în [HERO_FRAMING_REPORT.md](HERO_FRAMING_REPORT.md).

@@ -3,9 +3,11 @@ const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs/promises');
 const path=require('node:path');
+const {createHash}=require('node:crypto');
+const {assertHeadFraming}=require('./helpers/character-framing.cjs');
 const root=path.join(__dirname,'..');
 const MAIN='monarch-life-v1',AW='monarch-awakening-v2',PLAN='monarch-planner-v25';
-const targets=[{width:360,height:800},{width:390,height:844},{width:430,height:932},{width:390,height:740}];
+const targets=[{width:360,height:800},{width:390,height:844},{width:430,height:932},{width:390,height:740},{width:360,height:740},{width:430,height:740}];
 const ranks=[['E',425],['D',1000],['C',2000],['B',3000],['A',4000],['S',5000]];
 const zones=['.monarch-brand','.monarch-hero','.monarch-panel','.company-banner','.dashboard-mission','.dashboard-progress','.dashboard-character-attributes','nav'];
 const settle=p=>p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
@@ -46,7 +48,7 @@ async function assertExactLayout(p,viewport,label){
  assert.deepEqual(clipped,[],label+': ordinary fixture labels must remain readable, without clipping');
 }
 
-(async()=>{const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});let checks=0,reducedChecks=0;const limits=[];
+(async()=>{const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});let checks=0,reducedChecks=0;const limits=[],captures=[];
 try{
  for(const viewport of targets)for(const[rank,xp]of ranks){
   const label=viewport.width+'×'+viewport.height+' / '+rank,seed=profile(rank,xp),context=await browser.newContext({viewport,isMobile:true,hasTouch:true,reducedMotion:'reduce'}),p=await context.newPage(),errors=[],requestedScenes=new Set();let failArt=false,failScene=false,failIcons=false;
@@ -62,13 +64,19 @@ try{
   assert.equal(await p.locator('.graphic-icon').count(),15);for(const icon of await p.locator('.graphic-icon').all()){await icon.evaluate(el=>el.decode());assert.equal(await icon.getAttribute('alt'),'');assert.equal(await icon.isVisible(),true);assert.equal(await icon.evaluate(el=>getComputedStyle(el).mixBlendMode),'normal');}
   await p.locator('.company-art').evaluate(el=>el.decode());assert.equal(await p.locator('.company-art').evaluate(el=>getComputedStyle(el).objectFit),'contain');
   assert.match(await p.locator('.monarch-hero').innerText(),new RegExp(xp+' XP total'));assert.equal(await p.locator('.monarch-hero [role=progressbar]').getAttribute('aria-valuenow'),String(xp%100));
-  for(const image of await p.locator('.aether-character,.aether-portrait').all()){await image.evaluate(el=>el.decode());assert.ok((await image.getAttribute('src')).endsWith(['D','C','B','A'].includes(rank)?'aether-placeholder.svg':'aether_rank_'+rank.toLowerCase()+'.png'));assert.equal(await image.evaluate(el=>getComputedStyle(el).objectFit),'contain');const ib=await image.boundingBox(),pb=await image.locator('..').boundingBox();assert.ok(ib.x>=pb.x-1&&ib.y>=pb.y-1&&ib.x+ib.width<=pb.x+pb.width+1&&ib.y+ib.height<=pb.y+pb.height+1,label+': complete character canvas fits its existing window');}
+  for(const image of await p.locator('.aether-character,.aether-portrait').all()){await image.evaluate(el=>el.decode());assert.ok((await image.getAttribute('src')).endsWith(['D','C','B','A'].includes(rank)?'aether-placeholder.svg':'aether_rank_'+rank.toLowerCase()+'.png'));assert.equal(await image.evaluate(el=>getComputedStyle(el).objectFit),'contain');}
+  await assertHeadFraming(p,label);
   assert.equal(await p.locator('.dashboard-attributes [data-attribute=discipline] progress').getAttribute('value'),String(rank==='E'?3:rank==='B'?1:0));
   assert.equal(await p.locator('[data-summary=missions] strong').innerText(),rank==='D'?'0 active':'1 active');assert.equal(await p.locator('[data-summary=projects] strong').innerText(),rank==='D'?'0 active':'1 active');assert.equal(await p.locator('[data-summary=academy] strong').innerText(),'6 lecții');assert.equal(await p.locator('[data-summary=goal] strong').innerText(),rank==='D'?'Nestabilit':'Stabilit');
   await assertExactLayout(p,viewport,label);assert.deepEqual(await snapshot(p),seed,label+': opening the dashboard does not write profile data');
   const measured=require('../docs/graphics/measurements.json').measurements.find(m=>m.viewport.width===viewport.width&&m.viewport.height===viewport.height);
-  for(const selector of zones){const previous=measured.dims[selector];if(!previous)continue;const box=await p.locator(selector).boundingBox();for(const [key,before]of Object.entries({x:previous.x,y:previous.y,width:previous.w,height:previous.h}))assert.ok(Math.abs(box[key]-before)<=1,label+': approved geometry unchanged '+selector+' '+key);}
-  const captureDir=path.join(root,'docs/screenshots/v93-approved');await fs.mkdir(captureDir,{recursive:true});await p.screenshot({path:path.join(captureDir,rank+'-'+viewport.width+'x'+viewport.height+'.jpg'),type:'jpeg',quality:90});
+  for(const selector of zones){const previous=measured?.dims[selector];if(!previous)continue;const box=await p.locator(selector).boundingBox();for(const [key,before]of Object.entries({x:previous.x,y:previous.y,width:previous.w,height:previous.h}))assert.ok(Math.abs(box[key]-before)<=1,label+': approved geometry unchanged '+selector+' '+key);}
+  const captureDir=path.join(root,'docs/screenshots/v93-framing/after');await fs.mkdir(captureDir,{recursive:true});
+  const observed=await p.locator('.monarch-hero').evaluate(el=>({rank:el.dataset.rank,seal:el.querySelector('.rank-seal').firstChild.textContent.trim(),level:Number(el.querySelector('.hero-progress strong').textContent.match(/\d+/)[0]),xp:Number(el.querySelector('.hero-progress .row span').textContent.match(/\d+/)[0])}));
+  assert.deepEqual(observed,{rank,seal:rank,level:Math.floor(xp/100)+1,xp},label+': capture filename must match rendered rank/level/XP');
+  const filename=observed.rank+'-'+viewport.width+'x'+viewport.height+'.jpg';
+  const bytes=await p.screenshot({path:path.join(captureDir,filename),type:'jpeg',quality:90});
+  captures.push({filename,viewport,fixture:{rank,xp},observed,sha256:createHash('sha256').update(bytes).digest('hex')});
 
   if(rank!=='E'){await p.evaluate(()=>{window.Telegram.WebApp.viewportHeight=740;window.Telegram.WebApp.safeAreaInset={top:8,bottom:16};window.telegramEvents.viewportChanged()});await assertExactLayout(p,{width:viewport.width,height:740},label+' / Telegram reduced740');reducedChecks++;await p.evaluate(()=>{delete window.Telegram.WebApp.viewportHeight;window.Telegram.WebApp.safeAreaInset={top:0,bottom:0};window.telegramEvents.viewportChanged()});await settle(p);}
   if(rank==='E'){
@@ -96,8 +104,9 @@ try{
   if(viewport.width===360){failArt=true;failScene=true;failIcons=true;await p.setViewportSize(viewport);await p.goto('https://monarch.test/');for(const image of await p.locator('.aether-character,.aether-portrait').all()){await image.evaluate(el=>el.decode());assert.ok((await image.getAttribute('src')).endsWith('aether-placeholder.svg'),rank+': missing artwork uses existing placeholder');}await p.locator('.hero-cinematic').evaluate(el=>el.decode());assert.ok((await p.locator('.hero-cinematic').getAttribute('src')).endsWith('/monarch-castle-panorama.webp'));assert.equal(await p.locator('.hero-cinematic').getAttribute('data-fallback'),'true');await p.waitForFunction(()=>Array.from(document.querySelectorAll('.graphic-icon')).every(el=>el.hidden));assert.equal(await p.locator('.icon-fallback:visible').count(),15);await assertExactLayout(p,viewport,label+' with unavailable graphics');assert.deepEqual(await snapshot(p),seed,label+': failed graphics do not write profile data');}
   assert.deepEqual(errors,[],label+': no JavaScript errors');await context.close();checks++;
  }
+ await fs.writeFile(path.join(root,'docs/screenshots/v93-framing/capture-index.json'),JSON.stringify({base_commit:'c65f2d174b8e71c3aaa1d4919096787008a53451',captures},null,2)+'\n');
  console.log('PASS '+checks+' exact-layout/rank combinations; '+reducedChecks+' Telegram reduced-viewport simulations; real data, 44px action targets, navigation, inventory, E–S scenes/current-rank-only loading, scene/character/icon fallback, unchanged localStorage and no JS errors.');
- console.log('Screenshots: docs/screenshots/v93-approved/{E,D,C,B,A,S}-{360x800,390x844,430x932,390x740}.jpg. D/C/B/A use explicitly requested placeholders.');
+ console.log('Screenshots: docs/screenshots/v93-framing/after/{rank}-{width}x{height}.jpg; capture-index.json records observed rank, level, XP and image hash. D/C/B/A use explicitly requested placeholders.');
  for(const limit of limits)console.log('LIMIT '+limit);
  console.log('Real Telegram Android/Samsung testing remains a separate user check.');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1});

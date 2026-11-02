@@ -118,3 +118,8 @@ validatorul și testele dashboard/fallback/release-token. Datele noi sunt cele 2
 de imagini, manifestul/proiecția runtime, inventarul, raportul validatorului,
 raportul de integrare, instrucțiunile IMPORT.md și capturile. Rapoartele grafice
 istorice au primit doar un link către această etapă. Nu există PR nou.
+
+
+> Etapa ulterioară de încadrare Hero/Personaj și diagnosticul capturii E sunt
+> în [HERO_FRAMING_REPORT.md](HERO_FRAMING_REPORT.md). Capturile de mai sus rămân
+> referința de dinaintea măririi portretelor.

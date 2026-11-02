@@ -160,3 +160,11 @@ body{background:radial-gradient(ellipse at 0 15%,#5025a047,transparent 38%),radi
 .single-screen .nav-symbol{width:22px;height:22px}
 
 .monarch-hero{background:linear-gradient(130deg,#0a1023,#101227)}
+
+/* Dashboard portraits: enlarge the subject, preserve head/crown and every outer track.
+   Supplied E/S heads start at y≈60/1200; placeholder crown starts at y≈63/700.
+   Only the lower body is intentionally outside these portrait windows. */
+.single-screen .monarch-hero .aether-character{width:auto;height:260%;max-width:none;left:50%;top:calc(6px - 13%);transform:translateX(-50%);object-fit:contain}
+.single-screen .monarch-hero .aether-character[data-fallback=true]{top:calc(6px - 23.4%)}
+.single-dashboard .dashboard-character .aether-portrait{width:auto;height:300%;max-width:none;left:50%;top:calc(4px - 15%);transform:translateX(-50%);object-fit:contain}
+.single-dashboard .dashboard-character .aether-portrait[data-fallback=true]{top:calc(4px - 27%)}

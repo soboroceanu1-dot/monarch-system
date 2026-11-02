@@ -949,7 +949,7 @@
             "clean alpha edges"
           ]
         },
-        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+        "crop_policy": "Dashboard portrait framing: 2.6x Hero, 3x Personaj; head/crown and upper-chest guarded, intentional lower-body crop. Other views keep the previous fitting."
       },
       "fallback": {
         "kind": "image",
@@ -1112,7 +1112,7 @@
             "clean alpha edges"
           ]
         },
-        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+        "crop_policy": "Dashboard portrait framing: 2.6x Hero, 3x Personaj; head/crown and upper-chest guarded, intentional lower-body crop. Other views keep the previous fitting."
       },
       "fallback": {
         "kind": "image",
@@ -1275,7 +1275,7 @@
             "clean alpha edges"
           ]
         },
-        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+        "crop_policy": "Dashboard portrait framing: 2.6x Hero, 3x Personaj; head/crown and upper-chest guarded, intentional lower-body crop. Other views keep the previous fitting."
       },
       "fallback": {
         "kind": "image",
@@ -1438,7 +1438,7 @@
             "clean alpha edges"
           ]
         },
-        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+        "crop_policy": "Dashboard portrait framing: 2.6x Hero, 3x Personaj; head/crown and upper-chest guarded, intentional lower-body crop. Other views keep the previous fitting."
       },
       "fallback": {
         "kind": "image",
@@ -1601,7 +1601,7 @@
             "clean alpha edges"
           ]
         },
-        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+        "crop_policy": "Dashboard portrait framing: 2.6x Hero, 3x Personaj; head/crown and upper-chest guarded, intentional lower-body crop. Other views keep the previous fitting."
       },
       "fallback": {
         "kind": "image",
@@ -1764,7 +1764,7 @@
             "clean alpha edges"
           ]
         },
-        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+        "crop_policy": "Dashboard portrait framing: 2.6x Hero, 3x Personaj; head/crown and upper-chest guarded, intentional lower-body crop. Other views keep the previous fitting."
       },
       "fallback": {
         "kind": "image",

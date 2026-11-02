@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "source_commit": "d72ff6c3b96a8625d9a7bedd1e09339b97909507",
+  "results": [
+    {
+      "id": "hero_rank_e",
+      "path": "assets/graphics/v9.3/hero/hero_rank_e.webp",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "hero_rank_d",
+      "path": "assets/graphics/v9.3/hero/hero_rank_d.webp",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "hero_rank_c",
+      "path": "assets/graphics/v9.3/hero/hero_rank_c.webp",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "hero_rank_b",
+      "path": "assets/graphics/v9.3/hero/hero_rank_b.webp",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "hero_rank_a",
+      "path": "assets/graphics/v9.3/hero/hero_rank_a.webp",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "hero_rank_s",
+      "path": "assets/graphics/v9.3/hero/hero_rank_s.webp",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "aether_monarch",
+      "path": "assets/graphics/v9.3/character/aether_monarch.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "banner_compania_mea",
+      "path": "assets/graphics/v9.3/banners/banner_compania_mea.webp",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "monarch_misiuni",
+      "path": "assets/graphics/v9.3/monarch/monarch_misiuni.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "monarch_academie",
+      "path": "assets/graphics/v9.3/monarch/monarch_academie.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "monarch_proiecte",
+      "path": "assets/graphics/v9.3/monarch/monarch_proiecte.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "monarch_obiectiv",
+      "path": "assets/graphics/v9.3/monarch/monarch_obiectiv.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "attribute_vitality",
+      "path": "assets/graphics/v9.3/attributes/attribute_vitality.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "attribute_intelligence",
+      "path": "assets/graphics/v9.3/attributes/attribute_intelligence.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "attribute_wealth",
+      "path": "assets/graphics/v9.3/attributes/attribute_wealth.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "attribute_leadership",
+      "path": "assets/graphics/v9.3/attributes/attribute_leadership.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "attribute_discipline",
+      "path": "assets/graphics/v9.3/attributes/attribute_discipline.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "attribute_mindset",
+      "path": "assets/graphics/v9.3/attributes/attribute_mindset.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "nav_acasa",
+      "path": "assets/graphics/v9.3/nav/nav_acasa.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "nav_aventuri",
+      "path": "assets/graphics/v9.3/nav/nav_aventuri.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "nav_plan",
+      "path": "assets/graphics/v9.3/nav/nav_plan.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "nav_hunter",
+      "path": "assets/graphics/v9.3/nav/nav_hunter.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    },
+    {
+      "id": "nav_evolutie",
+      "path": "assets/graphics/v9.3/nav/nav_evolutie.png",
+      "status": "missing",
+      "sha256": null,
+      "errors": [
+        "File missing: retain documented fallback"
+      ],
+      "warnings": [],
+      "visual_approved_for_current_bytes": false
+    }
+  ],
+  "counts": {
+    "passed": 0,
+    "invalid": 0,
+    "missing": 23
+  },
+  "unexpected_files": [],
+  "visual_review_note": "Safe areas, embedded text, foreign fragments and artistic quality require manual review."
+}

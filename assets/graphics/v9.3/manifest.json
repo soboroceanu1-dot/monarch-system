@@ -1,0 +1,2609 @@
+{
+  "schema_version": 1,
+  "source_commit": "d72ff6c3b96a8625d9a7bedd1e09339b97909507",
+  "integration_enabled": false,
+  "note": "Infrastructure only. No final images supplied. Export sizes are proposed contracts; CSS measurements are observations. Automated checks cannot certify artwork quality.",
+  "assets": [
+    {
+      "id": "hero_rank_e",
+      "path": "assets/graphics/v9.3/hero/hero_rank_e.webp",
+      "group": "hero",
+      "export": {
+        "width": 1640,
+        "height": 640,
+        "aspect_ratio": 2.5625,
+        "format": "WEBP",
+        "alpha_required": false,
+        "transparent_outer_border_px": 0
+      },
+      "estimated_bytes": {
+        "min": 120000,
+        "max": 300000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 338,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 368,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 408,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 56,
+              "w": 368,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "cover",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.05,
+            0.1,
+            0.95,
+            0.9
+          ],
+          "manual_review_required": true,
+          "quiet_text_region": [
+            0.49,
+            0.1,
+            0.98,
+            0.9
+          ],
+          "prohibited": [
+            "text",
+            "rank letters",
+            "characters",
+            "logos"
+          ]
+        },
+        "crop_policy": "vertical decorative edges only"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/scenes/monarch-castle-panorama.webp",
+        "last_resort": "HTML gradient and dynamic text remain"
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "hero_rank_d",
+      "path": "assets/graphics/v9.3/hero/hero_rank_d.webp",
+      "group": "hero",
+      "export": {
+        "width": 1640,
+        "height": 640,
+        "aspect_ratio": 2.5625,
+        "format": "WEBP",
+        "alpha_required": false,
+        "transparent_outer_border_px": 0
+      },
+      "estimated_bytes": {
+        "min": 120000,
+        "max": 300000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 338,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 368,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 408,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 56,
+              "w": 368,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "cover",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.05,
+            0.1,
+            0.95,
+            0.9
+          ],
+          "manual_review_required": true,
+          "quiet_text_region": [
+            0.49,
+            0.1,
+            0.98,
+            0.9
+          ],
+          "prohibited": [
+            "text",
+            "rank letters",
+            "characters",
+            "logos"
+          ]
+        },
+        "crop_policy": "vertical decorative edges only"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/scenes/monarch-castle-panorama.webp",
+        "last_resort": "HTML gradient and dynamic text remain"
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "hero_rank_c",
+      "path": "assets/graphics/v9.3/hero/hero_rank_c.webp",
+      "group": "hero",
+      "export": {
+        "width": 1640,
+        "height": 640,
+        "aspect_ratio": 2.5625,
+        "format": "WEBP",
+        "alpha_required": false,
+        "transparent_outer_border_px": 0
+      },
+      "estimated_bytes": {
+        "min": 120000,
+        "max": 300000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 338,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 368,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 408,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 56,
+              "w": 368,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "cover",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.05,
+            0.1,
+            0.95,
+            0.9
+          ],
+          "manual_review_required": true,
+          "quiet_text_region": [
+            0.49,
+            0.1,
+            0.98,
+            0.9
+          ],
+          "prohibited": [
+            "text",
+            "rank letters",
+            "characters",
+            "logos"
+          ]
+        },
+        "crop_policy": "vertical decorative edges only"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/scenes/monarch-castle-panorama.webp",
+        "last_resort": "HTML gradient and dynamic text remain"
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "hero_rank_b",
+      "path": "assets/graphics/v9.3/hero/hero_rank_b.webp",
+      "group": "hero",
+      "export": {
+        "width": 1640,
+        "height": 640,
+        "aspect_ratio": 2.5625,
+        "format": "WEBP",
+        "alpha_required": false,
+        "transparent_outer_border_px": 0
+      },
+      "estimated_bytes": {
+        "min": 120000,
+        "max": 300000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 338,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 368,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 408,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 56,
+              "w": 368,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "cover",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.05,
+            0.1,
+            0.95,
+            0.9
+          ],
+          "manual_review_required": true,
+          "quiet_text_region": [
+            0.49,
+            0.1,
+            0.98,
+            0.9
+          ],
+          "prohibited": [
+            "text",
+            "rank letters",
+            "characters",
+            "logos"
+          ]
+        },
+        "crop_policy": "vertical decorative edges only"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/scenes/monarch-castle-panorama.webp",
+        "last_resort": "HTML gradient and dynamic text remain"
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "hero_rank_a",
+      "path": "assets/graphics/v9.3/hero/hero_rank_a.webp",
+      "group": "hero",
+      "export": {
+        "width": 1640,
+        "height": 640,
+        "aspect_ratio": 2.5625,
+        "format": "WEBP",
+        "alpha_required": false,
+        "transparent_outer_border_px": 0
+      },
+      "estimated_bytes": {
+        "min": 120000,
+        "max": 300000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 338,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 368,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 408,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 56,
+              "w": 368,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "cover",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.05,
+            0.1,
+            0.95,
+            0.9
+          ],
+          "manual_review_required": true,
+          "quiet_text_region": [
+            0.49,
+            0.1,
+            0.98,
+            0.9
+          ],
+          "prohibited": [
+            "text",
+            "rank letters",
+            "characters",
+            "logos"
+          ]
+        },
+        "crop_policy": "vertical decorative edges only"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/scenes/monarch-castle-panorama.webp",
+        "last_resort": "HTML gradient and dynamic text remain"
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "hero_rank_s",
+      "path": "assets/graphics/v9.3/hero/hero_rank_s.webp",
+      "group": "hero",
+      "export": {
+        "width": 1640,
+        "height": 640,
+        "aspect_ratio": 2.5625,
+        "format": "WEBP",
+        "alpha_required": false,
+        "transparent_outer_border_px": 0
+      },
+      "estimated_bytes": {
+        "min": 120000,
+        "max": 300000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 338,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 368,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 57,
+              "w": 408,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".hero-scene-window": {
+              "x": 11,
+              "y": 56,
+              "w": 368,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "cover",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.05,
+            0.1,
+            0.95,
+            0.9
+          ],
+          "manual_review_required": true,
+          "quiet_text_region": [
+            0.49,
+            0.1,
+            0.98,
+            0.9
+          ],
+          "prohibited": [
+            "text",
+            "rank letters",
+            "characters",
+            "logos"
+          ]
+        },
+        "crop_policy": "vertical decorative edges only"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/scenes/monarch-castle-panorama.webp",
+        "last_resort": "HTML gradient and dynamic text remain"
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "aether_monarch",
+      "path": "assets/graphics/v9.3/character/aether_monarch.png",
+      "group": "character",
+      "export": {
+        "width": 900,
+        "height": 1200,
+        "aspect_ratio": 0.75,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 300000,
+        "max": 900000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 169,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 602.46875,
+              "w": 153,
+              "h": 74.53125,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 184,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 636,
+              "w": 168,
+              "h": 85,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 204,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 703.046875,
+              "w": 188,
+              "h": 105.9375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 56,
+              "w": 184,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 559.140625,
+              "w": 168,
+              "h": 62.859375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.08,
+            0.08,
+            0.92,
+            0.92
+          ],
+          "manual_review_required": true,
+          "required": [
+            "complete head and accessories",
+            "no foreign fragments",
+            "clean alpha edges"
+          ]
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/characters/aether-placeholder.svg",
+        "last_resort": "accessible character label; do not fall back to damaged E-S artwork"
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "banner_compania_mea",
+      "path": "assets/graphics/v9.3/banners/banner_compania_mea.webp",
+      "group": "banners",
+      "export": {
+        "width": 1640,
+        "height": 220,
+        "aspect_ratio": 7.454545454545454,
+        "format": "WEBP",
+        "alpha_required": false,
+        "transparent_outer_border_px": 0
+      },
+      "estimated_bytes": {
+        "min": 70000,
+        "max": 180000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".company-banner": {
+              "x": 10,
+              "y": 290.046875,
+              "w": 340,
+              "h": 46.359375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".company-banner": {
+              "x": 10,
+              "y": 305.25,
+              "w": 370,
+              "h": 49.5,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".company-banner": {
+              "x": 10,
+              "y": 335.625,
+              "w": 410,
+              "h": 55.78125,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".company-banner": {
+              "x": 10,
+              "y": 270.140625,
+              "w": 370,
+              "h": 42.859375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "cover",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.6,
+            0.1,
+            0.95,
+            0.9
+          ],
+          "manual_review_required": true,
+          "quiet_text_region": [
+            0,
+            0,
+            0.6,
+            1
+          ],
+          "prohibited": [
+            "text",
+            "logos"
+          ]
+        },
+        "crop_policy": "vertical decorative edges only"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/scenes/monarch-castle-panorama.webp",
+        "last_resort": "HTML background and company text remain"
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "monarch_misiuni",
+      "path": "assets/graphics/v9.3/monarch/monarch_misiuni.png",
+      "group": "monarch",
+      "export": {
+        "width": 144,
+        "height": 144,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 8000,
+        "max": 30000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 39.453125,
+              "y": 222.25,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 43.203125,
+              "y": 234.296875,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 48.203125,
+              "y": 258.390625,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 44.546875,
+              "y": 207.34375,
+              "w": 29.390625,
+              "h": 21,
+              "fit": "fill",
+              "position": "static",
+              "font": "21px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "monarch_academie",
+      "path": "assets/graphics/v9.3/monarch/monarch_academie.png",
+      "group": "monarch",
+      "export": {
+        "width": 144,
+        "height": 144,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 8000,
+        "max": 30000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 39.453125,
+              "y": 222.25,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 43.203125,
+              "y": 234.296875,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 48.203125,
+              "y": 258.390625,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 44.546875,
+              "y": 207.34375,
+              "w": 29.390625,
+              "h": 21,
+              "fit": "fill",
+              "position": "static",
+              "font": "21px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "monarch_proiecte",
+      "path": "assets/graphics/v9.3/monarch/monarch_proiecte.png",
+      "group": "monarch",
+      "export": {
+        "width": 144,
+        "height": 144,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 8000,
+        "max": 30000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 39.453125,
+              "y": 222.25,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 43.203125,
+              "y": 234.296875,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 48.203125,
+              "y": 258.390625,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 44.546875,
+              "y": 207.34375,
+              "w": 29.390625,
+              "h": 21,
+              "fit": "fill",
+              "position": "static",
+              "font": "21px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "monarch_obiectiv",
+      "path": "assets/graphics/v9.3/monarch/monarch_obiectiv.png",
+      "group": "monarch",
+      "export": {
+        "width": 144,
+        "height": 144,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 8000,
+        "max": 30000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 39.453125,
+              "y": 222.25,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 43.203125,
+              "y": 234.296875,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 48.203125,
+              "y": 258.390625,
+              "w": 33.59375,
+              "h": 24,
+              "fit": "fill",
+              "position": "static",
+              "font": "24px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".panel-icon": {
+              "x": 44.546875,
+              "y": 207.34375,
+              "w": 29.390625,
+              "h": 21,
+              "fit": "fill",
+              "position": "static",
+              "font": "21px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "attribute_vitality",
+      "path": "assets/graphics/v9.3/attributes/attribute_vitality.png",
+      "group": "attributes",
+      "export": {
+        "width": 84,
+        "height": 84,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 2000,
+        "max": 10000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 190,
+              "y": 607.03125,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 641.4375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 225,
+              "y": 710.21875,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 562.734375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "attribute_intelligence",
+      "path": "assets/graphics/v9.3/attributes/attribute_intelligence.png",
+      "group": "attributes",
+      "export": {
+        "width": 84,
+        "height": 84,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 2000,
+        "max": 10000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 190,
+              "y": 607.03125,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 641.4375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 225,
+              "y": 710.21875,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 562.734375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "attribute_wealth",
+      "path": "assets/graphics/v9.3/attributes/attribute_wealth.png",
+      "group": "attributes",
+      "export": {
+        "width": 84,
+        "height": 84,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 2000,
+        "max": 10000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 190,
+              "y": 607.03125,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 641.4375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 225,
+              "y": 710.21875,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 562.734375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "attribute_leadership",
+      "path": "assets/graphics/v9.3/attributes/attribute_leadership.png",
+      "group": "attributes",
+      "export": {
+        "width": 84,
+        "height": 84,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 2000,
+        "max": 10000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 190,
+              "y": 607.03125,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 641.4375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 225,
+              "y": 710.21875,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 562.734375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "attribute_discipline",
+      "path": "assets/graphics/v9.3/attributes/attribute_discipline.png",
+      "group": "attributes",
+      "export": {
+        "width": 84,
+        "height": 84,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 2000,
+        "max": 10000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 190,
+              "y": 607.03125,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 641.4375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 225,
+              "y": 710.21875,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 562.734375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "attribute_mindset",
+      "path": "assets/graphics/v9.3/attributes/attribute_mindset.png",
+      "group": "attributes",
+      "export": {
+        "width": 84,
+        "height": 84,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 2000,
+        "max": 10000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 190,
+              "y": 607.03125,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 641.4375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 225,
+              "y": 710.21875,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".dashboard-attributes .stat i": {
+              "x": 205,
+              "y": 562.734375,
+              "w": 14,
+              "h": 14,
+              "fit": "fill",
+              "position": "static",
+              "font": "12px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "nav_acasa",
+      "path": "assets/graphics/v9.3/nav/nav_acasa.png",
+      "group": "nav",
+      "export": {
+        "width": 132,
+        "height": 132,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 4000,
+        "max": 18000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {}
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows",
+        "proposed_icon_css_px": [
+          22,
+          22
+        ],
+        "note": "Current nav uses font glyphs, not image boxes. 22x22 is a future integration target, not a measured image size."
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "nav_aventuri",
+      "path": "assets/graphics/v9.3/nav/nav_aventuri.png",
+      "group": "nav",
+      "export": {
+        "width": 132,
+        "height": 132,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 4000,
+        "max": 18000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {}
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows",
+        "proposed_icon_css_px": [
+          22,
+          22
+        ],
+        "note": "Current nav uses font glyphs, not image boxes. 22x22 is a future integration target, not a measured image size."
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "nav_plan",
+      "path": "assets/graphics/v9.3/nav/nav_plan.png",
+      "group": "nav",
+      "export": {
+        "width": 132,
+        "height": 132,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 4000,
+        "max": 18000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {}
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows",
+        "proposed_icon_css_px": [
+          22,
+          22
+        ],
+        "note": "Current nav uses font glyphs, not image boxes. 22x22 is a future integration target, not a measured image size."
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "nav_hunter",
+      "path": "assets/graphics/v9.3/nav/nav_hunter.png",
+      "group": "nav",
+      "export": {
+        "width": 132,
+        "height": 132,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 4000,
+        "max": 18000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {}
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows",
+        "proposed_icon_css_px": [
+          22,
+          22
+        ],
+        "note": "Current nav uses font glyphs, not image boxes. 22x22 is a future integration target, not a measured image size."
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    },
+    {
+      "id": "nav_evolutie",
+      "path": "assets/graphics/v9.3/nav/nav_evolutie.png",
+      "group": "nav",
+      "export": {
+        "width": 132,
+        "height": 132,
+        "aspect_ratio": 1.0,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 4000,
+        "max": 18000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {}
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {}
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.1,
+            0.1,
+            0.9,
+            0.9
+          ],
+          "manual_review_required": true
+        },
+        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows",
+        "proposed_icon_css_px": [
+          22,
+          22
+        ],
+        "note": "Current nav uses font glyphs, not image boxes. 22x22 is a future integration target, not a measured image size."
+      },
+      "fallback": {
+        "kind": "text",
+        "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
+      },
+      "validation": {
+        "status": "missing",
+        "sha256": null
+      },
+      "visual_review": {
+        "status": "pending",
+        "approved_sha256": null
+      }
+    }
+  ]
+}

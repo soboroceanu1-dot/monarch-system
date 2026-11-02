@@ -1,11 +1,11 @@
-/* Optional future integration helper. Not loaded by index.html. No storage access. */
+/* Approved-art integration helper. No progress or storage access. */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
   else root.MonarchFinalAssets = factory();
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
   function approvedAsset(manifest, id) {
-    if (!manifest || manifest.integration_enabled !== true) return null;
+    if (!manifest || !Array.isArray(manifest.assets) || manifest.integration_enabled !== true) return null;
     const matches = (manifest.assets || []).filter(asset => asset.id === id);
     if (matches.length !== 1) return null;
     const asset = matches[0], validation = asset.validation || {}, review = asset.visual_review || {};
@@ -17,12 +17,15 @@
   // Caller supplies the intact HTML/glyph fallback; no sizing or layout styles are changed.
   // Return cleanup and call it before reusing an element for a different resource.
   function attachImage(image, manifest, id, fallbackElement) {
-    const asset = (manifest && manifest.assets || []).find(a => a.id === id);
+    const assets = manifest && Array.isArray(manifest.assets) ? manifest.assets : [];
+    const asset = assets.find(a => a.id === id);
     const approved = approvedAsset(manifest, id);
-    const fallback = asset && asset.fallback || {};
+    const defaultSource = /^aether_rank_[edcbas]$/.test(id) ? 'assets/characters/aether-placeholder.svg' : /^hero_rank_[edcbas]$/.test(id) || id === 'banner_compania_mea' ? 'assets/scenes/monarch-castle-panorama.webp' : null;
+    const fallback = asset && asset.fallback || {kind:'image',src:defaultSource};
     const allowedFallbacks = ['assets/characters/aether-placeholder.svg', 'assets/scenes/monarch-castle-panorama.webp'];
     const fallbackSrc = fallback.kind === 'image' && allowedFallbacks.includes(fallback.src) ? fallback.src : null;
     let stage = approved ? 'primary' : 'fallback';
+    image.dataset.fallback = approved ? 'false' : 'true';
     function terminal() {
       stage = 'terminal'; image.hidden = true;
       if (fallbackElement) fallbackElement.hidden = false;
@@ -34,7 +37,7 @@
     }
     function error() {
       if (stage === 'primary' && fallbackSrc) {
-        stage = 'fallback'; image.src = fallbackSrc;
+        stage = 'fallback'; image.dataset.fallback = 'true'; image.src = fallbackSrc;
       } else terminal();
     }
     image.addEventListener('load', load);

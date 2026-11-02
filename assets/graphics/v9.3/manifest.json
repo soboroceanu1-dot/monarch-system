@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "source_commit": "d72ff6c3b96a8625d9a7bedd1e09339b97909507",
-  "integration_enabled": false,
-  "note": "Infrastructure only. No final images supplied. Export sizes are proposed contracts; CSS measurements are observations. Automated checks cannot certify artwork quality.",
+  "integration_enabled": true,
+  "note": "28 supplied originals, imported byte-for-byte; six rank characters replace the previous single-character contract. Visual source limitations are recorded separately.",
   "assets": [
     {
       "id": "hero_rank_e",
@@ -124,12 +124,18 @@
         "last_resort": "HTML gradient and dynamic text remain"
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "5334723f53074fe01c6901d6e287d397521b14757a67f7fede4f8ddbffd163af"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "5334723f53074fe01c6901d6e287d397521b14757a67f7fede4f8ddbffd163af",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "5334723f53074fe01c6901d6e287d397521b14757a67f7fede4f8ddbffd163af",
+        "bytes": 158326
       }
     },
     {
@@ -252,12 +258,18 @@
         "last_resort": "HTML gradient and dynamic text remain"
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "84029f1c093bd23d2162e7bb6fce45b5732e32d1b88f40c78dc54a9825292e98"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "84029f1c093bd23d2162e7bb6fce45b5732e32d1b88f40c78dc54a9825292e98",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "84029f1c093bd23d2162e7bb6fce45b5732e32d1b88f40c78dc54a9825292e98",
+        "bytes": 190348
       }
     },
     {
@@ -380,12 +392,18 @@
         "last_resort": "HTML gradient and dynamic text remain"
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "ce7cc5b4bb5138650fbe2d6f0c60dde99e6a8d96ac8b0faeb718a520a18a985e"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "ce7cc5b4bb5138650fbe2d6f0c60dde99e6a8d96ac8b0faeb718a520a18a985e",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "ce7cc5b4bb5138650fbe2d6f0c60dde99e6a8d96ac8b0faeb718a520a18a985e",
+        "bytes": 197172
       }
     },
     {
@@ -508,12 +526,18 @@
         "last_resort": "HTML gradient and dynamic text remain"
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "49eb86515edbbd83e47393ee1afa2322c5fd242253a1e7d70b30626c66ac16ac"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "49eb86515edbbd83e47393ee1afa2322c5fd242253a1e7d70b30626c66ac16ac",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "49eb86515edbbd83e47393ee1afa2322c5fd242253a1e7d70b30626c66ac16ac",
+        "bytes": 203914
       }
     },
     {
@@ -636,12 +660,18 @@
         "last_resort": "HTML gradient and dynamic text remain"
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "2e8cd6c668515e2efc0ffa6c8a30e64f83a264eb3fdd48c5366414f2b88dc0d3"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "2e8cd6c668515e2efc0ffa6c8a30e64f83a264eb3fdd48c5366414f2b88dc0d3",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "2e8cd6c668515e2efc0ffa6c8a30e64f83a264eb3fdd48c5366414f2b88dc0d3",
+        "bytes": 218192
       }
     },
     {
@@ -764,17 +794,23 @@
         "last_resort": "HTML gradient and dynamic text remain"
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "7fb41e2416c5d869a9fc52a8a828c01f918fb39f957eab19063017a0b18b08ff"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "7fb41e2416c5d869a9fc52a8a828c01f918fb39f957eab19063017a0b18b08ff",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "7fb41e2416c5d869a9fc52a8a828c01f918fb39f957eab19063017a0b18b08ff",
+        "bytes": 239430
       }
     },
     {
-      "id": "aether_monarch",
-      "path": "assets/graphics/v9.3/character/aether_monarch.png",
+      "id": "aether_rank_e",
+      "path": "assets/graphics/v9.3/character/aether_rank_e.png",
       "group": "character",
       "export": {
         "width": 900,
@@ -913,7 +949,7 @@
             "clean alpha edges"
           ]
         },
-        "crop_policy": "no subject clipping; character requires reviewed positioning in both existing windows"
+        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
       },
       "fallback": {
         "kind": "image",
@@ -921,12 +957,833 @@
         "last_resort": "accessible character label; do not fall back to damaged E-S artwork"
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "aa4c86698d4713693e383dd439c3074311135f85515fb401f28eba3f25be7539"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "aa4c86698d4713693e383dd439c3074311135f85515fb401f28eba3f25be7539",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "aa4c86698d4713693e383dd439c3074311135f85515fb401f28eba3f25be7539",
+        "bytes": 500431
+      }
+    },
+    {
+      "id": "aether_rank_d",
+      "path": "assets/graphics/v9.3/character/aether_rank_d.png",
+      "group": "character",
+      "export": {
+        "width": 900,
+        "height": 1200,
+        "aspect_ratio": 0.75,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 300000,
+        "max": 900000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 169,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 602.46875,
+              "w": 153,
+              "h": 74.53125,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 184,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 636,
+              "w": 168,
+              "h": 85,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 204,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 703.046875,
+              "w": 188,
+              "h": 105.9375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 56,
+              "w": 184,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 559.140625,
+              "w": 168,
+              "h": 62.859375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.08,
+            0.08,
+            0.92,
+            0.92
+          ],
+          "manual_review_required": true,
+          "required": [
+            "complete head and accessories",
+            "no foreign fragments",
+            "clean alpha edges"
+          ]
+        },
+        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/characters/aether-placeholder.svg",
+        "last_resort": "accessible character label; do not fall back to damaged E-S artwork"
+      },
+      "validation": {
+        "status": "passed",
+        "sha256": "b4212f105b1add1f2a561ce66437dea7ecb2b721267f4fdea696bb65732dab07"
+      },
+      "visual_review": {
+        "status": "blocked_source_contour",
+        "approved_sha256": null,
+        "basis": "User explicitly requested placeholders for affected D/C/B/A source contours; replacement required. Technical validity is not visual approval."
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "b4212f105b1add1f2a561ce66437dea7ecb2b721267f4fdea696bb65732dab07",
+        "bytes": 529014
+      }
+    },
+    {
+      "id": "aether_rank_c",
+      "path": "assets/graphics/v9.3/character/aether_rank_c.png",
+      "group": "character",
+      "export": {
+        "width": 900,
+        "height": 1200,
+        "aspect_ratio": 0.75,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 300000,
+        "max": 900000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 169,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 602.46875,
+              "w": 153,
+              "h": 74.53125,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 184,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 636,
+              "w": 168,
+              "h": 85,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 204,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 703.046875,
+              "w": 188,
+              "h": 105.9375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 56,
+              "w": 184,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 559.140625,
+              "w": 168,
+              "h": 62.859375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.08,
+            0.08,
+            0.92,
+            0.92
+          ],
+          "manual_review_required": true,
+          "required": [
+            "complete head and accessories",
+            "no foreign fragments",
+            "clean alpha edges"
+          ]
+        },
+        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/characters/aether-placeholder.svg",
+        "last_resort": "accessible character label; do not fall back to damaged E-S artwork"
+      },
+      "validation": {
+        "status": "passed",
+        "sha256": "b1acb7bcc1de988a838e1d88b0eccef6364065fbcd3ad6e0d746bc15f80dadb2"
+      },
+      "visual_review": {
+        "status": "blocked_source_contour",
+        "approved_sha256": null,
+        "basis": "User explicitly requested placeholders for affected D/C/B/A source contours; replacement required. Technical validity is not visual approval."
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "b1acb7bcc1de988a838e1d88b0eccef6364065fbcd3ad6e0d746bc15f80dadb2",
+        "bytes": 569183
+      }
+    },
+    {
+      "id": "aether_rank_b",
+      "path": "assets/graphics/v9.3/character/aether_rank_b.png",
+      "group": "character",
+      "export": {
+        "width": 900,
+        "height": 1200,
+        "aspect_ratio": 0.75,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 300000,
+        "max": 900000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 169,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 602.46875,
+              "w": 153,
+              "h": 74.53125,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 184,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 636,
+              "w": 168,
+              "h": 85,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 204,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 703.046875,
+              "w": 188,
+              "h": 105.9375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 56,
+              "w": 184,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 559.140625,
+              "w": 168,
+              "h": 62.859375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.08,
+            0.08,
+            0.92,
+            0.92
+          ],
+          "manual_review_required": true,
+          "required": [
+            "complete head and accessories",
+            "no foreign fragments",
+            "clean alpha edges"
+          ]
+        },
+        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/characters/aether-placeholder.svg",
+        "last_resort": "accessible character label; do not fall back to damaged E-S artwork"
+      },
+      "validation": {
+        "status": "passed",
+        "sha256": "9759df3b25a66de4a5aba8f8201adb39089464fff279dc2bb473b3eb41886e8b"
+      },
+      "visual_review": {
+        "status": "blocked_source_contour",
+        "approved_sha256": null,
+        "basis": "User explicitly requested placeholders for affected D/C/B/A source contours; replacement required. Technical validity is not visual approval."
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "9759df3b25a66de4a5aba8f8201adb39089464fff279dc2bb473b3eb41886e8b",
+        "bytes": 558854
+      }
+    },
+    {
+      "id": "aether_rank_a",
+      "path": "assets/graphics/v9.3/character/aether_rank_a.png",
+      "group": "character",
+      "export": {
+        "width": 900,
+        "height": 1200,
+        "aspect_ratio": 0.75,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 300000,
+        "max": 900000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 169,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 602.46875,
+              "w": 153,
+              "h": 74.53125,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 184,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 636,
+              "w": 168,
+              "h": 85,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 204,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 703.046875,
+              "w": 188,
+              "h": 105.9375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 56,
+              "w": 184,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 559.140625,
+              "w": 168,
+              "h": 62.859375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.08,
+            0.08,
+            0.92,
+            0.92
+          ],
+          "manual_review_required": true,
+          "required": [
+            "complete head and accessories",
+            "no foreign fragments",
+            "clean alpha edges"
+          ]
+        },
+        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/characters/aether-placeholder.svg",
+        "last_resort": "accessible character label; do not fall back to damaged E-S artwork"
+      },
+      "validation": {
+        "status": "passed",
+        "sha256": "a7875c0db17dfb3bcc07c04c45a86f192ba76d86b940a4f2869d8719ef1a8ca3"
+      },
+      "visual_review": {
+        "status": "blocked_source_contour",
+        "approved_sha256": null,
+        "basis": "User explicitly requested placeholders for affected D/C/B/A source contours; replacement required. Technical validity is not visual approval."
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "a7875c0db17dfb3bcc07c04c45a86f192ba76d86b940a4f2869d8719ef1a8ca3",
+        "bytes": 670599
+      }
+    },
+    {
+      "id": "aether_rank_s",
+      "path": "assets/graphics/v9.3/character/aether_rank_s.png",
+      "group": "character",
+      "export": {
+        "width": 900,
+        "height": 1200,
+        "aspect_ratio": 0.75,
+        "format": "PNG",
+        "alpha_required": true,
+        "transparent_outer_border_px": 1
+      },
+      "estimated_bytes": {
+        "min": 300000,
+        "max": 900000,
+        "enforced": false
+      },
+      "measured_css": [
+        {
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 169,
+              "h": 129.34375,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 602.46875,
+              "w": 153,
+              "h": 74.53125,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 184,
+              "h": 138.25,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 636,
+              "w": 168,
+              "h": 85,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 57,
+              "w": 204,
+              "h": 156.046875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 703.046875,
+              "w": 188,
+              "h": 105.9375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "boxes": {
+            ".character-stage": {
+              "x": 11,
+              "y": 56,
+              "w": 184,
+              "h": 119.421875,
+              "fit": "fill",
+              "position": "absolute",
+              "font": "15px"
+            },
+            ".portrait-stage": {
+              "x": 17,
+              "y": 559.140625,
+              "w": 168,
+              "h": 62.859375,
+              "fit": "fill",
+              "position": "relative",
+              "font": "15px"
+            }
+          }
+        }
+      ],
+      "display": {
+        "fit": "contain",
+        "css_component_resize_allowed": false,
+        "safe_area": {
+          "coordinate_system": "normalized_0_to_1",
+          "subject_bounds": [
+            0.08,
+            0.08,
+            0.92,
+            0.92
+          ],
+          "manual_review_required": true,
+          "required": [
+            "complete head and accessories",
+            "no foreign fragments",
+            "clean alpha edges"
+          ]
+        },
+        "crop_policy": "Entire source canvas contained in both existing windows; no clipping of subject"
+      },
+      "fallback": {
+        "kind": "image",
+        "src": "assets/characters/aether-placeholder.svg",
+        "last_resort": "accessible character label; do not fall back to damaged E-S artwork"
+      },
+      "validation": {
+        "status": "passed",
+        "sha256": "dfcd49f8c499e40a550738f2533274968361e5160b78ccd9a9064b1a880dc761"
+      },
+      "visual_review": {
+        "status": "approved",
+        "approved_sha256": "dfcd49f8c499e40a550738f2533274968361e5160b78ccd9a9064b1a880dc761",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "dfcd49f8c499e40a550738f2533274968361e5160b78ccd9a9064b1a880dc761",
+        "bytes": 711785
       }
     },
     {
@@ -1017,7 +1874,7 @@
         }
       ],
       "display": {
-        "fit": "cover",
+        "fit": "contain",
         "css_component_resize_allowed": false,
         "safe_area": {
           "coordinate_system": "normalized_0_to_1",
@@ -1039,7 +1896,7 @@
             "logos"
           ]
         },
-        "crop_policy": "vertical decorative edges only"
+        "crop_policy": "Entire panorama contained and right aligned to preserve supplied castle edge"
       },
       "fallback": {
         "kind": "image",
@@ -1047,12 +1904,18 @@
         "last_resort": "HTML background and company text remain"
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "ce1569a6fa2de796057be1159e6e59e8fb155abb995fd9e0e79b13136724eb44"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "ce1569a6fa2de796057be1159e6e59e8fb155abb995fd9e0e79b13136724eb44",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "ce1569a6fa2de796057be1159e6e59e8fb155abb995fd9e0e79b13136724eb44",
+        "bytes": 43010
       }
     },
     {
@@ -1162,12 +2025,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "7707873040467e77dce6a7f88b6495de7479c01a009643f365efea74247e8827"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "7707873040467e77dce6a7f88b6495de7479c01a009643f365efea74247e8827",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "7707873040467e77dce6a7f88b6495de7479c01a009643f365efea74247e8827",
+        "bytes": 38598
       }
     },
     {
@@ -1277,12 +2146,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "4c3ce9d35484d9573ecee5d19362c9eb115afd87fa2a6aeeae6f4da72dec4577"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "4c3ce9d35484d9573ecee5d19362c9eb115afd87fa2a6aeeae6f4da72dec4577",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "4c3ce9d35484d9573ecee5d19362c9eb115afd87fa2a6aeeae6f4da72dec4577",
+        "bytes": 34592
       }
     },
     {
@@ -1392,12 +2267,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "ee0bb56e0dc37ee1ab622792a73c8150933d2b7266d1c2b896c23b304b1781ad"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "ee0bb56e0dc37ee1ab622792a73c8150933d2b7266d1c2b896c23b304b1781ad",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "ee0bb56e0dc37ee1ab622792a73c8150933d2b7266d1c2b896c23b304b1781ad",
+        "bytes": 39194
       }
     },
     {
@@ -1507,12 +2388,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "2964ec871349ec3a4023494e385a3f95038d90437fff9878145ff39702a09bf8"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "2964ec871349ec3a4023494e385a3f95038d90437fff9878145ff39702a09bf8",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "2964ec871349ec3a4023494e385a3f95038d90437fff9878145ff39702a09bf8",
+        "bytes": 40864
       }
     },
     {
@@ -1622,12 +2509,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "1b85fe8d6863c39b42bed244333d2b82146e38e2b62d240d2ea15f74cbf25881"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "1b85fe8d6863c39b42bed244333d2b82146e38e2b62d240d2ea15f74cbf25881",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "1b85fe8d6863c39b42bed244333d2b82146e38e2b62d240d2ea15f74cbf25881",
+        "bytes": 11810
       }
     },
     {
@@ -1737,12 +2630,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "377b0cea8d4b821d45aa5a746af3113712fd899e0260665ef37f416021a8acf6"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "377b0cea8d4b821d45aa5a746af3113712fd899e0260665ef37f416021a8acf6",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "377b0cea8d4b821d45aa5a746af3113712fd899e0260665ef37f416021a8acf6",
+        "bytes": 12363
       }
     },
     {
@@ -1852,12 +2751,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "434272e6c640cfdf2f858b44af998d2e69e66e0fc6a3231bbc05256970cbdd41"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "434272e6c640cfdf2f858b44af998d2e69e66e0fc6a3231bbc05256970cbdd41",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "434272e6c640cfdf2f858b44af998d2e69e66e0fc6a3231bbc05256970cbdd41",
+        "bytes": 12178
       }
     },
     {
@@ -1967,12 +2872,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "81a84cc0dd355fb3f1d6662080c29c7c0eff42e5db1dbec3aca77fc34b39aac2"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "81a84cc0dd355fb3f1d6662080c29c7c0eff42e5db1dbec3aca77fc34b39aac2",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "81a84cc0dd355fb3f1d6662080c29c7c0eff42e5db1dbec3aca77fc34b39aac2",
+        "bytes": 12697
       }
     },
     {
@@ -2082,12 +2993,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "e69c4a8e26b734f05618b73fcdf4d3c3fefa734754d53aed04dfac007680034a"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "e69c4a8e26b734f05618b73fcdf4d3c3fefa734754d53aed04dfac007680034a",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "e69c4a8e26b734f05618b73fcdf4d3c3fefa734754d53aed04dfac007680034a",
+        "bytes": 11624
       }
     },
     {
@@ -2197,12 +3114,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "8c77cbf56ed3a92efbb7506b8a793cdd057e2d650d7e11335ec8be5503763de9"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "8c77cbf56ed3a92efbb7506b8a793cdd057e2d650d7e11335ec8be5503763de9",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "8c77cbf56ed3a92efbb7506b8a793cdd057e2d650d7e11335ec8be5503763de9",
+        "bytes": 13347
       }
     },
     {
@@ -2277,12 +3200,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "7bf3eac5a6edb47dabc888921cb9c9544a2760ec0b43d21dc39af44dc234346c"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "7bf3eac5a6edb47dabc888921cb9c9544a2760ec0b43d21dc39af44dc234346c",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "7bf3eac5a6edb47dabc888921cb9c9544a2760ec0b43d21dc39af44dc234346c",
+        "bytes": 28488
       }
     },
     {
@@ -2357,12 +3286,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "247d3acc0c834cc8bc935caaadfb2b0e57de9c107d3959397b2748b598951224"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "247d3acc0c834cc8bc935caaadfb2b0e57de9c107d3959397b2748b598951224",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "247d3acc0c834cc8bc935caaadfb2b0e57de9c107d3959397b2748b598951224",
+        "bytes": 30411
       }
     },
     {
@@ -2437,12 +3372,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "5451683e1bedda25093831f229514a4efb5263344cc86651cbb30e3f36a6f85e"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "5451683e1bedda25093831f229514a4efb5263344cc86651cbb30e3f36a6f85e",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "5451683e1bedda25093831f229514a4efb5263344cc86651cbb30e3f36a6f85e",
+        "bytes": 28814
       }
     },
     {
@@ -2517,12 +3458,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "ce4911e0c9df939ad136a43b4a7873c0d9ab5ff7a08ae93052770e180464ea78"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "ce4911e0c9df939ad136a43b4a7873c0d9ab5ff7a08ae93052770e180464ea78",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "ce4911e0c9df939ad136a43b4a7873c0d9ab5ff7a08ae93052770e180464ea78",
+        "bytes": 29745
       }
     },
     {
@@ -2597,12 +3544,18 @@
         "note": "Keep existing semantic glyph/HTML label; never use concept artwork."
       },
       "validation": {
-        "status": "missing",
-        "sha256": null
+        "status": "passed",
+        "sha256": "f793a2fc91e25f37099bbeaa2bdf31285f11f0525bf1af6e76eab2630a76ce80"
       },
       "visual_review": {
-        "status": "pending",
-        "approved_sha256": null
+        "status": "approved",
+        "approved_sha256": "f793a2fc91e25f37099bbeaa2bdf31285f11f0525bf1af6e76eab2630a76ce80",
+        "basis": "User supplied approved archive; inspected in this session"
+      },
+      "supplied_source": {
+        "archive": "MONARCH_V9_3_TOATE_28_REUNITE_PENTRU_VERIFICARE.zip",
+        "sha256": "f793a2fc91e25f37099bbeaa2bdf31285f11f0525bf1af6e76eab2630a76ce80",
+        "bytes": 27905
       }
     }
   ]

@@ -59,3 +59,9 @@ Resurse opționale pentru o etapă grafică ulterioară: set original coerent de
 Rezultate finale: 108 teste Node trecute; 18 combinații exacte viewport/rang; 18 simulări Telegram la 740 px; limite confirmate la 700 px cu 24 px safe area și la 420 px/text 200%; 10 scenarii browser Progress Core; regresia mobilă Progress Shield; nouă scenarii export și 13 scenarii V9.1.2; 26 de profiluri istorice comparate cu V9.0 plus verificări de backup pentru host limitat și profil corupt. Toate suitele au ieșit cu cod 0. Sunt verificate separat navigarea panoului Atribute, inventarul, forma E–S, fallbackul imaginilor, valorile reale, lipsa scrierilor la navigare și absența erorilor JavaScript. Toate profilurile care sunt modificate în teste sunt fictive. Capturi: `docs/screenshots/dashboard-360.jpg` (360×800), `dashboard-390.jpg` (390×844), `dashboard-430.jpg` (430×932). Capturile mai vechi cu alte dimensiuni sunt păstrate ca istoric, nu ca dovezi pentru această structură.
 
 Testarea Chromium și simularea API-urilor Telegram nu certifică Telegram Android/Samsung real. Verificarea pe dispozitiv rămâne necesară. Nu se efectuează merge sau deploy automat.
+
+
+> Actualizare: integrarea arhivei cu 28 resurse este documentată în
+> [docs/graphics/INTEGRATION_REPORT.md](docs/graphics/INTEGRATION_REPORT.md).
+> D/C/B/A folosesc placeholderul la cererea utilizatorului. Datele și rezultatele
+> de mai sus descriu etapa istorică, nu pachetul curent.

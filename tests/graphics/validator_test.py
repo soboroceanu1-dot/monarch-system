@@ -35,7 +35,7 @@ class ValidationTests(unittest.TestCase):
 
     def test_all_missing_are_explicit(self):
         report = validator.validate(self.root, self.manifest)
-        self.assertEqual(report['counts'], dict(passed=0, invalid=0, missing=23))
+        self.assertEqual(report['counts'], dict(passed=0, invalid=0, missing=28))
 
     def test_valid_png_and_hash_bound_approval(self):
         self.fixture()

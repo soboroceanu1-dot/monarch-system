@@ -145,3 +145,18 @@ body{background:radial-gradient(ellipse at 0 15%,#5025a047,transparent 38%),radi
 .single-screen .monarch-actions [data-summary=academy]{box-shadow:inset 0 0 15px #9043d447,0 0 8px #ad65f333}
 .single-screen .monarch-actions [data-summary=projects]{box-shadow:inset 0 0 15px #ab7c3047,0 0 8px #e5bb5433}
 .single-screen .monarch-actions [data-summary=goal]{box-shadow:inset 0 0 15px #299d8647,0 0 8px #5ee8c133}
+
+/* Approved individual resources: change image fitting only, preserve all component tracks. */
+.hero-cinematic{width:100%;height:100%;object-fit:cover;object-position:center}
+.single-screen .monarch-hero .aether-character,.dashboard-character .aether-portrait{width:100%;height:100%;max-width:100%;left:0;right:auto;top:0;transform:none;object-fit:contain;object-position:center}
+/* Also keep the Hunter hero intact outside the single-screen dashboard. */
+.monarch-hero .aether-character{width:100%;height:100%;max-width:100%;left:0;right:auto;top:0;transform:none;object-fit:contain}
+.company-banner{background:linear-gradient(90deg,#111531,#0b1022)}
+.company-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:right center;pointer-events:none}
+.company-banner .company-sigil,.company-banner>div{position:relative;z-index:1}
+.graphic-icon{mix-blend-mode:normal}
+.icon-fallback{display:block}.icon-fallback[hidden],img[data-art-id][hidden]{display:none!important}
+.nav-symbol{display:inline-grid;place-items:center;width:22px;height:22px}
+.single-screen .nav-symbol{width:22px;height:22px}
+
+.monarch-hero{background:linear-gradient(130deg,#0a1023,#101227)}

@@ -47,3 +47,9 @@ Verificarea încadrării se reexecută după încărcarea/eroarea imaginilor și
 Testele acoperă 108 cazuri Node, 18 combinații de rang și viewport țintă, toate cele șase ranguri la WebView740 pe cele trei lățimi, încărcarea exclusivă a scenei curente, excluderea prin geometrie a insignei/personajului pictate, fallbackul personajului/scenei și al celor șapte pictograme. Sunt păstrate testele de navigare, inventar, XP real, zero scrieri la navigare și zero erori JavaScript. Au fost executate separat suitele Core, Shield, export/import V9.1.2 și compatibilitatea celor 26 de profiluri istorice.
 
 Șase comparații înainte/după (E și S × cele trei viewporturi) confirmă coordonate și dimensiuni identice pentru toate cele opt zone și aceleași fonturi principale. Capturile noi sunt în `docs/screenshots/dashboard-{360,390,430}.jpg`. Toate profilurile de test sunt fictive. Testarea Chromium/Telegram simulat nu certifică Telegram Android sau Samsung real.
+
+
+> Actualizare: integrarea arhivei cu 28 resurse este documentată în
+> [docs/graphics/INTEGRATION_REPORT.md](docs/graphics/INTEGRATION_REPORT.md).
+> D/C/B/A folosesc placeholderul la cererea utilizatorului. Datele și rezultatele
+> de mai sus descriu etapa istorică, nu pachetul curent.

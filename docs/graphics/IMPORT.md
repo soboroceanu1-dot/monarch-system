@@ -1,168 +1,103 @@
-# Importul resurselor finale V9.3
+# MONARCH V9.3 — 28 resurse furnizate și integrare
 
-## Starea livrată
+## Starea actuală
 
-Infrastructură pregătită în PR #6, pe `feature/v9.3-a-dashboard`.
-Nu există imagini finale sau provizorii în `assets/graphics/v9.3/`.
-Cele șase subdirectoare sunt păstrate în Git prin `.gitkeep`.
-`integration_enabled` este `false`; `index.html`, `app.js`, `style.css`,
-Progress Core și Progress Shield sunt neschimbate de această etapă.
-Nu se face merge/deploy. Nu se folosesc date sau profiluri reale în verificări.
+Contractul schema 2 înlocuiește personajul unic din schema 1 cu șase personaje
+E–S. Sunt 28 de imagini în `assets/graphics/v9.3/`, copiate byte-for-byte din
+arhiva utilizatorului; fără recomprimare, retușuri sau schimbări de format.
+Manifestul JSON este sursa de adevăr. `manifest.js` este proiecția runtime generată.
 
-## Fișierele exacte de furnizat
+24 resurse sunt active: șase fundaluri, personajele E/S, patru MONARCH,
+șase atribute, cinci navigare și bannerul. Personajele D/C/B/A sunt importate,
+dar `visual_review.status=blocked_source_contour`: utilizatorul a cerut explicit
+placeholderul pentru contururile afectate. Validarea tehnică nu le aprobă vizual.
 
-```text
-assets/graphics/v9.3/
-  manifest.json
-  hero/
-    hero_rank_e.webp
-    hero_rank_d.webp
-    hero_rank_c.webp
-    hero_rank_b.webp
-    hero_rank_a.webp
-    hero_rank_s.webp
-  character/
-    aether_monarch.png
-  banners/
-    banner_compania_mea.webp
-  monarch/
-    monarch_misiuni.png
-    monarch_academie.png
-    monarch_proiecte.png
-    monarch_obiectiv.png
-  attributes/
-    attribute_vitality.png
-    attribute_intelligence.png
-    attribute_wealth.png
-    attribute_leadership.png
-    attribute_discipline.png
-    attribute_mindset.png
-  nav/
-    nav_acasa.png
-    nav_aventuri.png
-    nav_plan.png
-    nav_hunter.png
-    nav_evolutie.png
-```
+Fișiere: hero/hero_rank_{e,d,c,b,a,s}.webp (1640×640),
+character/aether_rank_{e,d,c,b,a,s}.png (900×1200),
+banners/banner_compania_mea.webp (1640×220),
+monarch/monarch_{misiuni,academie,proiecte,obiectiv}.png (144×144),
+attributes/attribute_{vitality,intelligence,wealth,leadership,discipline,mindset}.png
+(84×84), nav/nav_{acasa,aventuri,plan,hunter,evolutie}.png (132×132).
+Toate PNG-urile au alpha; toate WebP-urile sunt opace. Nu există planșe integrate.
 
-Doar cele 23 de imagini finale aprobate separat; nu planșe, arhive, imagini
-concept, fișiere cu text sau exporturi decupate automat din planșe.
-Numele sunt case-sensitive. Nu copia peste manifest un manifest dintr-un pachet
-extern. Nu înlocui și nu șterge imaginile istorice în timpul importului.
+## Importarea unor înlocuitori aprobați
 
-## Dimensiuni și aprobare
-
-Manifestul conține pentru fiecare fișier: formatul, rezoluția, raportul de aspect,
-transparența, măsurătorile celor patru viewporturi, zona sigură normalizată,
-modul de afișare, politica de decupare, fallbackul, bugetul estimat, rezultatul
-tehnic și aprobarea vizuală. Contractele sunt centralizate și în
-`GRAPHICS_DIMENSIONS_AUDIT.md`. Schimbarea dimensiunilor de export necesită
-revizuirea contractului și a validatorului, nu redimensionarea dashboardului.
-
-`validation.status` este missing/invalid/passed, calculat tehnic.
-`visual_review.status` rămâne pending până la aprobarea umană.
-Aprobarea vizuală este legată de SHA-256 în `approved_sha256`:
-fișierele schimbate ulterior necesită revalidare și o nouă aprobare.
-Un rezultat tehnic passed nu dovedește că nu există text sau fragmente străine.
-
-## Comenzi de import și verificare
-
-Rulează din rădăcina repository-ului, pe ramura existentă:
+Pe `feature/v9.3-a-dashboard`, înlocuiește numai fișierul individual aprobat la
+calea exactă din manifest. Nu copia manifestul din arhive externe. Nu schimba
+layoutul, registrele de lecții, XP/rangurile, inventarul sau stocarea.
 
 ```sh
-git switch feature/v9.3-a-dashboard
 python3 -m venv /tmp/monarch-graphics-venv
 /tmp/monarch-graphics-venv/bin/python -m pip install -r scripts/graphics-requirements.txt
-```
-
-Copiază manual fiecare imagine aprobată la calea exactă din lista de mai sus.
-Fără conversii, eliminare automată de fundal sau generare de imagini de rezervă.
-Apoi:
-
-```sh
 /tmp/monarch-graphics-venv/bin/python scripts/validate-graphics.py --write-status --report docs/graphics/validation-report.json
 ```
 
-Coduri de ieșire:
-
-- `0`: verificările cerute au trecut; fără `--require-approved` este numai rezultat tehnic.
-- `1`: imagini lipsă/invalide, fișiere suplimentare sau aprobare cerută dar absentă.
-- `2`: manifest/configurare/execuție invalidă; nu este un rezultat de validare reușit.
-
-Pentru infrastructura goală, singura verificare permisivă este:
+După inspecția vizuală și aprobarea utilizatorului, setează DOAR la resursa
+aprobată `visual_review.status=approved` și `approved_sha256` egal cu hashul
+curent din raport. Nu copia automat toate hashurile în aprobări. Pentru
+personajele D/C/B/A, păstrează blocarea până la primirea înlocuitorilor aprobați.
 
 ```sh
-/tmp/monarch-graphics-venv/bin/python scripts/validate-graphics.py --allow-missing
+/tmp/monarch-graphics-venv/bin/python scripts/validate-graphics.py --write-status --browser-manifest --report docs/graphics/validation-report.json
 ```
 
-Aceasta poate ieși cu `0` și 23 lipsă: verifică infrastructura, NU declară
-pachetul pregătit. Nu folosi `--allow-missing` ca poartă de integrare.
+`--browser-manifest` regenerează scriptul runtime din manifest, inclusiv porțile
+vizuale. Nu activează resurse neaprobate. Actualizează tokenul comun al tuturor
+fișierelor locale din index.html la o nouă versiune pentru invalidarea cache-ului.
 
-După aprobarea vizuală a fiecărui fișier, înscrie pentru intrarea respectivă
-`visual_review.status: "approved"` și hashul exact din raport în
-`visual_review.approved_sha256`. Nu aproba în bloc și nu copia automat rezultatul
-tehnic în aprobarea vizuală. Rulează poarta completă:
+Coduri: 0 = verificările cerute trecute, 1 = resurse lipsă/invalide sau aprobări
+cerute dar absente, 2 = eroare de manifest/configurare/execuție.
+`--require-approved` cere aprobarea vizuală pentru toate 28. În livrarea actuală
+iese intenționat cu 1 pentru D/C/B/A, deși toate 28 trec verificările tehnice.
+`--allow-missing` este numai diagnostic de infrastructură, niciodată aprobare de
+integrare. Bugetele de fișier sunt avertizări; nu comprimă automat imaginile.
+
+## Runtime și fallbackuri
+
+index.html încarcă helperul final-assets.js și manifest.js înainte de app.js.
+`bindGraphics()` leagă elementele decorative prin data-art-id. Rangul rămâne
+calculat exclusiv de funcțiile existente, fără un al doilea sistem XP.
+Aprobarea necesită status tehnic passed, status vizual approved și hashuri egale.
+Doar rangul curent este solicitat; cele șase URL-uri nu declanșează preload.
+
+- Personaj neaprobat/lipsă: aether-placeholder.svg, niciodată WebP-ul deteriorat.
+- Hero/banner lipsă: panorama istorică intactă.
+- Pictograme lipsă: simbolul semantic existent; etichetele HTML rămân separate.
+- Fallback imagine eșuat: imaginea se ascunde, HTML-ul/gradientul rămân.
+- Manifest absent/malformat sau helper absent: fallback fără acces la stocare.
+
+Personajele sunt contain integral în ferestrele existente; nu se reutilizează
+offseturile negative ale vechilor decupaje. Bannerul este contain și aliniat
+dreapta pentru a conserva castelul; textul este HTML. Scenele Hero sunt cover
+la 100% din fereastră, cu decupare decorativă dependentă de aspect, fără vechea
+fereastră la 200%. Nu se modifică trackurile, dimensiunile sau ordinea zonelor.
+Pictogramele folosesc contain, fără mix-blend-mode:screen.
+
+## Teste
 
 ```sh
-/tmp/monarch-graphics-venv/bin/python scripts/validate-graphics.py --require-approved --write-status --report docs/graphics/validation-report.json
-```
-
-Rezultatul cerut: 23 passed, 0 missing, 0 invalid, toate cele 23 de aprobări
-vizuale pentru octeții curenți, niciun fișier suplimentar, cod `0`.
-Bugetul depășit este avertizare; nu comprimă automat imaginile.
-Validatorul nu accesează rețeaua, aplicația, localStorage sau datele utilizatorului.
-`--write-status` actualizează numai metadatele tehnice ale manifestului.
-
-## Fallbackuri pregătite, fără activare în dashboard
-
-`assets/graphics/final-assets.js` este un helper UMD/CommonJS opțional,
-neîncărcat de `index.html`. Nu trebuie adăugat în aplicație în această etapă.
-
-- Personaj absent/respins: `assets/characters/aether-placeholder.svg`.
-- Hero/banner absent/respins: `assets/scenes/monarch-castle-panorama.webp`.
-- Pictogramă absentă/respinsă: simbolul semantic și eticheta HTML intacte.
-- Eșec și al imaginii de rezervă: ascunde imaginea defectă, păstrează HTML-ul.
-- Nu încearcă să încarce fișiere finale nevalidate/neaprobate; nu cade înapoi
-  pe pictogramele concept sau personajele deteriorate. Nu există retry infinit.
-
-În etapa viitoare, după autorizarea integrării, consumatorul poate folosi:
-
-```js
-const cleanup = MonarchFinalAssets.attachImage(imageElement, manifest,
-  'monarch_misiuni', existingGlyphElement);
-// La demontarea/reutilizarea elementului:
-cleanup();
-```
-
-Helperul cere simultan integration_enabled=true, validation.status=passed,
-visual_review.status=approved și hashuri identice în manifest. Gate-ul este de
-metadate; verificarea octeților se face de validator înainte de integrare.
-Manifestul se citește o singură dată, cu verificare de fetch/JSON și fallback
-HTML dacă nu poate fi citit. Nu se activează global doar pentru a testa importul.
-
-Integrarea finală va necesita legarea helperului la DOM, gestionarea fetch-ului
-manifestului și revizuirea poziționării personajului. Acestea nu sunt incluse acum.
-Nu reutiliza offseturile personajelor istorice și nici fereastra de 200% a scenei
-concept pentru noile imagini. Păstrează toate dimensiunile componentelor,
-ordinea, denumirile, patru carduri pe un rând și cinci opțiuni de navigare.
-Nu schimba Core, Shield, XP/rangurile E–S, lecțiile, recompensele, inventarul,
-stocarea sau backupul. Pachetul nu poate fi considerat gata doar pentru că
-fallbackul funcționează.
-
-## Testarea infrastructurii
-
-```sh
-/tmp/monarch-graphics-venv/bin/python -m unittest discover -s tests/graphics -p '*_test.py' -v
+node --test tests/*.test.cjs
+python3 -m unittest discover -s tests/graphics -p '*_test.py' -v
 node tests/graphics/fallback.test.cjs
+node tests/browser-dashboard.cjs
+node tests/browser-graphics-fallback.cjs
+node tests/browser-progress-core.cjs
+node tests/browser-progress-shield.cjs
+node tests/browser-backup-export.cjs
+node tests/browser-backup-v912.cjs
+node tests/browser-historical-compatibility.cjs
 ```
 
-Testele validatorului folosesc imagini sintetice strict în directoare temporare,
-pentru cazuri valide/invalide; nu sunt artă provizorie și nu sunt adăugate în assets.
-Helperul este testat izolat: imagini lipsă, 404, fallback eșuat, hash schimbat,
-resurse neaprobate, ID-uri duplicate și curățarea listenerelor.
-Nicio imagine finală sau aplicație de producție nu este modificată de teste.
+Suitele browser necesită Playwright și Chromium disponibil la /usr/bin/chromium.
+Dashboardul verifică șase ranguri × patru viewporturi: 360×800, 390×844,
+430×932, 390×740, plus safe-area Telegram simulat. Compară geometria celor opt
+zone cu măsurătorile de dinaintea integrării și salvează 24 capturi în
+`docs/screenshots/v93-approved/`. D/C/B/A trebuie să arate placeholderul, nu
+PNG-ul blocat. Testele de fallback verifică și manifest/helper/imagini 404,
+reîncărcare și localStorage byte-identic. Imaginile sintetice din testele Python
+există numai în TemporaryDirectory, nu sunt resurse provizorii în aplicație.
 
-După integrarea autorizată separat: capturi comparative la 360×800, 390×844,
-430×932 și 390×740; toate rangurile E–S; nivel/XP dinamice; navigare; Core,
-Shield și backup; persistență cu profil fictiv valid; zero erori JS.
-Testele structurale nu înlocuiesc inspecția vizuală și verificarea pe Telegram real.
+Nu este certificare Telegram Android/Samsung real. Nu face merge/deploy automat.
+Raport: `docs/graphics/INTEGRATION_REPORT.md`; inventar și hashuri:
+`docs/graphics/supplied-inventory.json`. Auditul și măsurătorile istorice rămân
+separate, legate de commitul lor original, fără rescriere retroactivă.
